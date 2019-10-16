@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Илья Колмаков](https://up.htmlacademy.ru/react/2/user/508859).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Махнёв](https://up.htmlacademy.ru/react/2/user/7392).
 
 ---
 
