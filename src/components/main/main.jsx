@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Main = (props) => {
-  const {rentList} = props;
+  const {rentList, onDetailModalClick} = props;
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -123,7 +123,7 @@ const Main = (props) => {
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href="#">{title}</a>
+                      <a href="#" onClick={onDetailModalClick}>{title}</a>
                     </h2>
                     <p className="place-card__type">{type}</p>
                   </div>
@@ -150,7 +150,8 @@ Main.propTypes = {
         rating: PropTypes.number.isRequired,
         type: PropTypes.oneOf([`Apartment`, `Private room`])
       })
-  )
+  ),
+  onDetailModalClick: PropTypes.func.isRequired
 };
 
 export default Main;

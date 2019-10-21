@@ -5,7 +5,7 @@ import Main from './components/main/main';
 
 const rentList = [
   {
-    title: `Beautiful &amp; luxurious apartment at great location`,
+    title: `Beautiful luxurious apartment at great location`,
     type: `Apartment`,
     price: 120,
     image: `apartment-01.jpg`,
@@ -38,4 +38,7 @@ const rentList = [
   }
 ];
 
-ReactDOM.render(<Main rentList={rentList} />, document.querySelector(`#root`));
+ReactDOM.render(<Main
+  rentList={rentList}
+  onDetailModalClick={() => {}}
+/>, document.querySelector(`#root`));
