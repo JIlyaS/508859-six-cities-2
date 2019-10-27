@@ -13,7 +13,9 @@ it(`OfferCard correctly renders after relaunch`, () => {
         rating: 0,
         isPremium: false
       }}
+      offerId={0}
       activeOfferMouseEnterHandler={() => {}}
+      cardTitleClickHandler={() => {}}
     />)
     .toJSON();
 

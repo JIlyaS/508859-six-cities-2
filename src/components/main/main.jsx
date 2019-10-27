@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import OfferList from '../offer-list/offer-list';
 
 const Main = (props) => {
-  const {offers} = props;
+  const {offers, updatePathApp} = props;
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -92,7 +92,7 @@ const Main = (props) => {
                 <option class="places__option" value="top-rated">Top rated first</option>
               </select> */}
             </form>
-            <OfferList offers={offers} />
+            <OfferList offers={offers} updatePathApp={updatePathApp} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
@@ -113,7 +113,8 @@ Main.propTypes = {
         rating: PropTypes.number.isRequired,
         type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
       })
-  )
+  ),
+  updatePathApp: PropTypes.func.isRequired
 };
 
 export default Main;

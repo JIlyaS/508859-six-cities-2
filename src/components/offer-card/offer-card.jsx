@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {firstUpperCase} from '../../utils';
+import {firstUpperCase, convertRating} from '../../utils';
 
 const OfferCard = (props) => {
-  const {offer: {img, isPremium, price, title, type, rating}, activeOfferMouseEnterHandler} = props;
+  const {offer: {img, isPremium, price, title, type, rating}, offerId, activeOfferMouseEnterHandler, cardTitleClickHandler} = props;
   return <article className="cities__place-card place-card" onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}>
     {isPremium && <div className="place-card__mark">
       <span>Premium</span>
@@ -28,12 +28,12 @@ const OfferCard = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: rating + `%`}}></span>
+          <span style={{width: convertRating(rating) + `%`}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{title}</a>
+        <a href="#" onClick={(evt) => cardTitleClickHandler(evt, offerId)}>{title}</a>
       </h2>
       <p className="place-card__type">{firstUpperCase(type)}</p>
     </div>
@@ -49,7 +49,9 @@ OfferCard.propTypes = {
     rating: PropTypes.number.isRequired,
     type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
   }),
-  activeOfferMouseEnterHandler: PropTypes.func.isRequired
+  offerId: PropTypes.number.isRequired,
+  activeOfferMouseEnterHandler: PropTypes.func.isRequired,
+  cardTitleClickHandler: PropTypes.func.isRequired
 };
 
 export default OfferCard;
