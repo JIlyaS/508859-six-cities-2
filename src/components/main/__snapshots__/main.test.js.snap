@@ -225,6 +225,7 @@ exports[`Main correctly renders after relaunch 1`] = `
           >
             <article
               className="cities__place-card place-card"
+              onMouseEnter={[Function]}
             >
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -307,7 +308,6 @@ exports[`Main correctly renders after relaunch 1`] = `
                 >
                   <a
                     href="#"
-                    onClick={[Function]}
                   >
                     
                   </a>

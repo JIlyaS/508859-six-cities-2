@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main';
+import OfferList from './offer-list';
 
-it(`Main correctly renders after relaunch`, () => {
+it(`OfferList correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<Main
+    .create(<OfferList
       offers={[{
         title: ``,
         type: `private room`,
