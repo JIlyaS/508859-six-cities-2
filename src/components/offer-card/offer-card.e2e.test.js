@@ -21,7 +21,7 @@ it(`OfferCard correct callback function`, () => {
   />);
 
   const mouseenterButton = offerCard.find(`.place-card`);
-  mouseenterButton.simulate(`mouseenter`, mockOfferCardData);
+  mouseenterButton.simulate(`mouseenter`);
 
   expect(offerMouseEnterHandler).toHaveBeenCalledWith(mockOfferCardData);
 });
