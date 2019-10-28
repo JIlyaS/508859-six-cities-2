@@ -9,8 +9,8 @@ export const offers = [
     rating: 4.8,
 
     photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
-    features: new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`]),
-    insideProperties: new Set([
+    features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
+    insideProperties: [...new Set([
       `Wi-Fi`,
       `Washing machine`,
       `Towels`,
@@ -21,7 +21,7 @@ export const offers = [
       `Dishwasher`,
       `Cabel TV`,
       `Fridge`
-    ]),
+    ])],
     hostUser: {
       avatar: `avatar-angelina.jpg`,
       name: `Angelina`,
@@ -44,8 +44,8 @@ export const offers = [
     type: `private room`,
     rating: 4.0,
     photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
-    features: new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`]),
-    insideProperties: new Set([
+    features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
+    insideProperties: [...new Set([
       `Wi-Fi`,
       `Washing machine`,
       `Towels`,
@@ -56,7 +56,7 @@ export const offers = [
       `Dishwasher`,
       `Cabel TV`,
       `Fridge`
-    ]),
+    ])],
     hostUser: {
       avatar: `avatar-angelina.jpg`,
       name: `Angelina`,
@@ -79,8 +79,8 @@ export const offers = [
     type: `apartment`,
     rating: 4.0,
     photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
-    features: new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`]),
-    insideProperties: new Set([
+    features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
+    insideProperties: [...new Set([
       `Wi-Fi`,
       `Washing machine`,
       `Towels`,
@@ -91,7 +91,7 @@ export const offers = [
       `Dishwasher`,
       `Cabel TV`,
       `Fridge`
-    ]),
+    ])],
     hostUser: {
       avatar: `avatar-angelina.jpg`,
       name: `Angelina`,

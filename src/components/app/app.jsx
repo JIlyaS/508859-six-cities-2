@@ -4,37 +4,24 @@ import Main from '../main/main';
 import DetailInfo from '../detail-info/detail-info';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pathname: `/`,
-      offerId: -1
-    };
-
-    this._updatePathApp = this._updatePathApp.bind(this);
-  }
-
-  render() {
-    return <Fragment>{this._getPageScreen(this.props)}</Fragment>;
-  }
-
-  _getPageScreen(props) {
+  static _getPageScreen(props) {
     const {offers} = props;
-    const {offerId} = this.state;
+    const regPathId = /\/offer\/([0-9]+)/;
+    const idPath = Array.isArray(location.pathname.match(regPathId)) && location.pathname.match(regPathId)[1];
+
     switch (location.pathname) {
       case `/`:
-        return <Main offers={offers} updatePathApp={this._updatePathApp} />;
-      case `/offer/${offerId}`:
-        const currentOffer = offers.find((offer) => offer.id === offerId);
+        return <Main offers={offers} />;
+      case `/offer/${idPath}`:
+        const currentOffer = offers.find((offer) => offer.id === Number(idPath));
         return <DetailInfo offer={currentOffer} />;
     }
 
     return null;
   }
 
-  _updatePathApp(pathname, offerId) {
-    this.setState({pathname, offerId});
+  render() {
+    return <Fragment>{App._getPageScreen(this.props)}</Fragment>;
   }
 }
 

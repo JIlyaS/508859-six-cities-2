@@ -27,10 +27,7 @@ class OfferList extends Component {
 
   _cardTitleClickHandler(evt, offerId) {
     evt.preventDefault();
-    const {updatePathApp} = this.props;
-    const newPath = `/offer/${offerId}`;
-    history.pushState(null, null, newPath);
-    updatePathApp(newPath, offerId);
+    location.replace(`/offer/${offerId}`);
   }
 
   _activeOfferMouseEnterHandler(activeOffer) {
@@ -48,8 +45,7 @@ OfferList.propTypes = {
         rating: PropTypes.number.isRequired,
         type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
       })
-  ),
-  updatePathApp: PropTypes.func.isRequired
+  )
 };
 
 export default OfferList;
