@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from './components/main/main';
 import {offers} from './mocks/offers';
+import App from './components/app/app';
 
-ReactDOM.render(<Main
-  offers={offers}
-/>, document.querySelector(`#root`));
+ReactDOM.render(<App offers={offers} />, document.querySelector(`#root`));

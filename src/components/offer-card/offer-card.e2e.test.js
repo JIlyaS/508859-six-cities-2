@@ -17,7 +17,9 @@ it(`OfferCard correct callback function`, () => {
   };
   const offerCard = shallow(<OfferCard
     offer={mockOfferCardData}
+    offerId={0}
     activeOfferMouseEnterHandler={offerMouseEnterHandler}
+    cardTitleClickHandler={() => {}}
   />);
 
   const mouseenterButton = offerCard.find(`.place-card`);

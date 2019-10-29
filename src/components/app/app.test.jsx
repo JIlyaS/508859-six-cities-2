@@ -1,21 +1,18 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import OfferCard from './offer-card';
+import App from './app';
 
-it(`OfferCard correctly renders after relaunch`, () => {
+it(`App correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<OfferCard
-      offer={{
+    .create(<App
+      offers={[{
         title: ``,
         type: `private room`,
         price: 0,
         img: `room.jpg`,
         rating: 0,
         isPremium: false
-      }}
-      offerId={0}
-      activeOfferMouseEnterHandler={() => {}}
-      cardTitleClickHandler={() => {}}
+      }]}
     />)
     .toJSON();
 

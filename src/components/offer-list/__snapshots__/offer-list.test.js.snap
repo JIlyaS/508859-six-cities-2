@@ -89,6 +89,7 @@ exports[`OfferList correctly renders after relaunch 1`] = `
       >
         <a
           href="#"
+          onClick={[Function]}
         >
           
         </a>
