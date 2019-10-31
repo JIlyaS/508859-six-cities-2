@@ -1,12 +1,23 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main';
+import Map from './map';
 
-jest.mock(`../map/map`);
+jest.mock(`leaflet`, () => ({
+  icon: jest.fn(),
+  map: jest.fn().mockReturnValue({
+    setView: jest.fn()
+  }),
+  tileLayer: jest.fn().mockReturnValue({
+    addTo: jest.fn()
+  }),
+  marker: jest.fn().mockReturnValue({
+    addTo: jest.fn()
+  }),
+}));
 
-it(`Main correctly renders after relaunch`, () => {
+it(`Map correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<Main
+    .create(<Map
       offers={[{
         title: ``,
         type: `private room`,

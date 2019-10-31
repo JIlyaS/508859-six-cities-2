@@ -7,7 +7,7 @@ export const offers = [
     title: `Beautiful & luxurious apartment at great location`,
     type: `apartment`,
     rating: 4.8,
-
+    coordinate: [52.3909553943508, 4.85309666406198],
     photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
     features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
     insideProperties: [...new Set([
@@ -43,6 +43,7 @@ export const offers = [
     title: `Wood and stone place`,
     type: `private room`,
     rating: 4.0,
+    coordinate: [52.369553943508, 4.85309666406198],
     photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
     features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
     insideProperties: [...new Set([
@@ -78,6 +79,7 @@ export const offers = [
     title: `Canal View Prinsengracht`,
     type: `apartment`,
     rating: 4.0,
+    coordinate: [52.3909553943508, 4.929309666406198],
     photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
     features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
     insideProperties: [...new Set([
@@ -113,6 +115,7 @@ export const offers = [
     title: `Nice, cozy, warm big bed apartment`,
     type: `apartment`,
     rating: 5.0,
+    coordinate: [52.3809553943508, 4.939309666406198],
     photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
     features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
     insideProperties: [...new Set([
