@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Main from './main';
+import App from './app';
 
 jest.mock(`leaflet`, () => ({
   icon: jest.fn(),
@@ -15,9 +15,9 @@ jest.mock(`leaflet`, () => ({
   }),
 }));
 
-it(`Main correctly renders after relaunch`, () => {
+it(`App correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<Main
+    .create(<App
       offers={[{
         title: ``,
         type: `private room`,
