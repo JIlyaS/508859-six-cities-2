@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import leaflet, {icon, map, tileLayer} from 'leaflet';
 import Main from './main';
+import {ICON, LEAFLET_OPTION, TILE_LAYER} from '../../constants';
 
 jest.mock(`leaflet`, () => ({
   icon: jest.fn(),
@@ -19,30 +20,30 @@ jest.mock(`leaflet`, () => ({
 
 it(`We can check if the consumer called a method on the class instance`, () => {
   leaflet.icon({
-    iconUrl: `img/pin.svg`,
-    iconSize: [30, 30]
+    iconUrl: ICON.url,
+    iconSize: ICON.size
   });
   leaflet.map(`map`, {
-    center: [52.38333, 4.9],
-    zoom: 12,
+    center: LEAFLET_OPTION.center,
+    zoom: LEAFLET_OPTION.zoom,
     zoomControl: false,
     marker: true
   });
-  leaflet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-    attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+  leaflet.tileLayer(TILE_LAYER.img, {
+    attribution: TILE_LAYER.attribution
   });
   expect(icon).toHaveBeenCalledWith({
-    iconUrl: `img/pin.svg`,
-    iconSize: [30, 30]
+    iconUrl: ICON.url,
+    iconSize: ICON.size
   });
   expect(map).toHaveBeenCalledWith(`map`, {
-    center: [52.38333, 4.9],
-    zoom: 12,
+    center: LEAFLET_OPTION.center,
+    zoom: LEAFLET_OPTION.zoom,
     zoomControl: false,
     marker: true
   });
-  expect(tileLayer).toHaveBeenCalledWith(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-    attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+  expect(tileLayer).toHaveBeenCalledWith(TILE_LAYER.img, {
+    attribution: TILE_LAYER.attribution
   });
 });
 
