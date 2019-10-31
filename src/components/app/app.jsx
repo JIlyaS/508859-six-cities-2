@@ -33,7 +33,11 @@ App.propTypes = {
         price: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
-        type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
+        type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`]),
+        coordinate: PropTypes.array.isRequired,
+        photos: PropTypes.array.isRequired,
+        features: PropTypes.array.isRequired,
+        insideProperties: PropTypes.array.isRequired
       })
   )
 };

@@ -11,7 +11,11 @@ it(`Main correctly renders after relaunch`, () => {
         price: 0,
         img: `room.jpg`,
         rating: 0,
-        isPremium: false
+        isPremium: false,
+        coordinate: [],
+        photos: [],
+        features: [],
+        insideProperties: []
       }]}
     />)
     .toJSON();

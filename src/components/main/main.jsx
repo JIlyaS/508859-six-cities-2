@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OfferList from '../offer-list/offer-list';
+import Map from '../map/map';
 
 const Main = (props) => {
   const {offers} = props;
@@ -95,7 +96,7 @@ const Main = (props) => {
             <OfferList offers={offers} />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map offers={offers}/>
           </div>
         </div>
       </div>
@@ -111,7 +112,11 @@ Main.propTypes = {
         price: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         rating: PropTypes.number.isRequired,
-        type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
+        type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`]),
+        coordinate: PropTypes.array.isRequired,
+        photos: PropTypes.array.isRequired,
+        features: PropTypes.array.isRequired,
+        insideProperties: PropTypes.array.isRequired
       })
   )
 };
