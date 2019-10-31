@@ -1,20 +1,21 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-// import Enzyme from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
 import leaflet, {icon, map, tileLayer} from 'leaflet';
 import Map from './map';
 
-// Enzyme.configure({adapter: new Adapter()});
+jest.mock(`leaflet`, () => ({
+  icon: jest.fn(),
+  map: jest.fn().mockReturnValue({
+    setView: jest.fn()
+  }),
+  tileLayer: jest.fn().mockReturnValue({
+    addTo: jest.fn()
+  }),
+  marker: jest.fn().mockReturnValue({
+    addTo: jest.fn()
+  }),
+}));
 
-jest.mock(`leaflet`);
-
-beforeEach(() => {
-  // leaflet.mockClear();
-  // icon.mockClear();
-  // map.mockClear();
-  // tileLayer.mockClear();
-});
 
 it(`We can check if the consumer called a method on the class instance`, () => {
   leaflet.icon({
@@ -30,8 +31,6 @@ it(`We can check if the consumer called a method on the class instance`, () => {
   leaflet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
     attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
   });
-
-  // mapObj.setView([52.38333, 4.9], 12);
   expect(icon).toHaveBeenCalledWith({
     iconUrl: `img/pin.svg`,
     iconSize: [30, 30]
@@ -45,17 +44,6 @@ it(`We can check if the consumer called a method on the class instance`, () => {
   expect(tileLayer).toHaveBeenCalledWith(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
     attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
   });
-  // expect(mapObj.setView).toHaveBeenCalledWith([52.38333, 4.9], 12);
-
-  // jest.mock(`leaflet`, () => {
-  //   return jest.fn().mockImplementation(() => {
-  //     return {
-  //       icon: mokeIcon,
-  //       map: mokeMap,
-  //       tileLayer: mokeTileLayer,
-  //     };
-  //   });
-  // });
 });
 
 it(`Map correctly renders after relaunch`, () => {
