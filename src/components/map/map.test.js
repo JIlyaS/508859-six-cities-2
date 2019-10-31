@@ -1,8 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import leaflet, {icon, map, tileLayer} from 'leaflet';
 import Map from './map';
-import {ICON, LEAFLET_OPTION, TILE_LAYER} from '../../constants';
 
 jest.mock(`leaflet`, () => ({
   icon: jest.fn(),
@@ -16,36 +14,6 @@ jest.mock(`leaflet`, () => ({
     addTo: jest.fn()
   }),
 }));
-
-
-it(`We can check if the consumer called a method on the class instance`, () => {
-  leaflet.icon({
-    iconUrl: ICON.url,
-    iconSize: ICON.size
-  });
-  leaflet.map(`map`, {
-    center: LEAFLET_OPTION.center,
-    zoom: LEAFLET_OPTION.zoom,
-    zoomControl: false,
-    marker: true
-  });
-  leaflet.tileLayer(TILE_LAYER.img, {
-    attribution: TILE_LAYER.attribution
-  });
-  expect(icon).toHaveBeenCalledWith({
-    iconUrl: ICON.url,
-    iconSize: ICON.size
-  });
-  expect(map).toHaveBeenCalledWith(`map`, {
-    center: LEAFLET_OPTION.center,
-    zoom: LEAFLET_OPTION.zoom,
-    zoomControl: false,
-    marker: true
-  });
-  expect(tileLayer).toHaveBeenCalledWith(TILE_LAYER.img, {
-    attribution: TILE_LAYER.attribution
-  });
-});
 
 it(`Map correctly renders after relaunch`, () => {
   const tree = renderer
