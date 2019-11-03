@@ -6,6 +6,7 @@ it(`OfferList correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<OfferList
       offers={[{
+        id: `id0`,
         title: ``,
         type: `private room`,
         price: 0,

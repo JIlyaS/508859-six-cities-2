@@ -13,9 +13,10 @@ it(`OfferCard correctly renders after relaunch`, () => {
         rating: 0,
         isPremium: false
       }}
-      offerId={0}
+      offerId={`id0`}
       activeOfferMouseEnterHandler={() => {}}
       cardTitleClickHandler={() => {}}
+      isNearPlace={true}
     />)
     .toJSON();
 

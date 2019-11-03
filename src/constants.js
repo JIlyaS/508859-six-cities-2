@@ -12,3 +12,5 @@ export const TILE_LAYER = {
   img: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
   attributions: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
 };
+export const OFFER_ID_EXP = /id([0-9]+)/;
+export const OFFER_PATH_EXT = /\/offer\/([0-9]+)/;

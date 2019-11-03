@@ -5,6 +5,7 @@ import Map from '../map/map';
 
 const Main = (props) => {
   const {offers} = props;
+  const coordinates = offers.map((offer) => offer.coordinate);
   return <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -96,7 +97,9 @@ const Main = (props) => {
             <OfferList offers={offers} />
           </section>
           <div className="cities__right-section">
-            <Map offers={offers}/>
+            <section className="cities__map map">
+              <Map coordinates={coordinates}/>
+            </section>
           </div>
         </div>
       </div>
@@ -105,20 +108,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        isPremium: PropTypes.bool.isRequired,
-        img: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`]),
-        coordinate: PropTypes.array.isRequired,
-        photos: PropTypes.array.isRequired,
-        features: PropTypes.array.isRequired,
-        insideProperties: PropTypes.array.isRequired
-      })
-  )
+  offers: PropTypes.arrayOf(PropTypes.shape({}))
 };
 
 export default Main;

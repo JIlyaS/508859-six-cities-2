@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {firstUpperCase, convertRating} from '../../utils';
+import {OFFER_ID_EXP} from '../../constants';
 
 const OfferCard = (props) => {
-  const {offer: {img, isPremium, price, title, type, rating}, offerId, activeOfferMouseEnterHandler, cardTitleClickHandler} = props;
-  return <article className="cities__place-card place-card" onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}>
+  const {offer: {img, isPremium, price, title, type, rating}, offerId, activeOfferMouseEnterHandler, cardTitleClickHandler, isNearPlace} = props;
+  const offerIdForPath = Number(offerId.match(OFFER_ID_EXP)[1]);
+  return <article className={`${isNearPlace ? `near-places__` : `cities__place-`}card place-card`} onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}>
     {isPremium && <div className="place-card__mark">
       <span>Premium</span>
     </div>}
-    <div className="cities__image-wrapper place-card__image-wrapper">
+    <div className={`${isNearPlace ? `near-places` : `cities`}__image-wrapper place-card__image-wrapper`}>
       <a href="#">
-        <img className="place-card__image" src={`img/` + img} width="260" height="200" alt="Place image" />
+        <img className="place-card__image" src={`/img/` + img} width="260" height="200" alt="Place image" />
       </a>
     </div>
     <div className="place-card__info">
@@ -33,7 +35,7 @@ const OfferCard = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#" onClick={(evt) => cardTitleClickHandler(evt, offerId)}>{title}</a>
+        <a href="#" onClick={(evt) => cardTitleClickHandler(evt, offerIdForPath)}>{title}</a>
       </h2>
       <p className="place-card__type">{firstUpperCase(type)}</p>
     </div>
@@ -49,9 +51,14 @@ OfferCard.propTypes = {
     rating: PropTypes.number.isRequired,
     type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
   }),
-  offerId: PropTypes.number.isRequired,
+  offerId: PropTypes.string.isRequired,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
-  cardTitleClickHandler: PropTypes.func.isRequired
+  cardTitleClickHandler: PropTypes.func.isRequired,
+  isNearPlace: PropTypes.bool
+};
+
+OfferCard.defaultProps = {
+  isNearPlace: false
 };
 
 export default OfferCard;

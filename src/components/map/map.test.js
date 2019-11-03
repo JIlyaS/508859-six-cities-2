@@ -18,18 +18,7 @@ jest.mock(`leaflet`, () => ({
 it(`Map correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<Map
-      offers={[{
-        title: ``,
-        type: `private room`,
-        price: 0,
-        img: `room.jpg`,
-        rating: 0,
-        isPremium: false,
-        coordinate: [],
-        photos: [],
-        features: [],
-        insideProperties: []
-      }]}
+      coordinates={[[1, 2]]}
     />)
     .toJSON();
 
