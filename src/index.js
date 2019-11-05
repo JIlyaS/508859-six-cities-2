@@ -1,6 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {offers} from './mocks/offers';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+
+import {allOffers} from './mocks/offers';
+import {reducer} from './reducer/reducer';
 import App from './components/app/app';
 
-ReactDOM.render(<App offers={offers} />, document.querySelector(`#root`));
+const store = createStore(reducer);
+
+ReactDOM.render(
+    <Provider store={store}>
+      <App allOffers={allOffers} />
+    </Provider>,
+    document.querySelector(`#root`)
+);

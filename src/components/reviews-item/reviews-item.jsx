@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {convertRating} from '../../utils';
 
-class ReviewsItem extends Component {
+class ReviewsItem extends PureComponent {
   render() {
     const {review: {avatar, name, rating, date, description}} = this.props;
     return <li className="reviews__item">
