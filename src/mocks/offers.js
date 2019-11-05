@@ -1,6 +1,6 @@
 export const offers = [
   {
-    id: 0,
+    id: `id0`,
     img: `apartment-01.jpg`,
     isPremium: true,
     price: 120,
@@ -33,10 +33,28 @@ export const offers = [
         located between Rembrand Square and National Opera, but where
         the bustle of the city comes to rest in this alley flowery and
         colorful.`]
-    }
+    },
+    reviews: [
+      {
+        id: `review1`,
+        avatar: `avatar-max.jpg`,
+        name: `Max`,
+        rating: 4.7,
+        date: `April 2019`,
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+      },
+      {
+        id: `review2`,
+        avatar: `avatar-max.jpg`,
+        name: `Alex`,
+        rating: 4.0,
+        date: `May 2019`,
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+      }
+    ]
   },
   {
-    id: 1,
+    id: `id1`,
     img: `room.jpg`,
     isPremium: false,
     price: 120,
@@ -69,10 +87,20 @@ export const offers = [
         located between Rembrand Square and National Opera, but where
         the bustle of the city comes to rest in this alley flowery and
         colorful.`]
-    }
+    },
+    reviews: [
+      {
+        id: `review1`,
+        avatar: `avatar-max.jpg`,
+        name: `Max`,
+        rating: 4.7,
+        date: `April 2019`,
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+      }
+    ]
   },
   {
-    id: 2,
+    id: `id2`,
     img: `apartment-02.jpg`,
     isPremium: false,
     price: 120,
@@ -105,10 +133,20 @@ export const offers = [
         located between Rembrand Square and National Opera, but where
         the bustle of the city comes to rest in this alley flowery and
         colorful.`]
-    }
+    },
+    reviews: [
+      {
+        id: `review1`,
+        avatar: `avatar-max.jpg`,
+        name: `Max`,
+        rating: 4.7,
+        date: `April 2019`,
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+      }
+    ]
   },
   {
-    id: 3,
+    id: `id3`,
     img: `apartment-03.jpg`,
     isPremium: true,
     price: 180,
@@ -141,6 +179,16 @@ export const offers = [
         located between Rembrand Square and National Opera, but where
         the bustle of the city comes to rest in this alley flowery and
         colorful.`]
-    }
+    },
+    reviews: [
+      {
+        id: `review1`,
+        avatar: `avatar-max.jpg`,
+        name: `Max`,
+        rating: 4.7,
+        date: `April 2019`,
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+      }
+    ]
   }
 ];

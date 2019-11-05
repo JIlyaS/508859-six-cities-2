@@ -13,14 +13,18 @@ class OfferList extends Component {
   }
 
   render() {
-    const {offers} = this.props;
-    return <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer, id) => <OfferCard
-        offerId={id}
+    const {offers, isNearPlace} = this.props;
+    return <div className={isNearPlace ?
+      `near-places__list places__list` :
+      `cities__places-list places__list tabs__content`}
+    >
+      {offers.map((offer) => <OfferCard
+        offerId={offer.id}
         offer={offer}
-        key={id}
+        key={offer.id}
         activeOfferMouseEnterHandler={this._activeOfferMouseEnterHandler}
         cardTitleClickHandler={this._cardTitleClickHandler}
+        isNearPlace
       />)}
     </div>;
   }
@@ -36,16 +40,12 @@ class OfferList extends Component {
 }
 
 OfferList.propTypes = {
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-        isPremium: PropTypes.bool.isRequired,
-        img: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
-      })
-  )
+  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  isNearPlace: PropTypes.bool
+};
+
+OfferList.defaultProps = {
+  isNearPlace: false
 };
 
 export default OfferList;

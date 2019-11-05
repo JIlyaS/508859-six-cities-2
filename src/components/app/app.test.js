@@ -8,6 +8,7 @@ it(`App correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<App
       offers={[{
+        id: `id0`,
         title: ``,
         type: `private room`,
         price: 0,
@@ -17,7 +18,21 @@ it(`App correctly renders after relaunch`, () => {
         coordinate: [],
         photos: [],
         features: [],
-        insideProperties: []
+        insideProperties: [],
+        hostUser: {
+          avatar: ``,
+          name: ``,
+          status: ``,
+          description: []
+        },
+        reviews: [{
+          id: `id0`,
+          avatar: ``,
+          name: ``,
+          rating: 0,
+          date: ``,
+          description: ``
+        }]
       }]}
     />)
     .toJSON();
