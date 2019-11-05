@@ -14,3 +14,4 @@ export const TILE_LAYER = {
 };
 export const OFFER_ID_EXP = /id([0-9]+)/;
 export const OFFER_PATH_EXT = /\/offer\/([0-9]+)/;
+export const MAX_NEARBY_OFFER = 3;

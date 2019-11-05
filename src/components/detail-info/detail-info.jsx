@@ -6,7 +6,7 @@ import OfferList from '../offer-list/offer-list';
 import {convertRating} from '../../utils';
 
 const DetailInfo = (props) => {
-  const {offer: {isPremium, price, title, rating, photos, features, insideProperties, hostUser, reviews, coordinate}, otherOffers} = props;
+  const {offer: {isPremium, price, title, rating, photos, features, insideProperties, hostUser, reviews}, otherOffers} = props;
   const nearByCoordinates = otherOffers.map((offer) => offer.coordinate);
   return <div className="page">
     <header className="header">
@@ -153,7 +153,7 @@ const DetailInfo = (props) => {
           </div>
         </div>
         <section className="property__map map">
-          <Map coordinates={[coordinate, ...nearByCoordinates]} />
+          <Map coordinates={[...nearByCoordinates]} />
         </section>
       </section>
       <div className="container">
@@ -177,7 +177,6 @@ DetailInfo.propTypes = {
     photos: PropTypes.array.isRequired,
     features: PropTypes.array.isRequired,
     insideProperties: PropTypes.array.isRequired,
-    coordinate: PropTypes.array.isRequired,
     hostUser: PropTypes.shape({
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,

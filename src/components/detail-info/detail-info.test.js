@@ -17,7 +17,6 @@ it(`DetailInfo correctly renders after relaunch`, () => {
         photos: [],
         features: [],
         insideProperties: [],
-        coordinate: [`1`, `2`],
         hostUser: {
           avatar: ``,
           name: ``,
