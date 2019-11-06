@@ -7,23 +7,7 @@ import {
 
 describe(`Business logic is correct`, () => {
   it(`Get offers is correctly`, () => {
-    expect(getCityOffers([{
-      id: `id0`,
-      city: {
-        name: `Amsterdam`,
-      }
-    },
-    {
-      id: `id1`,
-      city: {
-        name: `Paris`,
-      }
-    }], `Amsterdam`)).toEqual({
-      id: `id0`,
-      city: {
-        name: `Amsterdam`,
-      }
-    });
+    expect(getCityOffers(DEFAULT_OFFERS, `Amsterdam`)).toEqual(DEFAULT_OFFERS);
 
     expect(getCityOffers([{
       id: `id0`,
@@ -136,18 +120,18 @@ describe(`Reducer work correctly`, () => {
         }
       }]
     });
+  });
 
-    it(`Reducer should get offers city empty array by a given value`, () => {
-      expect(reducer({
-        city: `Amsterdam`,
-        offers: DEFAULT_OFFERS
-      }, {
-        type: `GET_OFFERS`,
-        payload: []
-      })).toEqual({
-        city: `Amsterdam`,
-        offers: []
-      });
+  it(`Reducer should get offers city empty array by a given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: DEFAULT_OFFERS
+    }, {
+      type: `GET_OFFERS`,
+      payload: []
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: []
     });
   });
 });

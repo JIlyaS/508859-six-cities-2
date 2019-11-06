@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import OfferList from '../offer-list/offer-list';
@@ -6,7 +7,7 @@ import Map from '../map/map';
 import CityList from '../city-list/city-list';
 
 const Main = (props) => {
-  const {offers, allOffers, city, changeCityClickHandler} = props;
+  const {offers, allOffers, city} = props;
   const coordinates = offers.map((offer) => offer.coordinate);
   return <div className="page page--gray page--main">
     <header className="header">
@@ -38,8 +39,6 @@ const Main = (props) => {
         <section className="locations container">
           <CityList
             allOffers={allOffers}
-            city={city}
-            changeCityClickHandler={changeCityClickHandler}
           />
         </section>
       </div>
@@ -63,17 +62,17 @@ const Main = (props) => {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
               {/* <select class="places__sorting-type" id="places-sorting">
-                <option class="places__option" value="popular" selected="">Popular</option>
-                <option class="places__option" value="to-high">Price: low to high</option>
-                <option class="places__option" value="to-low">Price: high to low</option>
-                <option class="places__option" value="top-rated">Top rated first</option>
-              </select> */}
+              <option class="places__option" value="popular" selected="">Popular</option>
+              <option class="places__option" value="to-high">Price: low to high</option>
+              <option class="places__option" value="to-low">Price: high to low</option>
+              <option class="places__option" value="top-rated">Top rated first</option>
+            </select> */}
             </form>
             <OfferList offers={offers} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <Map coordinates={coordinates}/>
+              <Map coordinates={coordinates} />
             </section>
           </div>
         </div>
@@ -85,8 +84,15 @@ const Main = (props) => {
 Main.propTypes = {
   city: PropTypes.string.isRequired,
   allOffers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  changeCityClickHandler: PropTypes.func.isRequired
+  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
-export default Main;
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: state.city,
+  offers: state.offers
+});
+
+export {Main};
+
+export default connect(mapStateToProps)(Main);

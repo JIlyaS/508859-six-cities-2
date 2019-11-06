@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
+import {ActionCreator} from '../../reducer/reducer';
 
 const CityList = (props) => {
   const {allOffers, city, changeCityClickHandler} = props;
@@ -23,4 +26,18 @@ CityList.propTypes = {
   changeCityClickHandler: PropTypes.func.isRequired
 };
 
-export default CityList;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: state.city,
+  offers: state.offers
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  changeCityClickHandler: (allOffers, city) => {
+    dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.getOffers(allOffers, city));
+  }
+});
+
+export {CityList};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CityList);

@@ -14,6 +14,7 @@ it(`OfferList correctly renders after relaunch`, () => {
         rating: 0,
         isPremium: false
       }]}
+      isNearPlace={true}
     />)
     .toJSON();
 
