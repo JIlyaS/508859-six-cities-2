@@ -5,8 +5,7 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../reducer/reducer';
 
 const CityList = (props) => {
-  const {city, allOffers, changeCityClickHandler} = props;
-  const offerCityNames = allOffers.map((offer) => offer.city.name);
+  const {city, allOffers, offerCityNames, changeCityClickHandler} = props;
   return <ul className="locations__list tabs__list">
     {[...new Set(offerCityNames)].map((offerCity) => <li className="locations__item" key={`location-${offerCity}`}>
       <a
@@ -23,13 +22,15 @@ const CityList = (props) => {
 CityList.propTypes = {
   city: PropTypes.string.isRequired,
   changeCityClickHandler: PropTypes.func.isRequired,
-  allOffers: PropTypes.array.isRequired
+  allOffers: PropTypes.array.isRequired,
+  offerCityNames: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: state.city,
   offers: state.offers,
-  allOffers: state.allOffers
+  allOffers: state.allOffers,
+  offerCityNames: state.allOffers.map((offer) => offer.city.name)
 });
 
 const mapDispatchToProps = (dispatch) => ({

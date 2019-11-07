@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import OfferList from '../offer-list/offer-list';
 import {convertRating} from '../../utils';
 import {MAX_NEARBY_OFFER} from '../../constants';
-import {allOffers} from '../../mocks/offers';
 
 const DetailInfo = (props) => {
-  const {idPath} = props;
+  const {idPath, allOffers} = props;
   const currentOffer = allOffers.find((offer) => offer.id === `id${Number(idPath)}`);
   const {isPremium, price, title, rating, photos, features, insideProperties, hostUser, reviews} = currentOffer;
   const otherOffers = allOffers.filter((offer) => offer.id !== currentOffer.id).slice(0, MAX_NEARBY_OFFER);
@@ -172,7 +173,14 @@ const DetailInfo = (props) => {
 };
 
 DetailInfo.propTypes = {
-  idPath: PropTypes.string.isRequired
+  idPath: PropTypes.string.isRequired,
+  allOffers: PropTypes.array.isRequired
 };
 
-export default DetailInfo;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  allOffers: state.allOffers
+});
+
+export {DetailInfo};
+
+export default connect(mapStateToProps)(DetailInfo);

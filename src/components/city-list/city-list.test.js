@@ -12,6 +12,7 @@ it(`CityList correctly renders after relaunch`, () => {
   const tree = shallow(<CityList
     city={`Amsterdam`}
     allOffers={DEFAULT_OFFERS}
+    offerCityNames={[`Amsterdam`]}
     changeCityClickHandler={() => {}}
   />);
 
