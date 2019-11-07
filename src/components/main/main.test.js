@@ -13,7 +13,6 @@ jest.mock(`../map/map`);
 it(`Main correctly renders after relaunch`, () => {
   const tree = shallow(<Main
     city={`Amsterdam`}
-    allOffers={DEFAULT_OFFERS}
     offers={DEFAULT_OFFERS}
   />);
 

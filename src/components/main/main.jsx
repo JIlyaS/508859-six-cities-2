@@ -7,7 +7,7 @@ import Map from '../map/map';
 import CityList from '../city-list/city-list';
 
 const Main = (props) => {
-  const {offers, allOffers, city} = props;
+  const {offers, city} = props;
   const coordinates = offers.map((offer) => offer.coordinate);
   return <div className="page page--gray page--main">
     <header className="header">
@@ -37,9 +37,7 @@ const Main = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
-          <CityList
-            allOffers={allOffers}
-          />
+          <CityList />
         </section>
       </div>
       <div className="cities">
@@ -83,7 +81,6 @@ const Main = (props) => {
 
 Main.propTypes = {
   city: PropTypes.string.isRequired,
-  allOffers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 

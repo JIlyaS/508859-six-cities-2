@@ -1,3 +1,5 @@
+export const CHANGE_CITY = `CHANGE_CITY`;
+export const GET_OFFERS = `GET_OFFERS`;
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;
 export const ICON = {

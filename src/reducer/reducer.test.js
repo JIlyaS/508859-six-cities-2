@@ -1,5 +1,6 @@
 import {DEFAULT_OFFERS} from '../constants';
 import {getCityOffers} from '../utils';
+import {allOffers} from '../mocks/offers';
 import {
   ActionCreator,
   reducer
@@ -84,25 +85,29 @@ describe(`Reducer work correctly`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: `Amsterdam`,
-      offers: DEFAULT_OFFERS
+      offers: DEFAULT_OFFERS,
+      allOffers
     });
   });
   it(`Reducer should change city by a given value`, () => {
     expect(reducer({
       city: `Amsterdam`,
-      offers: DEFAULT_OFFERS
+      offers: DEFAULT_OFFERS,
+      allOffers
     }, {
       type: `CHANGE_CITY`,
       payload: `Paris`
     })).toEqual({
       city: `Paris`,
-      offers: DEFAULT_OFFERS
+      offers: DEFAULT_OFFERS,
+      allOffers
     });
   });
   it(`Reducer should get offers city by a given value`, () => {
     expect(reducer({
       city: `Amsterdam`,
-      offers: DEFAULT_OFFERS
+      offers: DEFAULT_OFFERS,
+      allOffers
     }, {
       type: `GET_OFFERS`,
       payload: [{
@@ -118,20 +123,23 @@ describe(`Reducer work correctly`, () => {
         city: {
           name: `Paris`,
         }
-      }]
+      }],
+      allOffers
     });
   });
 
   it(`Reducer should get offers city empty array by a given value`, () => {
     expect(reducer({
       city: `Amsterdam`,
-      offers: DEFAULT_OFFERS
+      offers: DEFAULT_OFFERS,
+      allOffers
     }, {
       type: `GET_OFFERS`,
       payload: []
     })).toEqual({
       city: `Amsterdam`,
-      offers: []
+      offers: [],
+      allOffers
     });
   });
 });

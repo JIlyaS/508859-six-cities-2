@@ -13,7 +13,8 @@ jest.mock(`../map/map`);
 
 const props = {
   city: `Amsterdam`,
-  offers: DEFAULT_OFFERS
+  offers: DEFAULT_OFFERS,
+  allOffers: DEFAULT_OFFERS
 };
 
 const mockStore = configureMockStore();
@@ -22,7 +23,6 @@ const store = mockStore(props);
 it(`App correctly renders after relaunch`, () => {
   const tree = shallow(<App
     store={store}
-    allOffers={DEFAULT_OFFERS}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

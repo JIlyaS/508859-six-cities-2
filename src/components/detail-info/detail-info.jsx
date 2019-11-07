@@ -4,9 +4,14 @@ import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import OfferList from '../offer-list/offer-list';
 import {convertRating} from '../../utils';
+import {MAX_NEARBY_OFFER} from '../../constants';
+import {allOffers} from '../../mocks/offers';
 
 const DetailInfo = (props) => {
-  const {offer: {isPremium, price, title, rating, photos, features, insideProperties, hostUser, reviews}, otherOffers} = props;
+  const {idPath} = props;
+  const currentOffer = allOffers.find((offer) => offer.id === `id${Number(idPath)}`);
+  const {isPremium, price, title, rating, photos, features, insideProperties, hostUser, reviews} = currentOffer;
+  const otherOffers = allOffers.filter((offer) => offer.id !== currentOffer.id).slice(0, MAX_NEARBY_OFFER);
   const nearByCoordinates = otherOffers.map((offer) => offer.coordinate);
   return <div className="page">
     <header className="header">
@@ -167,25 +172,7 @@ const DetailInfo = (props) => {
 };
 
 DetailInfo.propTypes = {
-  offer: PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    img: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`]),
-    photos: PropTypes.array.isRequired,
-    features: PropTypes.array.isRequired,
-    insideProperties: PropTypes.array.isRequired,
-    hostUser: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      description: PropTypes.array.isRequired
-    }),
-    reviews: PropTypes.arrayOf(PropTypes.shape({})).isRequired
-  }),
-  otherOffers: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  idPath: PropTypes.string.isRequired
 };
 
 export default DetailInfo;
