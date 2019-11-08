@@ -1,10 +1,13 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+
 import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
+import CityList from '../city-list/city-list';
 
 const Main = (props) => {
-  const {offers} = props;
+  const {offers, city} = props;
   const coordinates = offers.map((offer) => offer.coordinate);
   return <div className="page page--gray page--main">
     <header className="header">
@@ -34,45 +37,14 @@ const Main = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
         <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href="#">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
+          <CityList />
         </section>
       </div>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">312 places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in {city}</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -88,17 +60,17 @@ const Main = (props) => {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
               {/* <select class="places__sorting-type" id="places-sorting">
-                <option class="places__option" value="popular" selected="">Popular</option>
-                <option class="places__option" value="to-high">Price: low to high</option>
-                <option class="places__option" value="to-low">Price: high to low</option>
-                <option class="places__option" value="top-rated">Top rated first</option>
-              </select> */}
+              <option class="places__option" value="popular" selected="">Popular</option>
+              <option class="places__option" value="to-high">Price: low to high</option>
+              <option class="places__option" value="to-low">Price: high to low</option>
+              <option class="places__option" value="top-rated">Top rated first</option>
+            </select> */}
             </form>
             <OfferList offers={offers} />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map">
-              <Map coordinates={coordinates}/>
+              <Map coordinates={coordinates} />
             </section>
           </div>
         </div>
@@ -108,7 +80,16 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({}))
+  city: PropTypes.string.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired
 };
 
-export default Main;
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: state.city,
+  offers: state.offers
+});
+
+export {Main};
+
+export default connect(mapStateToProps)(Main);

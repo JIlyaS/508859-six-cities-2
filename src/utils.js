@@ -7,3 +7,7 @@ export const firstUpperCase = (word) => {
 export const convertRating = (rating) => {
   return rating * RATING_PERSENT / MAX_RATING_COUNT;
 };
+
+export const getCityOffers = (allOffers, city) => {
+  return allOffers.filter((offer) => offer.city.name === city);
+};

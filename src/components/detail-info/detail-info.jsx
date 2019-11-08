@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import OfferList from '../offer-list/offer-list';
 import {convertRating} from '../../utils';
+import {MAX_NEARBY_OFFER} from '../../constants';
 
 const DetailInfo = (props) => {
-  const {offer: {isPremium, price, title, rating, photos, features, insideProperties, hostUser, reviews}, otherOffers} = props;
+  const {
+    currentOffer: {isPremium, price, title, rating, photos, features, insideProperties, hostUser, reviews},
+    otherOffers
+  } = props;
   const nearByCoordinates = otherOffers.map((offer) => offer.coordinate);
   return <div className="page">
     <header className="header">
@@ -167,7 +173,12 @@ const DetailInfo = (props) => {
 };
 
 DetailInfo.propTypes = {
-  offer: PropTypes.shape({
+  idPath: PropTypes.string.isRequired,
+  allOffers: PropTypes.array.isRequired
+};
+
+DetailInfo.propTypes = {
+  currentOffer: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -183,9 +194,16 @@ DetailInfo.propTypes = {
       status: PropTypes.string.isRequired,
       description: PropTypes.array.isRequired
     }),
-    reviews: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+    reviews: PropTypes.array.isRequired
   }),
-  otherOffers: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  otherOffers: PropTypes.array.isRequired
 };
 
-export default DetailInfo;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  currentOffer: state.allOffers.find((offer) => offer.id === `id${Number(ownProps.idPath)}`),
+  otherOffers: state.allOffers.filter((offer) => offer.id !== `id${Number(ownProps.idPath)}`).slice(0, MAX_NEARBY_OFFER)
+});
+
+export {DetailInfo};
+
+export default connect(mapStateToProps)(DetailInfo);

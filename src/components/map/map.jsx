@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import leaflet from 'leaflet';
 
-class Map extends Component {
+class Map extends PureComponent {
   constructor(props) {
     super(props);
     this._city = [52.38333, 4.9];
@@ -12,6 +12,8 @@ class Map extends Component {
       iconSize: [30, 30]
     });
     this._map = null;
+    this._marker = null;
+    this._mapMarkers = [];
   }
 
   render() {
@@ -19,7 +21,6 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    const {coordinates} = this.props;
     this._map = leaflet.map(`map`, {
       center: this._city,
       zoom: this._zoom,
@@ -35,8 +36,21 @@ class Map extends Component {
     })
     .addTo(this._map);
 
+    const {coordinates} = this.props;
     coordinates.forEach((coordinate) => {
-      leaflet.marker(coordinate, {icon: this._icon}).addTo(this._map);
+      this._marker = leaflet.marker(coordinate, {icon: this._icon}).addTo(this._map);
+      this._mapMarkers.push(this._marker);
+    });
+  }
+
+  componentDidUpdate() {
+    const {coordinates} = this.props;
+    this._mapMarkers.forEach((it) => {
+      this._map.removeLayer(it);
+    });
+    coordinates.forEach((coordinate) => {
+      this._marker = leaflet.marker(coordinate, {icon: this._icon}).addTo(this._map);
+      this._mapMarkers.push(this._marker);
     });
   }
 }

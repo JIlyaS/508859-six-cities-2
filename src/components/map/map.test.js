@@ -13,6 +13,7 @@ jest.mock(`leaflet`, () => ({
   marker: jest.fn().mockReturnValue({
     addTo: jest.fn()
   }),
+  removeLayer: jest.fn()
 }));
 
 it(`Map correctly renders after relaunch`, () => {

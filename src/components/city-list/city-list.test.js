@@ -2,18 +2,18 @@ import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
-
-import {Main} from './main';
 import {DEFAULT_OFFERS} from '../../constants';
+
+import {CityList} from './city-list';
 
 Enzyme.configure({adapter: new Adapter()});
 
-jest.mock(`../map/map`);
-
-it(`Main correctly renders after relaunch`, () => {
-  const tree = shallow(<Main
+it(`CityList correctly renders after relaunch`, () => {
+  const tree = shallow(<CityList
     city={`Amsterdam`}
-    offers={DEFAULT_OFFERS}
+    allOffers={DEFAULT_OFFERS}
+    offerCityNames={[`Amsterdam`]}
+    changeCityClickHandler={() => {}}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();
