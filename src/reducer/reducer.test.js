@@ -1,5 +1,5 @@
-import {DEFAULT_OFFERS} from '../constants';
-import {getCityOffers} from '../utils';
+import {DEFAULT_OFFERS, DEFAULT_OFFER, UNSORTED_LIST, SORTED_LIST, SortNames} from '../constants';
+import {getCityOffers, sortOfferList} from '../utils';
 import {allOffers} from '../mocks/offers';
 import {
   ActionCreator,
@@ -23,6 +23,49 @@ describe(`Business logic is correct`, () => {
       }
     }], `Cologne`)).toEqual([]);
   });
+
+  expect(sortOfferList(DEFAULT_OFFERS, DEFAULT_OFFERS, SortNames.POPULAR)).toEqual(DEFAULT_OFFERS);
+
+  expect(sortOfferList([{
+    id: `id0`,
+    city: {
+      name: `Paris`,
+    },
+    rating: 3.2
+  },
+  {
+    id: `id1`,
+    city: {
+      name: `Paris`,
+    },
+    rating: 4.8
+  }], [{
+    id: `id0`,
+    city: {
+      name: `Paris`,
+    },
+    rating: 3.2
+  },
+  {
+    id: `id1`,
+    city: {
+      name: `Paris`,
+    },
+    rating: 4.8
+  }], SortNames.TOP_RATED)).toEqual([{
+    id: `id1`,
+    city: {
+      name: `Paris`,
+    },
+    rating: 4.8
+  },
+  {
+    id: `id0`,
+    city: {
+      name: `Paris`,
+    },
+    rating: 3.2
+  }]);
 });
 
 describe(`Action creators work correctly`, () => {
@@ -79,6 +122,93 @@ describe(`Action creators work correctly`, () => {
       payload: []
     });
   });
+  it(`Action creator for change sort name returns action with value payload`, () => {
+    expect(ActionCreator.changeSortName(`Top rated first`)).toEqual({
+      type: `CHANGE_SORT`,
+      payload: `Top rated first`
+    });
+  });
+  it(`Action creator for change sort list returns action with fill array payload`, () => {
+    expect(ActionCreator.changeSortList([{
+      id: `id0`,
+      city: {
+        name: `Paris`,
+      },
+      rating: 3.2
+    },
+    {
+      id: `id1`,
+      city: {
+        name: `Paris`,
+      },
+      rating: 4.8
+    }], [{
+      id: `id0`,
+      city: {
+        name: `Paris`,
+      },
+      rating: 3.2
+    },
+    {
+      id: `id1`,
+      city: {
+        name: `Paris`,
+      },
+      rating: 4.8
+    }], `Top rated first`)).toEqual({
+      type: `CHANGE_SORT_LIST`,
+      payload: [{
+        id: `id1`,
+        city: {
+          name: `Paris`,
+        },
+        rating: 4.8
+      },
+      {
+        id: `id0`,
+        city: {
+          name: `Paris`,
+        },
+        rating: 3.2
+      }]
+    });
+  });
+  it(`Action creator for change sort list returns action with empty array payload`, () => {
+    expect(ActionCreator.changeSortList([], [], `Top rated first`)).toEqual({
+      type: `CHANGE_SORT_LIST`,
+      payload: []
+    });
+  });
+  it(`Action creator for add active card returns action with object data payload`, () => {
+    expect(ActionCreator.changeActiveCard({
+      id: `id0`,
+      city: {
+        name: `Amsterdam`,
+      },
+      coordinate: [52.3909553943508, 4.85309666406198],
+    })).toEqual({
+      type: `ADD_ACTIVE_CARD`,
+      payload: {
+        id: `id0`,
+        city: {
+          name: `Amsterdam`,
+        },
+        coordinate: [52.3909553943508, 4.85309666406198],
+      }
+    });
+  });
+  it(`Action creator for add active card returns action with empty object payload`, () => {
+    expect(ActionCreator.changeActiveCard({})).toEqual({
+      type: `ADD_ACTIVE_CARD`,
+      payload: {}
+    });
+  });
+  it(`Action creator for remove active card returns action with empty object payload`, () => {
+    expect(ActionCreator.removeActiveCard()).toEqual({
+      type: `REMOVE_ACTIVE_CARD`,
+      payload: {}
+    });
+  });
 });
 
 describe(`Reducer work correctly`, () => {
@@ -86,13 +216,19 @@ describe(`Reducer work correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      allOffers
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: {},
+      allOffers,
     });
   });
   it(`Reducer should change city by a given value`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: {},
       allOffers
     }, {
       type: `CHANGE_CITY`,
@@ -100,6 +236,9 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: `Paris`,
       offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: {},
       allOffers
     });
   });
@@ -107,6 +246,9 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: {},
       allOffers
     }, {
       type: `GET_OFFERS`,
@@ -124,14 +266,24 @@ describe(`Reducer work correctly`, () => {
           name: `Paris`,
         }
       }],
+      originalOffers: [{
+        id: `id1`,
+        city: {
+          name: `Paris`,
+        }
+      }],
+      activeSortName: `Popular`,
+      activeOfferCard: {},
       allOffers
     });
   });
-
   it(`Reducer should get offers city empty array by a given value`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: {},
       allOffers
     }, {
       type: `GET_OFFERS`,
@@ -139,6 +291,109 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: `Amsterdam`,
       offers: [],
+      originalOffers: [],
+      activeSortName: `Popular`,
+      activeOfferCard: {},
+      allOffers
+    });
+  });
+  it(`Reducer should change sort name by a given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: {},
+      allOffers
+    }, {
+      type: `CHANGE_SORT`,
+      payload: `Top rated first`
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Top rated first`,
+      activeOfferCard: {},
+      allOffers
+    });
+  });
+  it(`Reducer should change sort offer list by a given value`, () => {
+    expect(reducer({
+      city: `Paris`,
+      offers: UNSORTED_LIST,
+      originalOffers: UNSORTED_LIST,
+      activeSortName: `Top rated first`,
+      activeOfferCard: {},
+      allOffers
+    }, {
+      type: `CHANGE_SORT_LIST`,
+      payload: SORTED_LIST
+    })).toEqual({
+      city: `Paris`,
+      offers: SORTED_LIST,
+      originalOffers: UNSORTED_LIST,
+      activeSortName: `Top rated first`,
+      activeOfferCard: {},
+      allOffers
+    });
+  });
+  it(`Reducer should change sort offer list empty array by a given value`, () => {
+    expect(reducer({
+      city: `Paris`,
+      offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Top rated first`,
+      activeOfferCard: {},
+      allOffers
+    }, {
+      type: `CHANGE_SORT_LIST`,
+      payload: []
+    })).toEqual({
+      city: `Paris`,
+      offers: [],
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Top rated first`,
+      activeOfferCard: {},
+      allOffers
+    });
+  });
+  it(`Reducer should add active card object data by a given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: {},
+      allOffers
+    }, {
+      type: `ADD_ACTIVE_CARD`,
+      payload: DEFAULT_OFFER
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      allOffers
+    });
+  });
+  it(`Reducer should remove active card empty by a given value`, () => {
+    expect(reducer({
+      city: `Amsterdam`,
+      offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      allOffers
+    }, {
+      type: `REMOVE_ACTIVE_CARD`,
+      payload: {}
+    })).toEqual({
+      city: `Amsterdam`,
+      offers: DEFAULT_OFFERS,
+      originalOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: {},
       allOffers
     });
   });

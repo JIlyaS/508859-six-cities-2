@@ -2,6 +2,8 @@ export const CHANGE_CITY = `CHANGE_CITY`;
 export const GET_OFFERS = `GET_OFFERS`;
 export const CHANGE_SORT = `CHANGE_SORT`;
 export const CHANGE_SORT_LIST = `CHANGE_SORT_LIST`;
+export const ADD_ACTIVE_CARD = `ADD_ACTIVE_CARD`;
+export const REMOVE_ACTIVE_CARD = `REMOVE_ACTIVE_CARD`;
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;
 export const ICON = {
@@ -393,4 +395,224 @@ export const CURRENT_OFFER = {
     }
   ]
 };
+
+export const UNSORTED_LIST = [{
+  id: `id4`,
+  city: {
+    name: `Paris`,
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 12
+    },
+  },
+  img: `apartment-03.jpg`,
+  isPremium: true,
+  price: 180,
+  title: `Nice, cozy, warm big bed apartment`,
+  type: `apartment`,
+  rating: 4.0,
+  coordinate: [52.3809553943508, 4.939309666406198],
+  photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
+  features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
+  insideProperties: [...new Set([
+    `Wi-Fi`,
+    `Washing machine`,
+    `Towels`,
+    `Heating`,
+    `Coffee machine`,
+    `Baby seat`,
+    `Kitchen`,
+    `Dishwasher`,
+    `Cabel TV`,
+    `Fridge`
+  ])],
+  hostUser: {
+    avatar: `avatar-angelina.jpg`,
+    name: `Angelina`,
+    status: `pro`,
+    description: [
+      `A quiet cozy and picturesque that hides behind a a river
+      by the unique lightness of Amsterdam. The building is green
+      and from 18th century.`, `An independent House, strategically
+      located between Rembrand Square and National Opera, but where
+      the bustle of the city comes to rest in this alley flowery and
+      colorful.`]
+  },
+  reviews: [
+    {
+      id: `review1`,
+      avatar: `avatar-max.jpg`,
+      name: `Max`,
+      rating: 4.7,
+      date: `April 2019`,
+      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+    }
+  ]
+},
+{
+  id: `id5`,
+  city: {
+    name: `Paris`,
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 12
+    },
+  },
+  img: `room.jpg`,
+  isPremium: false,
+  price: 120,
+  title: `Wood and stone place`,
+  type: `private room`,
+  rating: 5.0,
+  coordinate: [52.369553943508, 4.85309666406198],
+  photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
+  features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
+  insideProperties: [...new Set([
+    `Wi-Fi`,
+    `Washing machine`,
+    `Towels`,
+    `Heating`,
+    `Coffee machine`,
+    `Baby seat`,
+    `Kitchen`,
+    `Dishwasher`,
+    `Cabel TV`,
+    `Fridge`
+  ])],
+  hostUser: {
+    avatar: `avatar-angelina.jpg`,
+    name: `Angelina`,
+    status: `pro`,
+    description: [
+      `A quiet cozy and picturesque that hides behind a a river
+      by the unique lightness of Amsterdam. The building is green
+      and from 18th century.`, `An independent House, strategically
+      located between Rembrand Square and National Opera, but where
+      the bustle of the city comes to rest in this alley flowery and
+      colorful.`]
+  },
+  reviews: [
+    {
+      id: `review1`,
+      avatar: `avatar-max.jpg`,
+      name: `Max`,
+      rating: 4.7,
+      date: `April 2019`,
+      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+    }
+  ]
+}];
+
+export const SORTED_LIST = [
+  {
+    id: `id5`,
+    city: {
+      name: `Paris`,
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 12
+      },
+    },
+    img: `room.jpg`,
+    isPremium: false,
+    price: 120,
+    title: `Wood and stone place`,
+    type: `private room`,
+    rating: 5.0,
+    coordinate: [52.369553943508, 4.85309666406198],
+    photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
+    features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
+    insideProperties: [...new Set([
+      `Wi-Fi`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`,
+      `Cabel TV`,
+      `Fridge`
+    ])],
+    hostUser: {
+      avatar: `avatar-angelina.jpg`,
+      name: `Angelina`,
+      status: `pro`,
+      description: [
+        `A quiet cozy and picturesque that hides behind a a river
+        by the unique lightness of Amsterdam. The building is green
+        and from 18th century.`, `An independent House, strategically
+        located between Rembrand Square and National Opera, but where
+        the bustle of the city comes to rest in this alley flowery and
+        colorful.`]
+    },
+    reviews: [
+      {
+        id: `review1`,
+        avatar: `avatar-max.jpg`,
+        name: `Max`,
+        rating: 4.7,
+        date: `April 2019`,
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+      }
+    ]
+  },
+  {
+    id: `id4`,
+    city: {
+      name: `Paris`,
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 12
+      },
+    },
+    img: `apartment-03.jpg`,
+    isPremium: true,
+    price: 180,
+    title: `Nice, cozy, warm big bed apartment`,
+    type: `apartment`,
+    rating: 4.0,
+    coordinate: [52.3809553943508, 4.939309666406198],
+    photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
+    features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
+    insideProperties: [...new Set([
+      `Wi-Fi`,
+      `Washing machine`,
+      `Towels`,
+      `Heating`,
+      `Coffee machine`,
+      `Baby seat`,
+      `Kitchen`,
+      `Dishwasher`,
+      `Cabel TV`,
+      `Fridge`
+    ])],
+    hostUser: {
+      avatar: `avatar-angelina.jpg`,
+      name: `Angelina`,
+      status: `pro`,
+      description: [
+        `A quiet cozy and picturesque that hides behind a a river
+        by the unique lightness of Amsterdam. The building is green
+        and from 18th century.`, `An independent House, strategically
+        located between Rembrand Square and National Opera, but where
+        the bustle of the city comes to rest in this alley flowery and
+        colorful.`]
+    },
+    reviews: [
+      {
+        id: `review1`,
+        avatar: `avatar-max.jpg`,
+        name: `Max`,
+        rating: 4.7,
+        date: `April 2019`,
+        description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+      }
+    ]
+  }
+];
 

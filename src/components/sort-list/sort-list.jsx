@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {ActionCreator} from '../../reducer/reducer';
@@ -17,11 +18,12 @@ class SortList extends PureComponent {
 
   render() {
     const {isSortOpened} = this.state;
-    const {activeSortName, changeSortElemClickHandler, offers} = this.props;
+    const {activeSortName, changeSortElemClickHandler, offers, originalOffers} = this.props;
     return <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
+      &nbsp;
       <span className="places__sorting-type" tabIndex="0" onClick={this._openSortListClickHandler}>
-        &nbsp;{activeSortName}
+        {activeSortName}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select" />
         </svg>
@@ -32,7 +34,7 @@ class SortList extends PureComponent {
             key={`sort-${it.id}`}
             onClick={() => {
               this._openSortListClickHandler();
-              changeSortElemClickHandler(offers, it.name);
+              changeSortElemClickHandler(offers, originalOffers, it.name);
             }}
             className={`places__option ${it.name === activeSortName && `places__option--active`}`}
             tabIndex="0">
@@ -48,15 +50,23 @@ class SortList extends PureComponent {
   }
 }
 
+SortList.propTypes = {
+  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  originalOffers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  activeSortName: PropTypes.string.isRequired,
+  changeSortElemClickHandler: PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   offers: state.offers,
+  originalOffers: state.originalOffers,
   activeSortName: state.activeSortName
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeSortElemClickHandler: (offers, sortName) => {
+  changeSortElemClickHandler: (offers, originalOffers, sortName) => {
     dispatch(ActionCreator.changeSortName(sortName));
-    dispatch(ActionCreator.changeSortList(offers, sortName));
+    dispatch(ActionCreator.changeSortList(offers, originalOffers, sortName));
   }
 });
 

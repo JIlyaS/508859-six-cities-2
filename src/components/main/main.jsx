@@ -6,13 +6,12 @@ import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
 import CityList from '../city-list/city-list';
 import SortList from '../sort-list/sort-list';
+import {getMapCoordinates} from '../../utils';
 
 class Main extends PureComponent {
-
   render() {
-    const {offers, city} = this.props;
-    console.log(offers);
-    const coordinates = offers.map((offer) => offer.coordinate);
+    const {offers, city, activeOfferCard} = this.props;
+    const coordinates = getMapCoordinates(offers, activeOfferCard);
     return <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
@@ -53,7 +52,10 @@ class Main extends PureComponent {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map coordinates={coordinates} />
+                <Map
+                  coordinates={coordinates}
+                  activeCoordinate={activeOfferCard.coordinate}
+                />
               </section>
             </div>
           </div>
@@ -65,13 +67,18 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  activeOfferCard: PropTypes.shape({
+    id: PropTypes.string,
+    coordinate: PropTypes.array
+  })
 };
 
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: state.city,
-  offers: state.offers
+  offers: state.offers,
+  activeOfferCard: state.activeOfferCard
 });
 
 export {Main};

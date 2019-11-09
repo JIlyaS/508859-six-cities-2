@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import OfferList from './offer-list';
+import {OfferList} from './offer-list';
 
 it(`OfferList correctly renders after relaunch`, () => {
   const tree = renderer
@@ -15,6 +15,8 @@ it(`OfferList correctly renders after relaunch`, () => {
         isPremium: false
       }]}
       isNearPlace={true}
+      activeOfferMouseEnterHandler={() => {}}
+      deactiveOfferMouseLeaveHandler={() => {}}
     />)
     .toJSON();
 

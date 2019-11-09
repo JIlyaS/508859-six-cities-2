@@ -71,6 +71,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
         >
           <div
             className="property__image-wrapper"
+            key="photo-0"
           >
             <img
               alt="Photo studio"
@@ -80,6 +81,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
           </div>
           <div
             className="property__image-wrapper"
+            key="photo-1"
           >
             <img
               alt="Photo studio"
@@ -89,6 +91,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
           </div>
           <div
             className="property__image-wrapper"
+            key="photo-2"
           >
             <img
               alt="Photo studio"
@@ -98,6 +101,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
           </div>
           <div
             className="property__image-wrapper"
+            key="photo-3"
           >
             <img
               alt="Photo studio"
@@ -107,6 +111,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
           </div>
           <div
             className="property__image-wrapper"
+            key="photo-4"
           >
             <img
               alt="Photo studio"
@@ -116,6 +121,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
           </div>
           <div
             className="property__image-wrapper"
+            key="photo-5"
           >
             <img
               alt="Photo studio"
@@ -196,16 +202,19 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
           >
             <li
               className="property__feature property__feature--entire"
+              key="feature-0"
             >
               Entire place
             </li>
             <li
               className="property__feature property__feature--entire"
+              key="feature-1"
             >
               3 Bedrooms
             </li>
             <li
               className="property__feature property__feature--entire"
+              key="feature-2"
             >
               Max 4 adults
             </li>
@@ -238,51 +247,61 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
             >
               <li
                 className="property__inside-item"
+                key="inside-property-0"
               >
                 Wi-Fi
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-1"
               >
                 Washing machine
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-2"
               >
                 Towels
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-3"
               >
                 Heating
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-4"
               >
                 Coffee machine
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-5"
               >
                 Baby seat
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-6"
               >
                 Kitchen
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-7"
               >
                 Dishwasher
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-8"
               >
                 Cabel TV
               </li>
               <li
                 className="property__inside-item"
+                key="inside-property-9"
               >
                 Fridge
               </li>
@@ -326,6 +345,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
             >
               <p
                 className="property__text"
+                key="text-0"
               >
                 A quiet cozy and picturesque that hides behind a a river
       by the unique lightness of Amsterdam. The building is green
@@ -333,6 +353,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
               </p>
               <p
                 className="property__text"
+                key="text-1"
               >
                 An independent House, strategically
       located between Rembrand Square and National Opera, but where
@@ -354,128 +375,28 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
                 2
               </span>
             </h2>
-            <ul
-              className="reviews__list"
-            >
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="/img/avatar-max.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Max
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "94%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2019-04-24"
-                  >
-                    April 2019
-                  </time>
-                </div>
-              </li>
-              <li
-                className="reviews__item"
-              >
-                <div
-                  className="reviews__user user"
-                >
-                  <div
-                    className="reviews__avatar-wrapper user__avatar-wrapper"
-                  >
-                    <img
-                      alt="Reviews avatar"
-                      className="reviews__avatar user__avatar"
-                      height="54"
-                      src="/img/avatar-max.jpg"
-                      width="54"
-                    />
-                  </div>
-                  <span
-                    className="reviews__user-name"
-                  >
-                    Alex
-                  </span>
-                </div>
-                <div
-                  className="reviews__info"
-                >
-                  <div
-                    className="reviews__rating rating"
-                  >
-                    <div
-                      className="reviews__stars rating__stars"
-                    >
-                      <span
-                        style={
-                          Object {
-                            "width": "80%",
-                          }
-                        }
-                      />
-                      <span
-                        className="visually-hidden"
-                      >
-                        Rating
-                      </span>
-                    </div>
-                  </div>
-                  <p
-                    className="reviews__text"
-                  >
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <time
-                    className="reviews__time"
-                    dateTime="2019-04-24"
-                  >
-                    May 2019
-                  </time>
-                </div>
-              </li>
-            </ul>
+            <ReviewsList
+              reviews={
+                Array [
+                  Object {
+                    "avatar": "avatar-max.jpg",
+                    "date": "April 2019",
+                    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                    "id": "review1",
+                    "name": "Max",
+                    "rating": 4.7,
+                  },
+                  Object {
+                    "avatar": "avatar-max.jpg",
+                    "date": "May 2019",
+                    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                    "id": "review2",
+                    "name": "Alex",
+                    "rating": 4,
+                  },
+                ]
+              }
+            />
             <form
               action="#"
               className="reviews__form form"
@@ -641,7 +562,32 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
       </div>
       <section
         className="property__map map"
-      />
+      >
+        <Map
+          activeCoordinate={
+            Array [
+              52.3909553943508,
+              4.85309666406198,
+            ]
+          }
+          coordinates={
+            Array [
+              Array [
+                52.369553943508,
+                4.85309666406198,
+              ],
+              Array [
+                52.3909553943508,
+                4.929309666406198,
+              ],
+              Array [
+                52.3809553943508,
+                4.939309666406198,
+              ],
+            ]
+          }
+        />
+      </section>
     </section>
     <div
       className="container"
@@ -654,412 +600,301 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
         >
           Other places in the neighbourhood
         </h2>
-        <div
-          className="near-places__list places__list"
-        >
-          <article
-            className="near-places__card place-card"
-            onMouseEnter={[Function]}
-          >
-            <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="near-places__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="/img/apartment-01.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    120
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "96%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Beautiful & luxurious apartment at great location
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Apartment
-              </p>
-            </div>
-          </article>
-          <article
-            className="near-places__card place-card"
-            onMouseEnter={[Function]}
-          >
-            <div
-              className="near-places__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="/img/room.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    120
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "80%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Wood and stone place
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Private room
-              </p>
-            </div>
-          </article>
-          <article
-            className="near-places__card place-card"
-            onMouseEnter={[Function]}
-          >
-            <div
-              className="near-places__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="/img/apartment-02.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    120
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "80%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Canal View Prinsengracht
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Apartment
-              </p>
-            </div>
-          </article>
-          <article
-            className="near-places__card place-card"
-            onMouseEnter={[Function]}
-          >
-            <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="near-places__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="/img/apartment-03.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    180
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "100%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-              >
-                <a
-                  href="#"
-                  onClick={[Function]}
-                >
-                  Nice, cozy, warm big bed apartment
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Apartment
-              </p>
-            </div>
-          </article>
-        </div>
+        <Connect(OfferList)
+          isNearPlace={true}
+          offers={
+            Array [
+              Object {
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.3909553943508,
+                    "longitude": 4.85309666406198,
+                    "zoom": 12,
+                  },
+                  "name": "Amsterdam",
+                },
+                "coordinate": Array [
+                  52.3909553943508,
+                  4.85309666406198,
+                ],
+                "features": Array [
+                  "Entire place",
+                  "3 Bedrooms",
+                  "Max 4 adults",
+                ],
+                "hostUser": Object {
+                  "avatar": "avatar-angelina.jpg",
+                  "description": Array [
+                    "A quiet cozy and picturesque that hides behind a a river
+      by the unique lightness of Amsterdam. The building is green
+      and from 18th century.",
+                    "An independent House, strategically
+      located between Rembrand Square and National Opera, but where
+      the bustle of the city comes to rest in this alley flowery and
+      colorful.",
+                  ],
+                  "name": "Angelina",
+                  "status": "pro",
+                },
+                "id": "id0",
+                "img": "apartment-01.jpg",
+                "insideProperties": Array [
+                  "Wi-Fi",
+                  "Washing machine",
+                  "Towels",
+                  "Heating",
+                  "Coffee machine",
+                  "Baby seat",
+                  "Kitchen",
+                  "Dishwasher",
+                  "Cabel TV",
+                  "Fridge",
+                ],
+                "isPremium": true,
+                "photos": Array [
+                  "room.jpg",
+                  "apartment-01.jpg",
+                  "apartment-02.jpg",
+                  "apartment-03.jpg",
+                  "studio-01.jpg",
+                  "apartment-01.jpg",
+                ],
+                "price": 110,
+                "rating": 4.8,
+                "reviews": Array [
+                  Object {
+                    "avatar": "avatar-max.jpg",
+                    "date": "April 2019",
+                    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                    "id": "review1",
+                    "name": "Max",
+                    "rating": 4.7,
+                  },
+                  Object {
+                    "avatar": "avatar-max.jpg",
+                    "date": "May 2019",
+                    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                    "id": "review2",
+                    "name": "Alex",
+                    "rating": 4,
+                  },
+                ],
+                "title": "Beautiful & luxurious apartment at great location",
+                "type": "apartment",
+              },
+              Object {
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.3909553943508,
+                    "longitude": 4.85309666406198,
+                    "zoom": 12,
+                  },
+                  "name": "Amsterdam",
+                },
+                "coordinate": Array [
+                  52.369553943508,
+                  4.85309666406198,
+                ],
+                "features": Array [
+                  "Entire place",
+                  "3 Bedrooms",
+                  "Max 4 adults",
+                ],
+                "hostUser": Object {
+                  "avatar": "avatar-angelina.jpg",
+                  "description": Array [
+                    "A quiet cozy and picturesque that hides behind a a river
+      by the unique lightness of Amsterdam. The building is green
+      and from 18th century.",
+                    "An independent House, strategically
+      located between Rembrand Square and National Opera, but where
+      the bustle of the city comes to rest in this alley flowery and
+      colorful.",
+                  ],
+                  "name": "Angelina",
+                  "status": "pro",
+                },
+                "id": "id1",
+                "img": "room.jpg",
+                "insideProperties": Array [
+                  "Wi-Fi",
+                  "Washing machine",
+                  "Towels",
+                  "Heating",
+                  "Coffee machine",
+                  "Baby seat",
+                  "Kitchen",
+                  "Dishwasher",
+                  "Cabel TV",
+                  "Fridge",
+                ],
+                "isPremium": false,
+                "photos": Array [
+                  "room.jpg",
+                  "apartment-01.jpg",
+                  "apartment-02.jpg",
+                  "apartment-03.jpg",
+                  "studio-01.jpg",
+                  "apartment-01.jpg",
+                ],
+                "price": 120,
+                "rating": 4,
+                "reviews": Array [
+                  Object {
+                    "avatar": "avatar-max.jpg",
+                    "date": "April 2019",
+                    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                    "id": "review1",
+                    "name": "Max",
+                    "rating": 4.7,
+                  },
+                ],
+                "title": "Wood and stone place",
+                "type": "private room",
+              },
+              Object {
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.3909553943508,
+                    "longitude": 4.85309666406198,
+                    "zoom": 12,
+                  },
+                  "name": "Amsterdam",
+                },
+                "coordinate": Array [
+                  52.3909553943508,
+                  4.929309666406198,
+                ],
+                "features": Array [
+                  "Entire place",
+                  "3 Bedrooms",
+                  "Max 4 adults",
+                ],
+                "hostUser": Object {
+                  "avatar": "avatar-angelina.jpg",
+                  "description": Array [
+                    "A quiet cozy and picturesque that hides behind a a river
+      by the unique lightness of Amsterdam. The building is green
+      and from 18th century.",
+                    "An independent House, strategically
+      located between Rembrand Square and National Opera, but where
+      the bustle of the city comes to rest in this alley flowery and
+      colorful.",
+                  ],
+                  "name": "Angelina",
+                  "status": "pro",
+                },
+                "id": "id2",
+                "img": "apartment-02.jpg",
+                "insideProperties": Array [
+                  "Wi-Fi",
+                  "Washing machine",
+                  "Towels",
+                  "Heating",
+                  "Coffee machine",
+                  "Baby seat",
+                  "Kitchen",
+                  "Dishwasher",
+                  "Cabel TV",
+                  "Fridge",
+                ],
+                "isPremium": false,
+                "photos": Array [
+                  "room.jpg",
+                  "apartment-01.jpg",
+                  "apartment-02.jpg",
+                  "apartment-03.jpg",
+                  "studio-01.jpg",
+                  "apartment-01.jpg",
+                ],
+                "price": 200,
+                "rating": 4,
+                "reviews": Array [
+                  Object {
+                    "avatar": "avatar-max.jpg",
+                    "date": "April 2019",
+                    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                    "id": "review1",
+                    "name": "Max",
+                    "rating": 4.7,
+                  },
+                ],
+                "title": "Canal View Prinsengracht",
+                "type": "apartment",
+              },
+              Object {
+                "city": Object {
+                  "location": Object {
+                    "latitude": 52.3909553943508,
+                    "longitude": 4.85309666406198,
+                    "zoom": 12,
+                  },
+                  "name": "Amsterdam",
+                },
+                "coordinate": Array [
+                  52.3809553943508,
+                  4.939309666406198,
+                ],
+                "features": Array [
+                  "Entire place",
+                  "3 Bedrooms",
+                  "Max 4 adults",
+                ],
+                "hostUser": Object {
+                  "avatar": "avatar-angelina.jpg",
+                  "description": Array [
+                    "A quiet cozy and picturesque that hides behind a a river
+      by the unique lightness of Amsterdam. The building is green
+      and from 18th century.",
+                    "An independent House, strategically
+      located between Rembrand Square and National Opera, but where
+      the bustle of the city comes to rest in this alley flowery and
+      colorful.",
+                  ],
+                  "name": "Angelina",
+                  "status": "pro",
+                },
+                "id": "id3",
+                "img": "apartment-03.jpg",
+                "insideProperties": Array [
+                  "Wi-Fi",
+                  "Washing machine",
+                  "Towels",
+                  "Heating",
+                  "Coffee machine",
+                  "Baby seat",
+                  "Kitchen",
+                  "Dishwasher",
+                  "Cabel TV",
+                  "Fridge",
+                ],
+                "isPremium": true,
+                "photos": Array [
+                  "room.jpg",
+                  "apartment-01.jpg",
+                  "apartment-02.jpg",
+                  "apartment-03.jpg",
+                  "studio-01.jpg",
+                  "apartment-01.jpg",
+                ],
+                "price": 180,
+                "rating": 5,
+                "reviews": Array [
+                  Object {
+                    "avatar": "avatar-max.jpg",
+                    "date": "April 2019",
+                    "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
+                    "id": "review1",
+                    "name": "Max",
+                    "rating": 4.7,
+                  },
+                ],
+                "title": "Nice, cozy, warm big bed apartment",
+                "type": "apartment",
+              },
+            ]
+          }
+        />
       </section>
     </div>
   </main>
