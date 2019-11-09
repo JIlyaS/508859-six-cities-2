@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {ActionCreator} from '../../reducer/reducer';
 import OfferCard from '../offer-card/offer-card';
 
-class OfferList extends Component {
+class OfferList extends PureComponent {
   constructor(props) {
     super(props);
 
