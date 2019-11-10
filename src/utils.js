@@ -12,10 +12,10 @@ export const getCityOffers = (allOffers, city) => {
   return allOffers.filter((offer) => offer.city.name === city);
 };
 
-export const sortOfferList = (offers, originalOffers, sortName) => {
+export const sortOfferList = (offers, sortName) => {
   switch (sortName) {
     case SortNames.POPULAR:
-      return originalOffers.slice();
+      return offers.slice();
     case SortNames.PRICE_LH:
       return offers.slice().sort((prev, curr) => prev.price - curr.price);
     case SortNames.PRICE_HL:

@@ -18,7 +18,7 @@ class SortList extends PureComponent {
 
   render() {
     const {isSortOpened} = this.state;
-    const {activeSortName, changeSortElemClickHandler, offers, originalOffers} = this.props;
+    const {activeSortName, changeSortElemClickHandler} = this.props;
     return <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       &nbsp;
@@ -34,7 +34,7 @@ class SortList extends PureComponent {
             key={`sort-${it.id}`}
             onClick={() => {
               this._openSortListClickHandler();
-              changeSortElemClickHandler(offers, originalOffers, it.name);
+              changeSortElemClickHandler(it.name);
             }}
             className={`places__option ${it.name === activeSortName && `places__option--active`}`}
             tabIndex="0">
@@ -51,22 +51,17 @@ class SortList extends PureComponent {
 }
 
 SortList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  originalOffers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   activeSortName: PropTypes.string.isRequired,
   changeSortElemClickHandler: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  offers: state.offers,
-  originalOffers: state.originalOffers,
   activeSortName: state.activeSortName
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeSortElemClickHandler: (offers, originalOffers, sortName) => {
+  changeSortElemClickHandler: (sortName) => {
     dispatch(ActionCreator.changeSortName(sortName));
-    dispatch(ActionCreator.changeSortList(offers, originalOffers, sortName));
   }
 });
 

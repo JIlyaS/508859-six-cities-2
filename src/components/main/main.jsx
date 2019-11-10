@@ -6,7 +6,7 @@ import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
 import CityList from '../city-list/city-list';
 import SortList from '../sort-list/sort-list';
-import {getMapCoordinates} from '../../utils';
+import {getMapCoordinates, sortOfferList} from '../../utils';
 
 class Main extends PureComponent {
   render() {
@@ -77,7 +77,7 @@ Main.propTypes = {
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   city: state.city,
-  offers: state.offers,
+  offers: sortOfferList(state.offers, state.activeSortName),
   activeOfferCard: state.activeOfferCard
 });
 

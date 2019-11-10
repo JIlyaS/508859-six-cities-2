@@ -10,7 +10,8 @@ const OfferCard = (props) => {
     activeOfferMouseEnterHandler,
     deactiveOfferMouseLeaveHandler,
     cardTitleClickHandler,
-    isNearPlace} = props;
+    isNearPlace
+  } = props;
   const offerIdForPath = Number(offerId.match(OFFER_ID_EXP)[1]);
   return <article
     className={`${isNearPlace ? `near-places__` : `cities__place-`}card place-card`}
