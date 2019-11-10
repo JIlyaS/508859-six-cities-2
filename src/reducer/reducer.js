@@ -31,7 +31,6 @@ const ActionCreator = {
 const initialState = {
   city: `Amsterdam`,
   offers: DEFAULT_OFFERS,
-  originalOffers: DEFAULT_OFFERS,
   activeSortName: `Popular`,
   activeOfferCard: {},
   allOffers,
@@ -46,8 +45,7 @@ const reducer = (state = initialState, action) => {
       });
     case actionType.GET_OFFERS:
       return Object.assign({}, state, {
-        offers: action.payload,
-        originalOffers: action.payload
+        offers: action.payload
       });
     case actionType.CHANGE_SORT:
       return Object.assign({}, state, {

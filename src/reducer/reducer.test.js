@@ -152,7 +152,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers,
@@ -162,7 +161,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
@@ -172,7 +170,6 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: `Paris`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
@@ -182,7 +179,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
@@ -202,12 +198,6 @@ describe(`Reducer work correctly`, () => {
           name: `Paris`,
         }
       }],
-      originalOffers: [{
-        id: `id1`,
-        city: {
-          name: `Paris`,
-        }
-      }],
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
@@ -217,7 +207,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
@@ -227,7 +216,6 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: `Amsterdam`,
       offers: [],
-      originalOffers: [],
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
@@ -237,7 +225,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
@@ -247,7 +234,6 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Top rated first`,
       activeOfferCard: {},
       allOffers
@@ -257,7 +243,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
@@ -267,7 +252,6 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: DEFAULT_OFFER,
       allOffers
@@ -277,7 +261,6 @@ describe(`Reducer work correctly`, () => {
     expect(reducer({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: DEFAULT_OFFER,
       allOffers
@@ -287,7 +270,6 @@ describe(`Reducer work correctly`, () => {
     })).toEqual({
       city: `Amsterdam`,
       offers: DEFAULT_OFFERS,
-      originalOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       allOffers
