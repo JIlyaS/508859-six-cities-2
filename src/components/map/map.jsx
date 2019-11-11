@@ -11,8 +11,13 @@ class Map extends PureComponent {
       iconUrl: `/img/pin.svg`,
       iconSize: [30, 30]
     });
+    this._activeIcon = leaflet.icon({
+      iconUrl: `/img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
     this._map = null;
     this._marker = null;
+    this._activeMarker = null;
     this._mapMarkers = [];
   }
 
@@ -36,15 +41,19 @@ class Map extends PureComponent {
     })
     .addTo(this._map);
 
-    const {coordinates} = this.props;
+    const {coordinates, activeCoordinate} = this.props;
     coordinates.forEach((coordinate) => {
       this._marker = leaflet.marker(coordinate, {icon: this._icon}).addTo(this._map);
       this._mapMarkers.push(this._marker);
     });
+    if (activeCoordinate) {
+      this._activeMarker = leaflet.marker(activeCoordinate, {icon: this._activeIcon}).addTo(this._map);
+      this._mapMarkers.push(this._activeMarker);
+    }
   }
 
   componentDidUpdate() {
-    const {coordinates} = this.props;
+    const {coordinates, activeCoordinate} = this.props;
     this._mapMarkers.forEach((it) => {
       this._map.removeLayer(it);
     });
@@ -52,11 +61,17 @@ class Map extends PureComponent {
       this._marker = leaflet.marker(coordinate, {icon: this._icon}).addTo(this._map);
       this._mapMarkers.push(this._marker);
     });
+
+    if (activeCoordinate) {
+      this._activeMarker = leaflet.marker(activeCoordinate, {icon: this._activeIcon}).addTo(this._map);
+      this._mapMarkers.push(this._activeMarker);
+    }
   }
 }
 
 Map.propTypes = {
-  coordinates: PropTypes.array.isRequired
+  coordinates: PropTypes.array.isRequired,
+  activeCoordinate: PropTypes.array
 };
 
 export default Map;

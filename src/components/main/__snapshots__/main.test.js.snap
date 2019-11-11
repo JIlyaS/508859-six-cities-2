@@ -94,62 +94,8 @@ exports[`Main correctly renders after relaunch 1`] = `
              places to stay in 
             Amsterdam
           </b>
-          <form
-            action="#"
-            className="places__sorting"
-            method="get"
-          >
-            <span
-              className="places__sorting-caption"
-            >
-              Sort by
-            </span>
-            <span
-              className="places__sorting-type"
-              tabIndex="0"
-            >
-              Popular
-              <svg
-                className="places__sorting-arrow"
-                height="4"
-                width="7"
-              >
-                <use
-                  xlinkHref="#icon-arrow-select"
-                />
-              </svg>
-            </span>
-            <ul
-              className="places__options places__options--custom places__options--opened"
-            >
-              <li
-                className="places__option places__option--active"
-                tabIndex="0"
-              >
-                Popular
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Price: low to high
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Price: high to low
-              </li>
-              <li
-                className="places__option"
-                tabIndex="0"
-              >
-                Top rated first
-              </li>
-            </ul>
-          </form>
-          <OfferList
-            isNearPlace={false}
+          <Connect(SortList) />
+          <Connect(OfferList)
             offers={
               Array [
                 Object {
@@ -207,7 +153,7 @@ exports[`Main correctly renders after relaunch 1`] = `
                     "studio-01.jpg",
                     "apartment-01.jpg",
                   ],
-                  "price": 120,
+                  "price": 110,
                   "rating": 4.8,
                   "reviews": Array [
                     Object {
@@ -355,7 +301,7 @@ exports[`Main correctly renders after relaunch 1`] = `
                     "studio-01.jpg",
                     "apartment-01.jpg",
                   ],
-                  "price": 120,
+                  "price": 200,
                   "rating": 4,
                   "reviews": Array [
                     Object {
@@ -451,12 +397,14 @@ exports[`Main correctly renders after relaunch 1`] = `
             className="cities__map map"
           >
             <Map
+              activeCoordinate={
+                Array [
+                  52.3909553943508,
+                  4.85309666406198,
+                ]
+              }
               coordinates={
                 Array [
-                  Array [
-                    52.3909553943508,
-                    4.85309666406198,
-                  ],
                   Array [
                     52.369553943508,
                     4.85309666406198,

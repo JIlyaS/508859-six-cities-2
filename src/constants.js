@@ -1,5 +1,10 @@
-export const CHANGE_CITY = `CHANGE_CITY`;
-export const GET_OFFERS = `GET_OFFERS`;
+export const actionType = {
+  CHANGE_CITY: `CHANGE_CITY`,
+  GET_OFFERS: `GET_OFFERS`,
+  CHANGE_SORT: `CHANGE_SORT`,
+  ADD_ACTIVE_CARD: `ADD_ACTIVE_CARD`,
+  REMOVE_ACTIVE_CARD: `REMOVE_ACTIVE_CARD`
+};
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;
 export const ICON = {
@@ -17,6 +22,30 @@ export const TILE_LAYER = {
 export const OFFER_ID_EXP = /id([0-9]+)/;
 export const OFFER_PATH_EXT = /\/offer\/([0-9]+)/;
 export const MAX_NEARBY_OFFER = 3;
+export const SortNames = {
+  POPULAR: `Popular`,
+  PRICE_LH: `Price: low to high`,
+  PRICE_HL: `Price: high to low`,
+  TOP_RATED: `Top rated first`
+};
+export const SORT_LIST = [
+  {
+    id: `id0`,
+    name: `Popular`
+  },
+  {
+    id: `id1`,
+    name: `Price: low to high`
+  },
+  {
+    id: `id2`,
+    name: `Price: high to low`
+  },
+  {
+    id: `id3`,
+    name: `Top rated first`
+  }
+];
 export const DEFAULT_OFFERS = [{
   id: `id0`,
   city: {
@@ -29,7 +58,7 @@ export const DEFAULT_OFFERS = [{
   },
   img: `apartment-01.jpg`,
   isPremium: true,
-  price: 120,
+  price: 110,
   title: `Beautiful & luxurious apartment at great location`,
   type: `apartment`,
   rating: 4.8,
@@ -145,7 +174,7 @@ export const DEFAULT_OFFERS = [{
   },
   img: `apartment-02.jpg`,
   isPremium: false,
-  price: 120,
+  price: 200,
   title: `Canal View Prinsengracht`,
   type: `apartment`,
   rating: 4.0,

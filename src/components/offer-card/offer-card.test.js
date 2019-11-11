@@ -15,6 +15,7 @@ it(`OfferCard correctly renders after relaunch`, () => {
       }}
       offerId={`id0`}
       activeOfferMouseEnterHandler={() => {}}
+      deactiveOfferMouseLeaveHandler={() => {}}
       cardTitleClickHandler={() => {}}
       isNearPlace={true}
     />)

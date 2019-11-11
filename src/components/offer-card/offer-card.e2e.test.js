@@ -7,6 +7,7 @@ Enzyme.configure({adapter: new Adapter()});
 
 it(`OfferCard correct callback function`, () => {
   const offerMouseEnterHandler = jest.fn();
+  const offerMouseLeaveHandler = jest.fn();
   const mockOfferCardData = {
     title: ``,
     type: `private room`,
@@ -19,6 +20,7 @@ it(`OfferCard correct callback function`, () => {
     offer={mockOfferCardData}
     offerId={`id0`}
     activeOfferMouseEnterHandler={offerMouseEnterHandler}
+    deactiveOfferMouseLeaveHandler={offerMouseLeaveHandler}
     cardTitleClickHandler={() => {}}
     isNearPlace={true}
   />);

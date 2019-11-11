@@ -5,15 +5,16 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
 import OfferList from '../offer-list/offer-list';
-import {convertRating} from '../../utils';
+import {getMapCoordinates, convertRating} from '../../utils';
 import {MAX_NEARBY_OFFER} from '../../constants';
 
 const DetailInfo = (props) => {
   const {
     currentOffer: {isPremium, price, title, rating, photos, features, insideProperties, hostUser, reviews},
-    otherOffers
+    otherOffers,
+    activeOfferCard
   } = props;
-  const nearByCoordinates = otherOffers.map((offer) => offer.coordinate);
+  const coordinates = getMapCoordinates(otherOffers, activeOfferCard);
   return <div className="page">
     <header className="header">
       <div className="container">
@@ -159,7 +160,10 @@ const DetailInfo = (props) => {
           </div>
         </div>
         <section className="property__map map">
-          <Map coordinates={[...nearByCoordinates]} />
+          <Map
+            coordinates={coordinates}
+            activeCoordinate={activeOfferCard.coordinate}
+          />
         </section>
       </section>
       <div className="container">
@@ -196,12 +200,17 @@ DetailInfo.propTypes = {
     }),
     reviews: PropTypes.array.isRequired
   }),
-  otherOffers: PropTypes.array.isRequired
+  otherOffers: PropTypes.array.isRequired,
+  activeOfferCard: PropTypes.shape({
+    id: PropTypes.string,
+    coordinate: PropTypes.array
+  })
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentOffer: state.allOffers.find((offer) => offer.id === `id${Number(ownProps.idPath)}`),
-  otherOffers: state.allOffers.filter((offer) => offer.id !== `id${Number(ownProps.idPath)}`).slice(0, MAX_NEARBY_OFFER)
+  otherOffers: state.allOffers.filter((offer) => offer.id !== `id${Number(ownProps.idPath)}`).slice(0, MAX_NEARBY_OFFER),
+  activeOfferCard: state.activeOfferCard
 });
 
 export {DetailInfo};

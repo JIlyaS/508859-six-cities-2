@@ -4,9 +4,20 @@ import {firstUpperCase, convertRating} from '../../utils';
 import {OFFER_ID_EXP} from '../../constants';
 
 const OfferCard = (props) => {
-  const {offer: {img, isPremium, price, title, type, rating}, offerId, activeOfferMouseEnterHandler, cardTitleClickHandler, isNearPlace} = props;
+  const {
+    offer: {img, isPremium, price, title, type, rating},
+    offerId,
+    activeOfferMouseEnterHandler,
+    deactiveOfferMouseLeaveHandler,
+    cardTitleClickHandler,
+    isNearPlace
+  } = props;
   const offerIdForPath = Number(offerId.match(OFFER_ID_EXP)[1]);
-  return <article className={`${isNearPlace ? `near-places__` : `cities__place-`}card place-card`} onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}>
+  return <article
+    className={`${isNearPlace ? `near-places__` : `cities__place-`}card place-card`}
+    onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}
+    onMouseLeave={deactiveOfferMouseLeaveHandler}
+  >
     {isPremium && <div className="place-card__mark">
       <span>Premium</span>
     </div>}
@@ -53,6 +64,7 @@ OfferCard.propTypes = {
   }),
   offerId: PropTypes.string.isRequired,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
+  deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
   cardTitleClickHandler: PropTypes.func.isRequired,
   isNearPlace: PropTypes.bool
 };
