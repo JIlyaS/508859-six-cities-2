@@ -5,8 +5,8 @@ import withSortList from './with-sort-list';
 
 Enzyme.configure({adapter: new Adapter()});
 
-// const MockComponent = () => <div></div>;
-const MockComponentWrapped = withSortList(<div />);
+const MockComponent = () => <div />;
+const MockComponentWrapped = withSortList(MockComponent);
 
 describe(`withSortList HOC work correct`, () => {
   it(`SortList component is close`, () => {
