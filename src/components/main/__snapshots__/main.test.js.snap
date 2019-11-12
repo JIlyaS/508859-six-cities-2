@@ -94,7 +94,7 @@ exports[`Main correctly renders after relaunch 1`] = `
              places to stay in 
             Amsterdam
           </b>
-          <Connect(SortList) />
+          <WithSortList />
           <Connect(OfferList)
             offers={
               Array [

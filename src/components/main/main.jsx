@@ -6,7 +6,10 @@ import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
 import CityList from '../city-list/city-list';
 import SortList from '../sort-list/sort-list';
+import withSortList from '../../hocs/with-sort-list/with-sort-list';
 import {getMapCoordinates, sortOfferList} from '../../utils';
+
+const SortListWrapped = withSortList(SortList);
 
 class Main extends PureComponent {
   render() {
@@ -47,7 +50,7 @@ class Main extends PureComponent {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{offers.length} places to stay in {city}</b>
-              <SortList />
+              <SortListWrapped />
               <OfferList offers={offers} />
             </section>
             <div className="cities__right-section">

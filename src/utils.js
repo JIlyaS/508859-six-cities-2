@@ -28,14 +28,9 @@ export const sortOfferList = (offers, sortName) => {
 };
 
 export const getMapCoordinates = (offers, activeOfferCard) => {
-  let otherOfferCards = offers.filter((offer) => offer.id !== activeOfferCard.id);
-  let coordinates = otherOfferCards.map((offer) => offer.coordinate);
   if (Object.keys(activeOfferCard).length === 0) {
-    coordinates = offers.map((offer) => offer.coordinate);
-  } else {
-    otherOfferCards = offers.filter((offer) => offer.id !== activeOfferCard.id);
-    coordinates = otherOfferCards.map((offer) => offer.coordinate);
+    return offers.map((offer) => offer.coordinate);
   }
-
-  return coordinates;
+  const otherOfferCards = offers.filter((offer) => offer.id !== activeOfferCard.id);
+  return otherOfferCards.map((offer) => offer.coordinate);
 };

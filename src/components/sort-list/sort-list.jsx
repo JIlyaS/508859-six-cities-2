@@ -9,20 +9,15 @@ import {SORT_LIST} from '../../constants';
 class SortList extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      isSortOpened: false
-    };
-
-    this._openSortListClickHandler = this._openSortListClickHandler.bind(this);
+    this._changeSortElemClickHandler = this._changeSortElemClickHandler.bind(this);
   }
 
   render() {
-    const {isSortOpened} = this.state;
-    const {activeSortName, changeSortElemClickHandler} = this.props;
+    const {activeSortName, changeSortElemClickHandler, isSortOpened, openSortListClickHandler} = this.props;
     return <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       &nbsp;
-      <span className="places__sorting-type" tabIndex="0" onClick={this._openSortListClickHandler}>
+      <span className="places__sorting-type" tabIndex="0" onClick={openSortListClickHandler}>
         {activeSortName}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select" />
@@ -32,10 +27,7 @@ class SortList extends PureComponent {
         {SORT_LIST.map((it) => (
           <li
             key={`sort-${it.id}`}
-            onClick={() => {
-              this._openSortListClickHandler();
-              changeSortElemClickHandler(it.name);
-            }}
+            onClick={() => this._changeSortElemClickHandler(it.name, openSortListClickHandler, changeSortElemClickHandler)}
             className={`places__option ${it.name === activeSortName && `places__option--active`}`}
             tabIndex="0">
             {it.name}
@@ -45,14 +37,17 @@ class SortList extends PureComponent {
     </form>;
   }
 
-  _openSortListClickHandler() {
-    this.setState((prevState) => ({isSortOpened: !prevState.isSortOpened}));
+  _changeSortElemClickHandler(name, openSort, changeSort) {
+    openSort();
+    changeSort(name);
   }
 }
 
 SortList.propTypes = {
+  isSortOpened: PropTypes.bool.isRequired,
   activeSortName: PropTypes.string.isRequired,
-  changeSortElemClickHandler: PropTypes.func.isRequired
+  changeSortElemClickHandler: PropTypes.func.isRequired,
+  openSortListClickHandler: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

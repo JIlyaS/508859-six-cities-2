@@ -5,8 +5,10 @@ import {SortList} from './sort-list';
 it(`SortList correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<SortList
+      isSortOpened={false}
       activeSortName={`Popular`}
       changeSortElemClickHandler={() => {}}
+      openSortListClickHandler={() => {}}
     />)
     .toJSON();
 
