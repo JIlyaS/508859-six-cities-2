@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, {mount} from 'enzyme';
+import Enzyme, {shallow} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import withSortList from './with-sort-list';
 
@@ -9,9 +9,11 @@ const MockComponent = () => <div />;
 const MockComponentWrapped = withSortList(MockComponent);
 
 describe(`withSortList HOC work correct`, () => {
-  it(`SortList component is close`, () => {
-    const wrapper = mount(MockComponentWrapped);
+  it(`SortList component is correct`, () => {
+    const wrapper = shallow(<MockComponentWrapped />);
 
     expect(wrapper.state().isSortOpened).toEqual(false);
+    wrapper.props().openSortListClickHandler();
+    expect(wrapper.state().isSortOpened).toEqual(true);
   });
 });
