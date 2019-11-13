@@ -18,5 +18,19 @@ exports[`CityList correctly renders after relaunch 1`] = `
       </span>
     </a>
   </li>
+  <li
+    className="locations__item"
+    key="location-Paris"
+  >
+    <a
+      className="locations__item-link tabs__item false"
+      href="#"
+      onClick={[Function]}
+    >
+      <span>
+        Paris
+      </span>
+    </a>
+  </li>
 </ul>
 `;
