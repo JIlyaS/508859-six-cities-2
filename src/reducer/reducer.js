@@ -33,7 +33,8 @@ const initialState = {
   offers: DEFAULT_OFFERS,
   activeSortName: `Popular`,
   activeOfferCard: {},
-  allOffers,
+  allOffers: allOffers.offers,
+  cities: allOffers.cities
 };
 
 const reducer = (state = initialState, action) => {

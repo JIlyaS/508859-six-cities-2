@@ -9,12 +9,14 @@ import {CityList} from './city-list';
 Enzyme.configure({adapter: new Adapter()});
 
 it(`CityList correctly renders after relaunch`, () => {
-  const tree = shallow(<CityList
-    city={`Amsterdam`}
-    allOffers={DEFAULT_OFFERS}
-    offerCityNames={[`Amsterdam`]}
-    changeCityClickHandler={() => {}}
-  />);
+  const tree = shallow(
+      <CityList
+        city={`Amsterdam`}
+        cities={[`Amsterdam`, `Paris`]}
+        allOffers={DEFAULT_OFFERS}
+        changeCityClickHandler={() => {}}
+      />
+  );
 
   expect(toJSON(tree)).toMatchSnapshot();
 });

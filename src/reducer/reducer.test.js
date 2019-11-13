@@ -154,7 +154,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers,
+      allOffers: allOffers.offers,
+      cities: allOffers.cities,
     });
   });
   it(`Reducer should change city by a given value`, () => {
@@ -163,7 +164,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     }, {
       type: `CHANGE_CITY`,
       payload: `Paris`
@@ -172,7 +174,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     });
   });
   it(`Reducer should get offers city by a given value`, () => {
@@ -181,7 +184,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     }, {
       type: `GET_OFFERS`,
       payload: [{
@@ -200,7 +204,8 @@ describe(`Reducer work correctly`, () => {
       }],
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     });
   });
   it(`Reducer should get offers city empty array by a given value`, () => {
@@ -209,7 +214,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     }, {
       type: `GET_OFFERS`,
       payload: []
@@ -218,7 +224,8 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     });
   });
   it(`Reducer should change sort name by a given value`, () => {
@@ -227,7 +234,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     }, {
       type: `CHANGE_SORT`,
       payload: `Top rated first`
@@ -236,7 +244,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Top rated first`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     });
   });
   it(`Reducer should add active card object data by a given value`, () => {
@@ -245,7 +254,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     }, {
       type: `ADD_ACTIVE_CARD`,
       payload: DEFAULT_OFFER
@@ -254,7 +264,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: DEFAULT_OFFER,
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     });
   });
   it(`Reducer should remove active card empty by a given value`, () => {
@@ -263,7 +274,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: DEFAULT_OFFER,
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     }, {
       type: `REMOVE_ACTIVE_CARD`,
       payload: {}
@@ -272,7 +284,8 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
-      allOffers
+      allOffers: allOffers.offers,
+      cities: allOffers.cities
     });
   });
 });
