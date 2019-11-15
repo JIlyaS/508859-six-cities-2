@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) =>
     city: state.city,
     offers: state.offers,
     allOffers: state.allOffers,
-    cities: state.cities
+    cities: state.allOffers.map((offer) => offer.city.name)
   });
 
 const mapDispatchToProps = (dispatch) => ({

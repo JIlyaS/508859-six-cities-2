@@ -1,6 +1,6 @@
 import {ActionType} from '../constants';
-import {getCityOffers, getCorrectDataHotels} from '../utils';
-// import {allOffers} from '../mocks/offers';
+import {getCityOffers} from '../utils';
+import Adapter from '../adapter';
 
 const ActionCreator = {
   changeCity: (city) => ({
@@ -33,7 +33,7 @@ const ActionCreator = {
 };
 
 const initialState = {
-  city: `Amsterdam`,
+  city: ``,
   offers: [],
   activeSortName: `Popular`,
   activeOfferCard: {},
@@ -65,10 +65,10 @@ const reducer = (state = initialState, action) => {
         activeOfferCard: action.payload,
       });
     case ActionType.LOAD_OFFERS:
-      console.log(action.payload);
       return Object.assign({}, state, {
-        allOffers: getCorrectDataHotels(action.payload),
-        offers: getCorrectDataHotels(action.payload),
+        allOffers: Adapter.getOffers(action.payload),
+        offers: Adapter.getOffers(action.payload),
+        city: (Adapter.getOffers(action.payload)[0]).city.name,
       });
   }
 

@@ -29,58 +29,16 @@ export const sortOfferList = (offers, sortName) => {
 
 export const getMapCoordinates = (offers, activeOfferCard) => {
   if (Object.keys(activeOfferCard).length === 0) {
-    return offers.map((offer) => offer.coordinate);
+    return offers.map((offer) => offer.location);
   }
   const otherOfferCards = offers.filter((offer) => offer.id !== activeOfferCard.id);
-  return otherOfferCards.map((offer) => offer.coordinate);
+  return otherOfferCards.map((offer) => offer.location);
 };
 
-export const getCorrectDataHotels = (data) => {
-  return data.map((hotel) => ({
-    id: `id${hotel.id}`,
-    city: {
-      name: hotel.city.name,
-      location: {
-        coordinate: [
-          hotel.city.location.latitude,
-          hotel.city.location.longitude,
-        ],
-        zoom: hotel.city.location.zoom
-      },
-    },
-    img: hotel.preview_image,
-    isPremium: hotel[`is_premium`],
-    price: hotel.price,
-    title: hotel.title,
-    type: hotel.type,
-    rating: hotel.rating,
-    photos: hotel.images,
-    features: [...new Set([`Entire place`, `${hotel.bedrooms} Bedrooms`, `Max ${hotel[`max_adults`]} adults`])],
-    insideProperties: hotel.goods,
-    hostUser: {
-      id: hotel.host.id,
-      avatar: hotel.host[`avatar_url`],
-      name: hotel.host.name,
-      status: hotel.host[`is_pro`],
-    },
-    reviews: [
-      // {
-      //   id: `review1`,
-      //   avatar: `avatar-max.jpg`,
-      //   name: `Max`,
-      //   rating: 4.7,
-      //   date: `April 2019`,
-      //   description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-      // },
-      // {
-      //   id: `review2`,
-      //   avatar: `avatar-max.jpg`,
-      //   name: `Alex`,
-      //   rating: 4.0,
-      //   date: `May 2019`,
-      //   description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-      // }
-    ]
-  }));
+export const getCurrectCityOffers = (offers, city) => {
+  return offers.filter((offer) => offer.city.name === city);
 };
 
+export const getActiveCityCoordinate = (offers) => ({
+  coordinateCity: offers[0].city.location,
+});
