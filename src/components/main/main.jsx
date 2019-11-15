@@ -9,6 +9,7 @@ import SortList from '../sort-list/sort-list';
 import MainEmpty from '../main-empty/main-empty';
 import withSortList from '../../hocs/with-sort-list/with-sort-list';
 import {getMapCoordinates, sortOfferList} from '../../utils';
+import {Operation} from '../../reducer/reducer';
 
 const SortListWrapped = withSortList(SortList);
 
@@ -85,6 +86,10 @@ class Main extends PureComponent {
       </div>
     );
   }
+
+  componentDidMount() {
+    this.props.loadOffers();
+  }
 }
 
 Main.propTypes = {
@@ -103,6 +108,13 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeOfferCard: state.activeOfferCard
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  loadOffers: () => {
+    dispatch(Operation.loadOffers());
+  }
+});
+
+
 export {Main};
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

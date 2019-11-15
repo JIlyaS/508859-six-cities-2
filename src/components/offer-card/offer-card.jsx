@@ -60,7 +60,7 @@ OfferCard.propTypes = {
     price: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
+    type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`])
   }),
   offerId: PropTypes.string.isRequired,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,

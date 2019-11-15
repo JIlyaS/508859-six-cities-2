@@ -1,9 +1,12 @@
-import {DEFAULT_OFFERS, DEFAULT_OFFER, SortNames} from '../constants';
+import MockAdapter from 'axios-mock-adapter';
+import {DEFAULT_OFFERS, DEFAULT_OFFER, SortNames, ActionType} from '../constants';
 import {getCityOffers, sortOfferList} from '../utils';
 import {allOffers} from '../mocks/offers';
+import api from '../api';
 import {
   ActionCreator,
-  reducer
+  reducer,
+  Operation,
 } from './reducer';
 
 describe(`Business logic is correct`, () => {
@@ -287,5 +290,24 @@ describe(`Reducer work correctly`, () => {
       allOffers: allOffers.offers,
       cities: allOffers.cities
     });
+  });
+
+  it(`Should make a correct API call to /hotel`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offerLoader = Operation.loadOffers();
+
+    apiMock
+      .onGet(`/hotels`)
+      .reply(200, [{fake: true}]);
+
+    return offerLoader(dispatch)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect.toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_OFFERS,
+          payload: [{fake: true}]
+        });
+      });
   });
 });

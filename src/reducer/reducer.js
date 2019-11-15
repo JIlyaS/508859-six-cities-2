@@ -1,71 +1,91 @@
-import {DEFAULT_OFFERS, actionType} from '../constants';
-import {getCityOffers} from '../utils';
-import {allOffers} from '../mocks/offers';
+import {ActionType} from '../constants';
+import {getCityOffers, getCorrectDataHotels} from '../utils';
+// import {allOffers} from '../mocks/offers';
 
 const ActionCreator = {
   changeCity: (city) => ({
-    type: actionType.CHANGE_CITY,
+    type: ActionType.CHANGE_CITY,
     payload: city
   }),
   getOffers: (allOfferList, city) => {
     const cityOffers = getCityOffers(allOfferList, city);
     return {
-      type: actionType.GET_OFFERS,
-      payload: cityOffers
+      type: ActionType.GET_OFFERS,
+      payload: cityOffers,
     };
   },
   changeSortName: (sortName) => ({
-    type: actionType.CHANGE_SORT,
-    payload: sortName
+    type: ActionType.CHANGE_SORT,
+    payload: sortName,
   }),
   changeActiveCard: (activeCard) => ({
-    type: actionType.ADD_ACTIVE_CARD,
-    payload: activeCard
+    type: ActionType.ADD_ACTIVE_CARD,
+    payload: activeCard,
   }),
   removeActiveCard: () => ({
-    type: actionType.REMOVE_ACTIVE_CARD,
-    payload: {}
+    type: ActionType.REMOVE_ACTIVE_CARD,
+    payload: {},
+  }),
+  loadOffers: (offers) => ({
+    type: ActionType.LOAD_OFFERS,
+    payload: offers,
   })
 };
 
 const initialState = {
   city: `Amsterdam`,
-  offers: DEFAULT_OFFERS,
+  offers: [],
   activeSortName: `Popular`,
   activeOfferCard: {},
-  allOffers: allOffers.offers,
-  cities: allOffers.cities
+  allOffers: [],
+  cities: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionType.CHANGE_CITY:
+    case ActionType.CHANGE_CITY:
       return Object.assign({}, state, {
         city: action.payload,
-        activeSortName: `Popular`
+        activeSortName: `Popular`,
       });
-    case actionType.GET_OFFERS:
+    case ActionType.GET_OFFERS:
       return Object.assign({}, state, {
-        offers: action.payload
+        offers: action.payload,
       });
-    case actionType.CHANGE_SORT:
+    case ActionType.CHANGE_SORT:
       return Object.assign({}, state, {
-        activeSortName: action.payload
+        activeSortName: action.payload,
       });
-    case actionType.ADD_ACTIVE_CARD:
+    case ActionType.ADD_ACTIVE_CARD:
       return Object.assign({}, state, {
-        activeOfferCard: action.payload
+        activeOfferCard: action.payload,
       });
-    case actionType.REMOVE_ACTIVE_CARD:
+    case ActionType.REMOVE_ACTIVE_CARD:
       return Object.assign({}, state, {
-        activeOfferCard: action.payload
+        activeOfferCard: action.payload,
+      });
+    case ActionType.LOAD_OFFERS:
+      console.log(action.payload);
+      return Object.assign({}, state, {
+        allOffers: getCorrectDataHotels(action.payload),
+        offers: getCorrectDataHotels(action.payload),
       });
   }
 
   return state;
 };
 
+const Operation = {
+  loadOffers: () => (dispatch, _, api) => {
+    return api.get(`/hotels`)
+      .then((response) => {
+        dispatch(ActionCreator.loadOffers(response.data));
+      });
+  },
+};
+
 export {
   ActionCreator,
-  reducer
+  reducer,
+  Operation,
 };
