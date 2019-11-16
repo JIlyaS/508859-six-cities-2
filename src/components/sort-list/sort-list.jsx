@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {ActionCreator} from '../../reducer/reducer';
+import ActionCreator from '../../action-creator/action-creator';
 import {SORT_LIST} from '../../constants';
 
 
@@ -51,7 +51,7 @@ SortList.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  activeSortName: state.activeSortName
+  activeSortName: state.actionUser.activeSortName
 });
 
 const mapDispatchToProps = (dispatch) => ({

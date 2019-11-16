@@ -11,21 +11,20 @@ import withSortList from '../../hocs/with-sort-list/with-sort-list';
 import {
   getMapCoordinates,
   sortOfferList,
-  getCurrectCityOffers,
   getActiveCityCoordinate
 } from "../../utils";
-import {Operation} from '../../reducer/reducer';
+import {getCurrectCityOffers} from '../../selectors/selectors';
 
 const SortListWrapped = withSortList(SortList);
 
 class Main extends PureComponent {
   render() {
-    const {offers, city, activeOfferCard} = this.props;
+    const {offers, city, activeSortName, activeOfferCard} = this.props;
 
     if (!offers.length) {
       return false;
     }
-    const currectOffers = getCurrectCityOffers(offers, city);
+    const currectOffers = sortOfferList(offers, activeSortName);
     const coordinates = getMapCoordinates(currectOffers, activeOfferCard);
     const activeCityCoordinate = getActiveCityCoordinate(currectOffers, city);
     return (
@@ -101,37 +100,25 @@ class Main extends PureComponent {
       </div>
     );
   }
-
-  componentDidMount() {
-    const {loadOffers} = this.props;
-    loadOffers();
-  }
 }
 
 Main.propTypes = {
   city: PropTypes.string.isRequired,
+  activeSortName: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   activeOfferCard: PropTypes.shape({
     id: PropTypes.string,
     location: PropTypes.object,
   }),
-  loadOffers: PropTypes.func.isRequired,
 };
 
-
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  city: state.city,
-  offers: sortOfferList(state.offers, state.activeSortName),
-  activeOfferCard: state.activeOfferCard,
+  city: state.actionUser.city,
+  offers: getCurrectCityOffers(state),
+  activeSortName: state.actionUser.activeSortName,
+  activeOfferCard: state.actionUser.activeOfferCard,
 });
-
-const mapDispatchToProps = (dispatch) => ({
-  loadOffers: () => {
-    dispatch(Operation.loadOffers());
-  },
-});
-
 
 export {Main};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps)(Main);

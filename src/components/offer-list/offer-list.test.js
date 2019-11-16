@@ -8,7 +8,7 @@ it(`OfferList correctly renders after relaunch`, () => {
       offers={[{
         id: `id0`,
         title: ``,
-        type: `private room`,
+        type: `room`,
         price: 0,
         img: `room.jpg`,
         rating: 0,

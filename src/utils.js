@@ -1,4 +1,4 @@
-import {RATING_PERSENT, MAX_RATING_COUNT, SortNames} from './constants';
+import {RATING_PERSENT, MAX_RATING_COUNT, MAX_NEARBY_OFFER, SortNames} from './constants';
 
 export const firstUpperCase = (word) => {
   return word[0].toUpperCase() + word.slice(1);
@@ -35,10 +35,21 @@ export const getMapCoordinates = (offers, activeOfferCard) => {
   return otherOfferCards.map((offer) => offer.location);
 };
 
-export const getCurrectCityOffers = (offers, city) => {
-  return offers.filter((offer) => offer.city.name === city);
-};
-
 export const getActiveCityCoordinate = (offers) => ({
   coordinateCity: offers[0].city.location,
 });
+
+export const shuffleElements = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+export const getOtherCityOffers = (id, offers) => {
+  const currectOffer = offers.find((offer) => offer.id === `id${Number(id)}`);
+  const otherOffers = offers.filter((offer) => offer.city.name === currectOffer.city.name).slice(0, MAX_NEARBY_OFFER);
+
+  return otherOffers;
+};

@@ -118,17 +118,9 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "hostUser": Object {
                     "avatar": "avatar-angelina.jpg",
-                    "description": Array [
-                      "A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.",
-                      "An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.",
-                    ],
+                    "id": 1,
                     "name": "Angelina",
-                    "status": "pro",
+                    "status": true,
                   },
                   "id": "id0",
                   "img": "apartment-01.jpg",
@@ -155,24 +147,6 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "price": 110,
                   "rating": 4.8,
-                  "reviews": Array [
-                    Object {
-                      "avatar": "avatar-max.jpg",
-                      "date": "April 2019",
-                      "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                      "id": "review1",
-                      "name": "Max",
-                      "rating": 4.7,
-                    },
-                    Object {
-                      "avatar": "avatar-max.jpg",
-                      "date": "May 2019",
-                      "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                      "id": "review2",
-                      "name": "Alex",
-                      "rating": 4,
-                    },
-                  ],
                   "title": "Beautiful & luxurious apartment at great location",
                   "type": "apartment",
                 },
@@ -196,17 +170,9 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "hostUser": Object {
                     "avatar": "avatar-angelina.jpg",
-                    "description": Array [
-                      "A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.",
-                      "An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.",
-                    ],
+                    "id": 2,
                     "name": "Angelina",
-                    "status": "pro",
+                    "status": false,
                   },
                   "id": "id1",
                   "img": "room.jpg",
@@ -233,18 +199,8 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "price": 120,
                   "rating": 4,
-                  "reviews": Array [
-                    Object {
-                      "avatar": "avatar-max.jpg",
-                      "date": "April 2019",
-                      "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                      "id": "review1",
-                      "name": "Max",
-                      "rating": 4.7,
-                    },
-                  ],
                   "title": "Wood and stone place",
-                  "type": "private room",
+                  "type": "room",
                 },
                 Object {
                   "city": Object {
@@ -266,17 +222,9 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "hostUser": Object {
                     "avatar": "avatar-angelina.jpg",
-                    "description": Array [
-                      "A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.",
-                      "An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.",
-                    ],
+                    "id": 3,
                     "name": "Angelina",
-                    "status": "pro",
+                    "status": true,
                   },
                   "id": "id2",
                   "img": "apartment-02.jpg",
@@ -303,16 +251,6 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "price": 200,
                   "rating": 4,
-                  "reviews": Array [
-                    Object {
-                      "avatar": "avatar-max.jpg",
-                      "date": "April 2019",
-                      "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                      "id": "review1",
-                      "name": "Max",
-                      "rating": 4.7,
-                    },
-                  ],
                   "title": "Canal View Prinsengracht",
                   "type": "apartment",
                 },
@@ -336,17 +274,9 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "hostUser": Object {
                     "avatar": "avatar-angelina.jpg",
-                    "description": Array [
-                      "A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.",
-                      "An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.",
-                    ],
+                    "id": 4,
                     "name": "Angelina",
-                    "status": "pro",
+                    "status": false,
                   },
                   "id": "id3",
                   "img": "apartment-03.jpg",
@@ -373,16 +303,6 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "price": 180,
                   "rating": 5,
-                  "reviews": Array [
-                    Object {
-                      "avatar": "avatar-max.jpg",
-                      "date": "April 2019",
-                      "description": "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.",
-                      "id": "review1",
-                      "name": "Max",
-                      "rating": 4.7,
-                    },
-                  ],
                   "title": "Nice, cozy, warm big bed apartment",
                   "type": "apartment",
                 },
@@ -397,26 +317,18 @@ exports[`Main correctly renders after relaunch 1`] = `
             className="cities__map map"
           >
             <Map
-              activeCoordinate={
-                Array [
-                  52.3909553943508,
-                  4.85309666406198,
-                ]
+              activeCityCoordinate={
+                Object {
+                  "latitude": 52.3909553943508,
+                  "longitude": 4.85309666406198,
+                  "zoom": 12,
+                }
               }
               coordinates={
                 Array [
-                  Array [
-                    52.369553943508,
-                    4.85309666406198,
-                  ],
-                  Array [
-                    52.3909553943508,
-                    4.929309666406198,
-                  ],
-                  Array [
-                    52.3809553943508,
-                    4.939309666406198,
-                  ],
+                  undefined,
+                  undefined,
+                  undefined,
                 ]
               }
             />

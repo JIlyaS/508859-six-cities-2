@@ -1,3 +1,5 @@
+import {shuffleElements} from './utils';
+
 class Adapter {
   static getOffers(offers) {
     return offers.map(Adapter.getOffer);
@@ -21,8 +23,8 @@ class Adapter {
       price: offer.price,
       title: offer.title,
       type: offer.type,
-      rating: offer.rating,
-      photos: offer.images,
+      rating: Math.round(offer.rating),
+      photos: (shuffleElements(offer.images)).slice(0, 6),
       location: {
         coordinate: [offer.location.latitude, offer.location.longitude],
         zoom: offer.location.zoom,
