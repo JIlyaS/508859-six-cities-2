@@ -9,6 +9,16 @@ const Operation = {
         dispatch(ActionCreator.loadOffers(offers));
       });
   },
+  checkLogin: (email, password) => (dispatch, _, api) => {
+    return api.post(`/login`, {
+      email,
+      password
+    })
+      .then((response) => {
+        dispatch(ActionCreator.requireAuthorization(false));
+        dispatch(ActionCreator.addLogin(response.data));
+      });
+  }
 };
 
 export default Operation;

@@ -6,6 +6,7 @@ const initialState = {
   activeSortName: `Popular`,
   activeOfferCard: {},
   cities: [],
+  isAuthorizationRequired: true,
 };
 
 const actionUser = (state = initialState, action) => {
@@ -30,6 +31,10 @@ const actionUser = (state = initialState, action) => {
     case ActionType.REMOVE_ACTIVE_CARD:
       return Object.assign({}, state, {
         activeOfferCard: action.payload,
+      });
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return Object.assign({}, state, {
+        isAuthorizationRequired: action.payload,
       });
     default:
       return state;

@@ -35,7 +35,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
 const mapDispatchToProps = (dispatch) => ({
   loadOffers: () => {
     dispatch(Operation.loadOffers());
-  },
+  }
 });
 
 App.propTypes = {

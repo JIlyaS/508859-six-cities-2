@@ -22,6 +22,8 @@ const store = mockStore(props);
 
 it(`App correctly renders after relaunch`, () => {
   const tree = shallow(<App
+    isAuthorizationRequired={false}
+    loadOffers={() => {}}
     store={store}
   />);
 
