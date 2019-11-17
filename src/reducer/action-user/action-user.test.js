@@ -2,7 +2,7 @@ import {DEFAULT_OFFERS, DEFAULT_OFFER} from '../../constants';
 import reducer from './action-user';
 
 describe(`Reducer work correctly`, () => {
-  it(`Reducer without additional parameters should return initial state`, () => {
+  it(`Reducer action user without additional parameters should return initial state`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: `Hamburg`,
       activeSortName: `Popular`,

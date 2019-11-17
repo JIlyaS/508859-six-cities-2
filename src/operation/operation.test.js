@@ -1,6 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
 
-import {ActionType} from '../constants';
+import {MOCK_DATA_SERVER, MOCK_DATA_ADAPTER, ActionType} from '../constants';
 import api from '../api';
 import Operation from '../operation/operation';
 
@@ -8,7 +8,7 @@ const mockApi = jest.genMockFromModule(`../api`);
 
 mockApi.get = jest.fn(() => {
   return Promise.resolve({
-    data: [{fake: true}]
+    data: MOCK_DATA_SERVER
   });
 });
 
@@ -20,14 +20,14 @@ describe(`Reducer load data work correctly`, () => {
 
     apiMock
       .onGet(`/hotels`)
-      .reply(200, [{fake: true}]);
+      .reply(200, MOCK_DATA_SERVER);
 
     return offerLoader(dispatch, null, mockApi)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_OFFERS,
-          payload: [{fake: true}]
+          payload: MOCK_DATA_ADAPTER
         });
       });
   });
