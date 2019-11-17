@@ -369,3 +369,11 @@ export const MOCK_DATA_ADAPTER = [{
     status: true
   }
 }];
+
+export const DEFAULT_LOGIN = {
+  [`avatar_url`]: `/static/avatar/8.jpg`,
+  email: `ilkolmakov@yandex.ru`,
+  id: 1,
+  [`is_pro`]: false,
+  name: `ilkolmakov`,
+};

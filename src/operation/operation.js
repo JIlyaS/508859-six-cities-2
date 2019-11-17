@@ -6,6 +6,7 @@ const Operation = {
     return api.get(`/hotels`)
       .then((response) => {
         const offers = Adapter.getOffers(response.data);
+        dispatch(ActionCreator.changeCity(offers[0].city.name));
         dispatch(ActionCreator.loadOffers(offers));
       });
   },

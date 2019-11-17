@@ -1,7 +1,7 @@
 import {ActionType} from '../../constants';
 
 const initialState = {
-  city: `Hamburg`,
+  city: ``,
   changedOffers: [],
   activeSortName: `Popular`,
   activeOfferCard: {},

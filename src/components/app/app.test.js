@@ -4,17 +4,25 @@ import toJSON from 'enzyme-to-json';
 import configureMockStore from 'redux-mock-store';
 import Adapter from 'enzyme-adapter-react-16';
 
-import App from './app';
-import {DEFAULT_OFFERS} from '../../constants';
+import {App} from './app';
 
 Enzyme.configure({adapter: new Adapter()});
 
 jest.mock(`../map/map`);
 
 const props = {
-  city: `Amsterdam`,
-  offers: DEFAULT_OFFERS,
-  allOffers: DEFAULT_OFFERS
+  actionUser: {
+    city: ``,
+    activeSortName: `Popular`,
+    changedOffers: [],
+    activeOfferCard: {},
+    cities: [],
+    isAuthorizationRequired: true,
+  },
+  loadData: {
+    offers: [],
+    login: {},
+  }
 };
 
 const mockStore = configureMockStore();

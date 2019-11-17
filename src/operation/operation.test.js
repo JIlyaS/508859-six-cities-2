@@ -13,7 +13,7 @@ mockApi.get = jest.fn(() => {
 });
 
 describe(`Reducer load data work correctly`, () => {
-  it(`Should make a correct API call to /hotel`, () => {
+  it(`Should make a correct API call to /hotels`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const offerLoader = Operation.loadOffers();
@@ -24,11 +24,32 @@ describe(`Reducer load data work correctly`, () => {
 
     return offerLoader(dispatch, null, mockApi)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_OFFERS,
           payload: MOCK_DATA_ADAPTER
         });
       });
   });
 });
+
+// describe(`Reducer post data work correctly`, () => {
+//   it(`Should make a correct API call to /login`, () => {
+//     const apiMock = new MockAdapter(api);
+//     const dispatch = jest.fn();
+//     const offerLoader = Operation.loadOffers();
+
+//     apiMock
+//       .onGet(`/hotels`)
+//       .reply(200, MOCK_DATA_SERVER);
+
+//     return offerLoader(dispatch, null, mockApi)
+//       .then(() => {
+//         expect(dispatch).toHaveBeenCalledTimes(2);
+//         expect(dispatch).toHaveBeenNthCalledWith(2, {
+//           type: ActionType.LOAD_OFFERS,
+//           payload: MOCK_DATA_ADAPTER
+//         });
+//       });
+//   });
+// });

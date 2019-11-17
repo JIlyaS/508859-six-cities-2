@@ -2,7 +2,7 @@ import {ActionType} from '../../constants';
 
 const initialState = {
   offers: [],
-  login: {},
+  login: null,
 };
 
 const loadData = (state = initialState, action) => {
