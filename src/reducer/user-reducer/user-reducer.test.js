@@ -1,5 +1,5 @@
 import {DEFAULT_OFFERS, DEFAULT_OFFER} from '../../constants';
-import reducer from './action-user';
+import reducer from './user-reducer';
 
 describe(`Reducer work correctly`, () => {
   it(`Reducer action user without additional parameters should return initial state`, () => {

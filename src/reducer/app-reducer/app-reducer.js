@@ -5,11 +5,11 @@ const initialState = {
   login: null,
 };
 
-const loadData = (state = initialState, action) => {
+const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return Object.assign({}, state, {
-        offers: action.payload,
+        offers: action.payload
       });
     case ActionType.ADD_LOGIN:
       return Object.assign({}, state, {
@@ -20,5 +20,5 @@ const loadData = (state = initialState, action) => {
   }
 };
 
-export default loadData;
+export default appReducer;
 

@@ -48,8 +48,8 @@ export const shuffleElements = (array) => {
 };
 
 export const getOtherCityOffers = (id, offers) => {
-  const currectOffer = offers.find((offer) => offer.id === `id${Number(id)}`);
-  const otherOffers = offers.filter((offer) => offer.city.name === currectOffer.city.name).slice(0, MAX_NEARBY_OFFER);
+  const currentOffer = offers.find((offer) => offer.id === `id${Number(id)}`);
+  const otherOffers = offers.filter((offer) => offer.city.name === currentOffer.city.name).slice(0, MAX_NEARBY_OFFER);
 
   return otherOffers;
 };

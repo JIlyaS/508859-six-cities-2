@@ -14,7 +14,7 @@ import {
   sortOfferList,
   getActiveCityCoordinate
 } from "../../utils";
-import {getCurrectCityOffers} from '../../selectors/selectors';
+import {getCurrentCityOffers} from '../../selectors/selectors';
 
 const SortListWrapped = withSortList(SortList);
 
@@ -25,14 +25,14 @@ class Main extends PureComponent {
     if (!offers.length) {
       return false;
     }
-    const currectOffers = sortOfferList(offers, activeSortName);
-    const coordinates = getMapCoordinates(currectOffers, activeOfferCard);
-    const activeCityCoordinate = getActiveCityCoordinate(currectOffers, city);
+    const currentOffers = sortOfferList(offers, activeSortName);
+    const coordinates = getMapCoordinates(currentOffers, activeOfferCard);
+    const activeCityCoordinate = getActiveCityCoordinate(currentOffers, city);
     return (
       <div className="page page--gray page--main">
         <Header />
         <main
-          className={`page__main page__main--index ${currectOffers.length ===
+          className={`page__main page__main--index ${currentOffers.length ===
             0 && `page__main--index-empty`}`}
         >
           <h1 className="visually-hidden">Cities</h1>
@@ -42,15 +42,15 @@ class Main extends PureComponent {
             </section>
           </div>
           <div className="cities">
-            {currectOffers.length ? (
+            {currentOffers.length ? (
               <div className="cities__places-container container">
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">
-                    {currectOffers.length} places to stay in {city}
+                    {currentOffers.length} places to stay in {city}
                   </b>
                   <SortListWrapped />
-                  <OfferList offers={currectOffers} />
+                  <OfferList offers={currentOffers} />
                 </section>
                 <div className="cities__right-section">
                   <section className="cities__map map">
@@ -84,10 +84,10 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  city: state.actionUser.city,
-  offers: getCurrectCityOffers(state),
-  activeSortName: state.actionUser.activeSortName,
-  activeOfferCard: state.actionUser.activeOfferCard,
+  city: state.userReducer.city,
+  offers: getCurrentCityOffers(state),
+  activeSortName: state.userReducer.activeSortName,
+  activeOfferCard: state.userReducer.activeOfferCard,
 });
 
 export {Main};

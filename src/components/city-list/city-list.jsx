@@ -28,9 +28,9 @@ CityList.propTypes = {
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    city: state.actionUser.city,
-    offers: state.loadData.offers,
-    cities: state.loadData.offers.map((offer) => offer.city.name)
+    city: state.userReducer.city,
+    offers: state.appReducer.offers,
+    cities: state.appReducer.offers.map((offer) => offer.city.name)
   });
 
 const mapDispatchToProps = (dispatch) => ({
