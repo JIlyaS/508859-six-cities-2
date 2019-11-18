@@ -313,7 +313,7 @@ export const MOCK_DATA_SERVER = [
       }
     },
     [`preview_image`]: `img/1.png`,
-    images: [`img/1.png`, `img/2.png`],
+    images: [],
     title: `Beautiful & luxurious studio at great location`,
     [`is_favorite`]: false,
     [`is_premium`]: false,
@@ -349,7 +349,7 @@ export const MOCK_DATA_ADAPTER = [{
   },
   img: `img/1.png`,
   isPremium: false,
-  photos: [`img/2.png`, `img/1.png`],
+  photos: [],
   title: `Beautiful & luxurious studio at great location`,
   rating: 5,
   type: `apartment`,
