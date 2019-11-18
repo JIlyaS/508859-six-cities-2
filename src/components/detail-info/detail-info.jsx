@@ -361,10 +361,10 @@ DetailInfo.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  currentOffer: state.appActions.offers.find((offer) => offer.id === `id${Number(ownProps.idPath)}`),
-  otherOffers: getOtherCityOffers(ownProps.idPath, state.appActions.offers),
-  activeOfferCard: state.userActions.activeOfferCard,
-  offers: state.appActions.offers,
+  currentOffer: state.appReducer.offers.find((offer) => offer.id === `id${Number(ownProps.idPath)}`),
+  otherOffers: getOtherCityOffers(ownProps.idPath, state.appReducer.offers),
+  activeOfferCard: state.userReducer.activeOfferCard,
+  offers: state.appReducer.offers,
 });
 
 export {DetailInfo};

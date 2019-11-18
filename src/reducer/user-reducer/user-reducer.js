@@ -8,7 +8,7 @@ const initialState = {
   cities: [],
 };
 
-const userActions = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_CITY:
       return Object.assign({}, state, {
@@ -36,4 +36,4 @@ const userActions = (state = initialState, action) => {
   }
 };
 
-export default userActions;
+export default userReducer;

@@ -4,7 +4,7 @@ const initialState = {
   offers: [],
 };
 
-const appActions = (state = initialState, action) => {
+const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return Object.assign({}, state, {
@@ -15,5 +15,5 @@ const appActions = (state = initialState, action) => {
   }
 };
 
-export default appActions;
+export default appReducer;
 

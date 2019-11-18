@@ -1,5 +1,5 @@
 import {DEFAULT_OFFERS} from '../../constants';
-import reducer from './load-data';
+import reducer from './app-reducer';
 
 describe(`Reducer work correctly`, () => {
   it(`Reducer load data without additional parameters should return initial state`, () => {

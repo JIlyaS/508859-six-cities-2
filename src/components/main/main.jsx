@@ -113,10 +113,10 @@ Main.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  city: state.userActions.city,
+  city: state.userReducer.city,
   offers: getCurrentCityOffers(state),
-  activeSortName: state.userActions.activeSortName,
-  activeOfferCard: state.userActions.activeOfferCard,
+  activeSortName: state.userReducer.activeSortName,
+  activeOfferCard: state.userReducer.activeOfferCard,
 });
 
 export {Main};
