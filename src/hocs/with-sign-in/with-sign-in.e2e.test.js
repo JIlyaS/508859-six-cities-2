@@ -14,7 +14,9 @@ describe(`withSignIn HOC work correct`, () => {
 
     expect(wrapper.state().email).toEqual(``);
     expect(wrapper.state().password).toEqual(``);
-    // wrapper.props().openSortListClickHandler();
-    // expect(wrapper.state().isSortOpened).toEqual(true);
+    wrapper.props().addValueFormChangeHandler({target: {value: `info@mail.ru`}}, `email`);
+    wrapper.props().addValueFormChangeHandler({target: {value: `123`}}, `password`);
+    expect(wrapper.state().email).toEqual(`info@mail.ru`);
+    expect(wrapper.state().password).toEqual(`123`);
   });
 });
