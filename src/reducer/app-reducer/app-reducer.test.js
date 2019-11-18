@@ -1,4 +1,4 @@
-import {DEFAULT_OFFERS} from '../../constants';
+import {DEFAULT_OFFERS, DEFAULT_LOGIN} from '../../constants';
 import reducer from './app-reducer';
 
 describe(`Reducer work correctly`, () => {

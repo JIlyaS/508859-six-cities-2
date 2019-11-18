@@ -82,7 +82,7 @@ class Map extends PureComponent {
 Map.propTypes = {
   coordinates: PropTypes.array.isRequired,
   activeCoordinate: PropTypes.object,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   activeCityCoordinate: PropTypes.shape({
     coordinateCity: PropTypes.array.isRequired,
     zoomCity: PropTypes.number.isRequired

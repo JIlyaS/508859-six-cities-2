@@ -11,7 +11,7 @@ Enzyme.configure({adapter: new Adapter()});
 jest.mock(`../map/map`);
 
 const props = {
-  actionUser: {
+  appReducer: {
     city: ``,
     activeSortName: `Popular`,
     changedOffers: [],
@@ -19,7 +19,7 @@ const props = {
     cities: [],
     isAuthorizationRequired: true,
   },
-  loadData: {
+  userReducer: {
     offers: [],
     login: {},
   }

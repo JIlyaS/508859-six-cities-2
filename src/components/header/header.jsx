@@ -53,8 +53,8 @@ Header.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  isAuthorizationRequired: state.actionUser.isAuthorizationRequired,
-  login: state.loadData.login,
+  isAuthorizationRequired: state.userReducer.isAuthorizationRequired,
+  login: state.appReducer.login,
 });
 
 export {Header};
