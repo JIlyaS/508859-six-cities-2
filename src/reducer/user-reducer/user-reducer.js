@@ -1,11 +1,12 @@
 import {ActionType} from '../../constants';
 
 const initialState = {
-  city: `Hamburg`,
+  city: ``,
   changedOffers: [],
   activeSortName: `Popular`,
   activeOfferCard: {},
   cities: [],
+  isAuthorizationRequired: true,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -30,6 +31,10 @@ const userReducer = (state = initialState, action) => {
     case ActionType.REMOVE_ACTIVE_CARD:
       return Object.assign({}, state, {
         activeOfferCard: action.payload
+      });
+    case ActionType.REQUIRED_AUTHORIZATION:
+      return Object.assign({}, state, {
+        isAuthorizationRequired: action.payload,
       });
     default:
       return state;

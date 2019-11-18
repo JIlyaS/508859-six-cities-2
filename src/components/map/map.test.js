@@ -22,6 +22,7 @@ it(`Map correctly renders after relaunch`, () => {
       coordinates={[{coordinate: [1, 2], zoom: 16}, {coordinate: [2, 3], zoom: 16}]}
       activeCoordinate={{coordinate: [5, 6], zoom: 16}}
       activeCityCoordinate={{coordinateCity: [1, 1], zoomCity: 13}}
+      city={`Amsterdam`}
     />)
     .toJSON();
 

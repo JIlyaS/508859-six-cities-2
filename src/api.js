@@ -1,11 +1,22 @@
 import axios from 'axios';
 
-const configureAPI = () => {
+import ActionCreator from './action-creator/action-creator';
+
+const configureAPI = (dispatch) => {
   const api = axios.create({
     baseURL: `https://htmlacademy-react-2.appspot.com/six-cities`,
     timeout: 5000,
     withCredentials: true
   });
+
+  const onSuccess = (response) => response;
+  const onFail = (err) => {
+    if (err.response.status === 403 || err.response.status === 400) {
+      dispatch(ActionCreator.requireAuthorization(true));
+    }
+  };
+
+  api.interceptors.response.use(onSuccess, onFail);
 
   return api;
 };

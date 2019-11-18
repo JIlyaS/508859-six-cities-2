@@ -25,6 +25,14 @@ const ActionCreator = {
     type: ActionType.REMOVE_ACTIVE_CARD,
     payload: {},
   }),
+  requireAuthorization: (status) => ({
+    type: ActionType.REQUIRED_AUTHORIZATION,
+    payload: status,
+  }),
+  addLogin: (loginData) => ({
+    type: ActionType.ADD_LOGIN,
+    payload: loginData,
+  }),
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: offers,
