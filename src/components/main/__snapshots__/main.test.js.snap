@@ -273,6 +273,7 @@ exports[`Main correctly renders after relaunch 1`] = `
                   "zoom": 12,
                 }
               }
+              city="Amsterdam"
               coordinates={
                 Array [
                   undefined,

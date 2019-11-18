@@ -25,20 +25,23 @@ class Map extends PureComponent {
 
   componentDidMount() {
     const {activeCityCoordinate, coordinates, activeCoordinate} = this.props;
-    this._addMapLayer(activeCityCoordinate, coordinates, activeCoordinate);
+    this._addMapLayer(activeCityCoordinate);
+    this._addMarkersForMap(coordinates, activeCoordinate);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     const {activeCityCoordinate, coordinates, activeCoordinate} = this.props;
     this._mapMarkers.forEach((it) => {
       this._map.removeLayer(it);
     });
-    this._map.remove();
-    this._addMapLayer(activeCityCoordinate, coordinates, activeCoordinate);
+    if (this.props.city !== prevProps.city) {
+      this._map.remove();
+      this._addMapLayer(activeCityCoordinate);
+    }
+    this._addMarkersForMap(coordinates, activeCoordinate);
   }
 
-  _addMapLayer(activeCityCoordinate, coordinates, activeCoordinate) {
-
+  _addMapLayer(activeCityCoordinate) {
     this._city = activeCityCoordinate.coordinateCity;
     this._zoom = activeCityCoordinate.zoomCity;
     this._map = leaflet.map(`map`, {
@@ -58,7 +61,9 @@ class Map extends PureComponent {
           }
       )
       .addTo(this._map);
+  }
 
+  _addMarkersForMap(coordinates, activeCoordinate) {
     coordinates.forEach(({coordinate}) => {
       this._marker = leaflet
         .marker(coordinate, {icon: this._icon})
@@ -77,6 +82,7 @@ class Map extends PureComponent {
 Map.propTypes = {
   coordinates: PropTypes.array.isRequired,
   activeCoordinate: PropTypes.object,
+  city: PropTypes.string.isRequired,
   activeCityCoordinate: PropTypes.shape({
     coordinateCity: PropTypes.array.isRequired,
     zoomCity: PropTypes.number.isRequired

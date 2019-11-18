@@ -58,6 +58,7 @@ class Main extends PureComponent {
                       activeCityCoordinate={activeCityCoordinate.coordinateCity}
                       coordinates={coordinates}
                       activeCoordinate={activeOfferCard.location}
+                      city={city}
                     />
                   </section>
                 </div>

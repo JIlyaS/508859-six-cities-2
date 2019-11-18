@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 
 const Header = (props) => {
   const {login, isAuthorizationRequired} = props;
+  if (!login) {
+    return false;
+  }
   return <header className="header">
     <div className="container">
       <div className="header__wrapper">
@@ -46,7 +49,7 @@ Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
   login: PropTypes.shape({
     email: PropTypes.string,
-  }).isRequired,
+  }),
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
