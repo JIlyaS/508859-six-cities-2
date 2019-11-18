@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 
-import actionUser from './action-user/action-user';
-import loadData from './load-data/load-data';
+import userActions from './user-actions/user-actions';
+import appActions from './app-actions/app-actions';
 
 const reducer = combineReducers({
-  actionUser,
-  loadData
+  userActions,
+  appActions
 });
 
 export default reducer;

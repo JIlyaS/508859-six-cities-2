@@ -48,7 +48,7 @@ OfferList.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  activeOfferCard: state.actionUser.activeOfferCard
+  activeOfferCard: state.userActions.activeOfferCard
 });
 
 const mapDispatchToProps = (dispatch) => ({

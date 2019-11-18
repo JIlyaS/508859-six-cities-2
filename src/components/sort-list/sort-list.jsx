@@ -51,7 +51,7 @@ SortList.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  activeSortName: state.actionUser.activeSortName
+  activeSortName: state.userActions.activeSortName
 });
 
 const mapDispatchToProps = (dispatch) => ({
