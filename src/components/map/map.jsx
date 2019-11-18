@@ -5,8 +5,6 @@ import leaflet from 'leaflet';
 class Map extends PureComponent {
   constructor(props) {
     super(props);
-    this._city = [52.38333, 4.9];
-    this._zoom = 12;
     this._icon = leaflet.icon({
       iconUrl: `/img/pin.svg`,
       iconSize: [30, 30]
@@ -26,6 +24,23 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
+    const {activeCityCoordinate, coordinates, activeCoordinate} = this.props;
+    this._addMapLayer(activeCityCoordinate, coordinates, activeCoordinate);
+  }
+
+  componentDidUpdate() {
+    const {activeCityCoordinate, coordinates, activeCoordinate} = this.props;
+    this._mapMarkers.forEach((it) => {
+      this._map.removeLayer(it);
+    });
+    this._map.remove();
+    this._addMapLayer(activeCityCoordinate, coordinates, activeCoordinate);
+  }
+
+  _addMapLayer(activeCityCoordinate, coordinates, activeCoordinate) {
+
+    this._city = activeCityCoordinate.coordinateCity;
+    this._zoom = activeCityCoordinate.zoomCity;
     this._map = leaflet.map(`map`, {
       center: this._city,
       zoom: this._zoom,
@@ -36,34 +51,24 @@ class Map extends PureComponent {
     this._map.setView(this._city, this._zoom);
 
     leaflet
-    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-    })
-    .addTo(this._map);
+      .tileLayer(
+          `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
+          {
+            attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+          }
+      )
+      .addTo(this._map);
 
-    const {coordinates, activeCoordinate} = this.props;
-    coordinates.forEach((coordinate) => {
-      this._marker = leaflet.marker(coordinate, {icon: this._icon}).addTo(this._map);
+    coordinates.forEach(({coordinate}) => {
+      this._marker = leaflet
+        .marker(coordinate, {icon: this._icon})
+        .addTo(this._map);
       this._mapMarkers.push(this._marker);
     });
     if (activeCoordinate) {
-      this._activeMarker = leaflet.marker(activeCoordinate, {icon: this._activeIcon}).addTo(this._map);
-      this._mapMarkers.push(this._activeMarker);
-    }
-  }
-
-  componentDidUpdate() {
-    const {coordinates, activeCoordinate} = this.props;
-    this._mapMarkers.forEach((it) => {
-      this._map.removeLayer(it);
-    });
-    coordinates.forEach((coordinate) => {
-      this._marker = leaflet.marker(coordinate, {icon: this._icon}).addTo(this._map);
-      this._mapMarkers.push(this._marker);
-    });
-
-    if (activeCoordinate) {
-      this._activeMarker = leaflet.marker(activeCoordinate, {icon: this._activeIcon}).addTo(this._map);
+      this._activeMarker = leaflet
+        .marker(activeCoordinate.coordinate, {icon: this._activeIcon})
+        .addTo(this._map);
       this._mapMarkers.push(this._activeMarker);
     }
   }
@@ -71,7 +76,11 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   coordinates: PropTypes.array.isRequired,
-  activeCoordinate: PropTypes.array
+  activeCoordinate: PropTypes.object,
+  activeCityCoordinate: PropTypes.shape({
+    coordinateCity: PropTypes.array.isRequired,
+    zoomCity: PropTypes.number.isRequired
+  }).isRequired
 };
 
 export default Map;

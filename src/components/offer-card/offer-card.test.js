@@ -7,7 +7,7 @@ it(`OfferCard correctly renders after relaunch`, () => {
     .create(<OfferCard
       offer={{
         title: ``,
-        type: `private room`,
+        type: `room`,
         price: 0,
         img: `room.jpg`,
         rating: 0,

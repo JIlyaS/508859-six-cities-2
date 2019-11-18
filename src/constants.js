@@ -1,9 +1,10 @@
-export const actionType = {
+export const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   GET_OFFERS: `GET_OFFERS`,
   CHANGE_SORT: `CHANGE_SORT`,
   ADD_ACTIVE_CARD: `ADD_ACTIVE_CARD`,
-  REMOVE_ACTIVE_CARD: `REMOVE_ACTIVE_CARD`
+  REMOVE_ACTIVE_CARD: `REMOVE_ACTIVE_CARD`,
+  LOAD_OFFERS: `LOAD_OFFERS`,
 };
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;
@@ -78,35 +79,11 @@ export const DEFAULT_OFFERS = [{
     `Fridge`
   ])],
   hostUser: {
+    id: 1,
     avatar: `avatar-angelina.jpg`,
     name: `Angelina`,
-    status: `pro`,
-    description: [
-      `A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.`, `An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.`]
-  },
-  reviews: [
-    {
-      id: `review1`,
-      avatar: `avatar-max.jpg`,
-      name: `Max`,
-      rating: 4.7,
-      date: `April 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    },
-    {
-      id: `review2`,
-      avatar: `avatar-max.jpg`,
-      name: `Alex`,
-      rating: 4.0,
-      date: `May 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    }
-  ]
+    status: true,
+  }
 },
 {
   id: `id1`,
@@ -122,7 +99,7 @@ export const DEFAULT_OFFERS = [{
   isPremium: false,
   price: 120,
   title: `Wood and stone place`,
-  type: `private room`,
+  type: `room`,
   rating: 4.0,
   coordinate: [52.369553943508, 4.85309666406198],
   photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
@@ -140,27 +117,11 @@ export const DEFAULT_OFFERS = [{
     `Fridge`
   ])],
   hostUser: {
+    id: 2,
     avatar: `avatar-angelina.jpg`,
     name: `Angelina`,
-    status: `pro`,
-    description: [
-      `A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.`, `An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.`]
+    status: false,
   },
-  reviews: [
-    {
-      id: `review1`,
-      avatar: `avatar-max.jpg`,
-      name: `Max`,
-      rating: 4.7,
-      date: `April 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    }
-  ]
 },
 {
   id: `id2`,
@@ -194,27 +155,11 @@ export const DEFAULT_OFFERS = [{
     `Fridge`
   ])],
   hostUser: {
+    id: 3,
     avatar: `avatar-angelina.jpg`,
     name: `Angelina`,
-    status: `pro`,
-    description: [
-      `A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.`, `An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.`]
+    status: true,
   },
-  reviews: [
-    {
-      id: `review1`,
-      avatar: `avatar-max.jpg`,
-      name: `Max`,
-      rating: 4.7,
-      date: `April 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    }
-  ]
 },
 {
   id: `id3`,
@@ -248,27 +193,11 @@ export const DEFAULT_OFFERS = [{
     `Fridge`
   ])],
   hostUser: {
+    id: 4,
     avatar: `avatar-angelina.jpg`,
     name: `Angelina`,
-    status: `pro`,
-    description: [
-      `A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.`, `An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.`]
+    status: false,
   },
-  reviews: [
-    {
-      id: `review1`,
-      avatar: `avatar-max.jpg`,
-      name: `Max`,
-      rating: 4.7,
-      date: `April 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    }
-  ]
 }];
 
 export const DEFAULT_OFFER = {
@@ -314,24 +243,6 @@ export const DEFAULT_OFFER = {
       the bustle of the city comes to rest in this alley flowery and
       colorful.`]
   },
-  reviews: [
-    {
-      id: `review1`,
-      avatar: `avatar-max.jpg`,
-      name: `Max`,
-      rating: 4.7,
-      date: `April 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    },
-    {
-      id: `review2`,
-      avatar: `avatar-max.jpg`,
-      name: `Alex`,
-      rating: 4.0,
-      date: `May 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    }
-  ]
 };
 
 export const CURRENT_OFFER = {
@@ -366,34 +277,93 @@ export const CURRENT_OFFER = {
     `Fridge`
   ])],
   hostUser: {
+    id: 5,
     avatar: `avatar-angelina.jpg`,
     name: `Angelina`,
-    status: `pro`,
-    description: [
-      `A quiet cozy and picturesque that hides behind a a river
-      by the unique lightness of Amsterdam. The building is green
-      and from 18th century.`, `An independent House, strategically
-      located between Rembrand Square and National Opera, but where
-      the bustle of the city comes to rest in this alley flowery and
-      colorful.`]
+    status: true,
   },
-  reviews: [
-    {
-      id: `review1`,
-      avatar: `avatar-max.jpg`,
-      name: `Max`,
-      rating: 4.7,
-      date: `April 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    },
-    {
-      id: `review2`,
-      avatar: `avatar-max.jpg`,
-      name: `Alex`,
-      rating: 4.0,
-      date: `May 2019`,
-      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
-    }
-  ]
 };
 
+export const REVIEWS = [{
+  id: `review1`,
+  avatar: `avatar-max.jpg`,
+  name: `Max`,
+  rating: 4.7,
+  date: `April 2019`,
+  description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+},
+{
+  id: `review2`,
+  avatar: `avatar-max.jpg`,
+  name: `Alex`,
+  rating: 4.7,
+  date: `May 2019`,
+  description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`
+}];
+
+export const MOCK_DATA_SERVER = [
+  {
+    id: 1,
+    city: {
+      name: `Amsterdam`,
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10
+      }
+    },
+    [`preview_image`]: `img/1.png`,
+    images: [],
+    title: `Beautiful & luxurious studio at great location`,
+    [`is_favorite`]: false,
+    [`is_premium`]: false,
+    rating: 4.8,
+    type: `apartment`,
+    bedrooms: 3,
+    [`max_adults`]: 4,
+    price: 120,
+    goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+    host: {
+      id: 3,
+      [`is_pro`]: true,
+      name: `Angelina`,
+      [`avatar_url`]: `img/1.png`
+    },
+    description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    location: {
+      latitude: 52.35514938496378,
+      longitude: 4.673877537499948,
+      zoom: 8
+    }
+  }
+];
+
+export const MOCK_DATA_ADAPTER = [{
+  id: `id1`,
+  city: {
+    name: `Amsterdam`,
+    location: {
+      coordinateCity: [52.370216, 4.895168],
+      zoomCity: 10
+    }
+  },
+  img: `img/1.png`,
+  isPremium: false,
+  photos: [],
+  title: `Beautiful & luxurious studio at great location`,
+  rating: 5,
+  type: `apartment`,
+  price: 120,
+  location: {
+    coordinate: [52.35514938496378, 4.673877537499948],
+    zoom: 8
+  },
+  features: [`Entire place`, `3 Bedrooms`, `Max 4 adults`],
+  insideProperties: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  hostUser: {
+    id: 3,
+    avatar: `img/1.png`,
+    name: `Angelina`,
+    status: true
+  }
+}];

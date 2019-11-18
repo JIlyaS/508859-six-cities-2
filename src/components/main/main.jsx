@@ -8,14 +8,25 @@ import CityList from '../city-list/city-list';
 import SortList from '../sort-list/sort-list';
 import MainEmpty from '../main-empty/main-empty';
 import withSortList from '../../hocs/with-sort-list/with-sort-list';
-import {getMapCoordinates, sortOfferList} from '../../utils';
+import {
+  getMapCoordinates,
+  sortOfferList,
+  getActiveCityCoordinate
+} from "../../utils";
+import {getCurrentCityOffers} from '../../selectors/selectors';
 
 const SortListWrapped = withSortList(SortList);
 
 class Main extends PureComponent {
   render() {
-    const {offers, city, activeOfferCard} = this.props;
-    const coordinates = getMapCoordinates(offers, activeOfferCard);
+    const {offers, city, activeSortName, activeOfferCard} = this.props;
+
+    if (!offers.length) {
+      return false;
+    }
+    const currentOffers = sortOfferList(offers, activeSortName);
+    const coordinates = getMapCoordinates(currentOffers, activeOfferCard);
+    const activeCityCoordinate = getActiveCityCoordinate(currentOffers, city);
     return (
       <div className="page page--gray page--main">
         <header className="header">
@@ -51,7 +62,8 @@ class Main extends PureComponent {
           </div>
         </header>
         <main
-          className={`page__main page__main--index ${offers.length === 0 && `page__main--index-empty`}`}
+          className={`page__main page__main--index ${currentOffers.length ===
+            0 && `page__main--index-empty`}`}
         >
           <h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
@@ -60,26 +72,29 @@ class Main extends PureComponent {
             </section>
           </div>
           <div className="cities">
-            {offers.length ? (
+            {currentOffers.length ? (
               <div className="cities__places-container container">
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">
-                    {offers.length} places to stay in {city}
+                    {currentOffers.length} places to stay in {city}
                   </b>
                   <SortListWrapped />
-                  <OfferList offers={offers} />
+                  <OfferList offers={currentOffers} />
                 </section>
                 <div className="cities__right-section">
                   <section className="cities__map map">
                     <Map
+                      activeCityCoordinate={activeCityCoordinate.coordinateCity}
                       coordinates={coordinates}
-                      activeCoordinate={activeOfferCard.coordinate}
+                      activeCoordinate={activeOfferCard.location}
                     />
                   </section>
                 </div>
               </div>
-            ) : <MainEmpty />}
+            ) : (
+              <MainEmpty />
+            )}
           </div>
         </main>
       </div>
@@ -89,18 +104,19 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   city: PropTypes.string.isRequired,
+  activeSortName: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   activeOfferCard: PropTypes.shape({
     id: PropTypes.string,
-    coordinate: PropTypes.array
-  })
+    location: PropTypes.object,
+  }),
 };
 
-
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  city: state.city,
-  offers: sortOfferList(state.offers, state.activeSortName),
-  activeOfferCard: state.activeOfferCard
+  city: state.userReducer.city,
+  offers: getCurrentCityOffers(state),
+  activeSortName: state.userReducer.activeSortName,
+  activeOfferCard: state.userReducer.activeOfferCard,
 });
 
 export {Main};

@@ -14,6 +14,7 @@ it(`DetailInfo correctly renders after relaunch`, () => {
     currentOffer={CURRENT_OFFER}
     otherOffers={DEFAULT_OFFERS}
     activeOfferCard={DEFAULT_OFFER}
+    offers={DEFAULT_OFFERS}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

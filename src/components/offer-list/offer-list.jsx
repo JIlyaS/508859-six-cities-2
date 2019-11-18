@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {ActionCreator} from '../../reducer/reducer';
+import ActionCreator from '../../action-creator/action-creator';
 import OfferCard from '../offer-card/offer-card';
 
 class OfferList extends PureComponent {
@@ -48,7 +48,7 @@ OfferList.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  activeOfferCard: state.activeOfferCard
+  activeOfferCard: state.userReducer.activeOfferCard
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -10,7 +10,7 @@ it(`OfferCard correct callback function`, () => {
   const offerMouseLeaveHandler = jest.fn();
   const mockOfferCardData = {
     title: ``,
-    type: `private room`,
+    type: `room`,
     price: 0,
     img: `room.jpg`,
     rating: 0,

@@ -23,7 +23,7 @@ const OfferCard = (props) => {
     </div>}
     <div className={`${isNearPlace ? `near-places` : `cities`}__image-wrapper place-card__image-wrapper`}>
       <a href="#">
-        <img className="place-card__image" src={`/img/` + img} width="260" height="200" alt="Place image" />
+        <img className="place-card__image" src={img} width="260" height="200" alt="Place image" />
       </a>
     </div>
     <div className="place-card__info">
@@ -60,7 +60,7 @@ OfferCard.propTypes = {
     price: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`apartment`, `private room`, `house`, `hotel`])
+    type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`])
   }),
   offerId: PropTypes.string.isRequired,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,

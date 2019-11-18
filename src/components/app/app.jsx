@@ -1,8 +1,11 @@
 import React, {PureComponent, Fragment} from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Main from '../main/main';
 import DetailInfo from '../detail-info/detail-info';
 import {OFFER_PATH_EXT} from '../../constants';
+import Operation from '../../operation/operation';
 
 class App extends PureComponent {
   static _getPageScreen() {
@@ -20,6 +23,25 @@ class App extends PureComponent {
   render() {
     return <Fragment>{App._getPageScreen()}</Fragment>;
   }
+
+  componentDidMount() {
+    const {loadOffers} = this.props;
+    loadOffers();
+  }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadOffers: () => {
+    dispatch(Operation.loadOffers());
+  },
+});
+
+App.propTypes = {
+  loadOffers: PropTypes.func.isRequired,
+};
+
+export {App};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

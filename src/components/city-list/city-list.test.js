@@ -13,7 +13,7 @@ it(`CityList correctly renders after relaunch`, () => {
       <CityList
         city={`Amsterdam`}
         cities={[`Amsterdam`, `Paris`]}
-        allOffers={DEFAULT_OFFERS}
+        offers={DEFAULT_OFFERS}
         changeCityClickHandler={() => {}}
       />
   );
