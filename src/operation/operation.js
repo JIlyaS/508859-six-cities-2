@@ -19,7 +19,25 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(false));
         dispatch(ActionCreator.addLogin(response.data));
       });
-  }
+  },
+  loadReviews: (idHotel) => (dispatch, _, api) => {
+    return api.get(`/comments/${idHotel}`)
+      .then((response) => {
+        const reviews = Adapter.getReviews(response.data);
+        dispatch(ActionCreator.getReviews(reviews));
+      });
+  },
+  addReview: (idHotel, rating, comment) => (dispatch, _, api) => {
+    return api.post(`/comments/${idHotel}`, {
+      rating,
+      comment
+    })
+      .then((response) => {
+        console.log(response.data);
+        const reviews = Adapter.getReviews(response.data);
+        dispatch(ActionCreator.getReviews(reviews));
+      });
+  },
 };
 
 export default Operation;

@@ -36,7 +36,11 @@ const ActionCreator = {
   loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
     payload: offers,
-  })
+  }),
+  getReviews: (reviews) => ({
+    type: ActionType.GET_REVIEWS,
+    payload: reviews,
+  }),
 };
 
 export default ActionCreator;

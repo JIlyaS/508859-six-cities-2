@@ -3,6 +3,7 @@ import {ActionType} from '../../constants';
 const initialState = {
   offers: [],
   login: null,
+  reviews: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -14,6 +15,10 @@ const appReducer = (state = initialState, action) => {
     case ActionType.ADD_LOGIN:
       return Object.assign({}, state, {
         login: action.payload,
+      });
+    case ActionType.GET_REVIEWS:
+      return Object.assign({}, state, {
+        reviews: action.payload
       });
     default:
       return state;
