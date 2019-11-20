@@ -37,8 +37,8 @@ const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: offers,
   }),
-  getReviews: (reviews) => ({
-    type: ActionType.GET_REVIEWS,
+  loadReviews: (reviews) => ({
+    type: ActionType.LOAD_REVIEWS,
     payload: reviews,
   }),
 };

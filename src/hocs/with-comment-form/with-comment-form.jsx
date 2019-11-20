@@ -14,7 +14,6 @@ const withCommentForm = (Component) => {
 
     render() {
       const {rating, comment} = this.state;
-      console.log(rating, comment);
 
       return <Component
         {...this.props}

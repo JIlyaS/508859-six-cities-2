@@ -23,8 +23,8 @@ const Operation = {
   loadReviews: (idHotel) => (dispatch, _, api) => {
     return api.get(`/comments/${idHotel}`)
       .then((response) => {
-        const reviews = Adapter.getReviews(response.data);
-        dispatch(ActionCreator.getReviews(reviews));
+        const reviews = Adapter.loadReviews(response.data);
+        dispatch(ActionCreator.loadReviews(reviews));
       });
   },
   addReview: (idHotel, rating, comment) => (dispatch, _, api) => {
@@ -33,9 +33,8 @@ const Operation = {
       comment
     })
       .then((response) => {
-        console.log(response.data);
-        const reviews = Adapter.getReviews(response.data);
-        dispatch(ActionCreator.getReviews(reviews));
+        const reviews = Adapter.loadReviews(response.data);
+        dispatch(ActionCreator.loadReviews(reviews));
       });
   },
 };

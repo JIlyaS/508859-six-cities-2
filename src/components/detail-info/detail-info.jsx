@@ -34,6 +34,7 @@ class DetailInfo extends PureComponent {
       activeOfferCard,
       reviews,
       idPath,
+      login,
     } = this.props;
 
     const coordinates = getMapCoordinates(otherOffers, activeOfferCard);
@@ -146,7 +147,7 @@ class DetailInfo extends PureComponent {
                     <span className="reviews__amount">{reviews.length}</span>
                   </h2>
                   <ReviewsList reviews={reviews} />
-                  <CommentFormWrapped idHotel={idPath} />
+                  {login && <CommentFormWrapped idHotel={idPath} />}
                 </section>
               </div>
             </div>
@@ -204,6 +205,7 @@ DetailInfo.propTypes = {
   offers: PropTypes.array.isRequired,
   loadReviews: PropTypes.func.isRequired,
   reviews: PropTypes.array.isRequired,
+  login: PropTypes.any,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -212,6 +214,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeOfferCard: state.userReducer.activeOfferCard,
   offers: state.appReducer.offers,
   reviews: state.appReducer.reviews,
+  login: state.appReducer.login,
 });
 
 const mapDispatchToProps = (dispatch) => ({

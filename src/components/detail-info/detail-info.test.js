@@ -3,7 +3,7 @@ import Enzyme, {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import {DetailInfo} from './detail-info';
-import {CURRENT_OFFER, DEFAULT_OFFERS, DEFAULT_OFFER} from '../../constants';
+import {CURRENT_OFFER, DEFAULT_OFFERS, DEFAULT_OFFER, DEFAULT_REVIEW, DEFAULT_LOGIN} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -15,6 +15,10 @@ it(`DetailInfo correctly renders after relaunch`, () => {
     otherOffers={DEFAULT_OFFERS}
     activeOfferCard={DEFAULT_OFFER}
     offers={DEFAULT_OFFERS}
+    reviews={DEFAULT_REVIEW}
+    idPath={`1`}
+    login={DEFAULT_LOGIN}
+    loadReviews={() => {}}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

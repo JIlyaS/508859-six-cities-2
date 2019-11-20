@@ -16,7 +16,7 @@ const appReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         login: action.payload,
       });
-    case ActionType.GET_REVIEWS:
+    case ActionType.LOAD_REVIEWS:
       return Object.assign({}, state, {
         reviews: action.payload
       });

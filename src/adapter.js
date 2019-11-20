@@ -47,7 +47,7 @@ class Adapter {
     };
   }
 
-  static getReviews(reviews) {
+  static loadReviews(reviews) {
     return reviews.map(Adapter.getReview);
   }
 

@@ -7,7 +7,7 @@ export const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   ADD_LOGIN: `ADD_LOGIN`,
-  GET_REVIEWS: `GET_REVIEWS`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
 };
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;
@@ -378,3 +378,44 @@ export const DEFAULT_LOGIN = {
   [`is_pro`]: false,
   name: `ilkolmakov`,
 };
+
+export const MOCK_DATA_COMMENTS_SERVER = [{
+  comment: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
+  date: `2019-11-10T13:32:40.624Z`,
+  id: 1,
+  rating: 3,
+  user: {
+    id: 18,
+    [`avatar_url`]: `https://htmlacademy-react-2.appspot.com/six-cities/static/avatar/9.jpg`,
+    [`is_pro`]: true,
+    name: `Sophie`
+  }
+}];
+
+export const MOCK_DATA_COMMENTS_ADAPTER = [{
+  comment: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
+  date: `November 2019`,
+  id: `review1`,
+  rating: 3,
+  user: {
+    avatar: `https://htmlacademy-react-2.appspot.com/six-cities/static/avatar/9.jpg`,
+    id: `user18`,
+    name: `Sophie`,
+    status: true
+  }
+}];
+
+export const DEFAULT_REVIEW = [{
+  comment: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
+  date: `November 2019`,
+  id: `review1`,
+  rating: 3,
+  user: {
+    avatar: `https://htmlacademy-react-2.appspot.com/six-cities/static/avatar/9.jpg`,
+    id: `user18`,
+    name: `Sophie`,
+    status: true
+  }
+}];
+
+export const DEFAULT_COMMENT = `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`;
