@@ -4,14 +4,11 @@ import PropTypes from 'prop-types';
 
 const Header = (props) => {
   const {login, isAuthorizationRequired} = props;
-  if (!login) {
-    return false;
-  }
   return <header className="header">
     <div className="container">
       <div className="header__wrapper">
         <div className="header__left">
-          <a className="header__logo-link header__logo-link--active">
+          <a className="header__logo-link header__logo-link--active" href="\">
             <img
               className="header__logo"
               src="/img/logo.svg"
@@ -33,7 +30,7 @@ const Header = (props) => {
                   <span className="header__login">Sign in</span>
                 ) : (
                   <span className="header__user-name user__name">
-                    {login.email}
+                    {login && login.email}
                   </span>
                 )}
               </a>

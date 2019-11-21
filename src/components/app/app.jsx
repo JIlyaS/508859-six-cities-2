@@ -22,6 +22,9 @@ class App extends PureComponent {
         }
         return <Main />;
       case `/offer/${idPath}`:
+        if (isAuthorizationRequired) {
+          return <SignInWrapped />;
+        }
         return <DetailInfo idPath={idPath} />;
     }
 

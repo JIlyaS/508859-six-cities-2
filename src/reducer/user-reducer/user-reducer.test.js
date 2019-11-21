@@ -142,4 +142,24 @@ describe(`Reducer work correctly`, () => {
       isAuthorizationRequired: false,
     });
   });
+  it(`Reducer should authorization by a given value`, () => {
+    expect(reducer({
+      city: ``,
+      changedOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+    }, {
+      type: `REQUIRED_AUTHORIZATION`,
+      payload: true
+    })).toEqual({
+      city: ``,
+      changedOffers: DEFAULT_OFFERS,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: true,
+    });
+  });
 });

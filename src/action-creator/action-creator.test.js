@@ -1,4 +1,5 @@
 import ActionCreator from './action-creator';
+import {DEFAULT_LOGIN, MOCK_DATA_ADAPTER, MOCK_DATA_COMMENTS_ADAPTER, MOCK_DATA_COMMENTS_SERVER, MOCK_DATA_SERVER} from '../constants';
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for change city returns correct action`, () => {
@@ -88,6 +89,49 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.removeActiveCard()).toEqual({
       type: `REMOVE_ACTIVE_CARD`,
       payload: {}
+    });
+  });
+
+  it(`Action creator for authorization on website returns action with bool payload`, () => {
+    expect(ActionCreator.requireAuthorization(true)).toEqual({
+      type: `REQUIRED_AUTHORIZATION`,
+      payload: true
+    });
+  });
+  it(`Action creator for add login returns action with object data payload`, () => {
+    expect(ActionCreator.addLogin(DEFAULT_LOGIN)).toEqual({
+      type: `ADD_LOGIN`,
+      payload: DEFAULT_LOGIN
+    });
+  });
+  it(`Action creator for add login returns action with empty object payload`, () => {
+    expect(ActionCreator.addLogin({})).toEqual({
+      type: `ADD_LOGIN`,
+      payload: {}
+    });
+  });
+  it(`Action creator for load offers returns action with array data payload`, () => {
+    expect(ActionCreator.loadOffers(MOCK_DATA_SERVER)).toEqual({
+      type: `LOAD_OFFERS`,
+      payload: MOCK_DATA_ADAPTER
+    });
+  });
+  it(`Action creator for load offers returns action with empty data payload`, () => {
+    expect(ActionCreator.loadOffers([])).toEqual({
+      type: `LOAD_OFFERS`,
+      payload: []
+    });
+  });
+  it(`Action creator for load reviews returns action with array data payload`, () => {
+    expect(ActionCreator.loadReviews(MOCK_DATA_COMMENTS_SERVER)).toEqual({
+      type: `LOAD_REVIEWS`,
+      payload: MOCK_DATA_COMMENTS_ADAPTER
+    });
+  });
+  it(`Action creator for load reviews returns action with empty data payload`, () => {
+    expect(ActionCreator.loadReviews([])).toEqual({
+      type: `LOAD_REVIEWS`,
+      payload: []
     });
   });
 });

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {shuffleElements} from './utils';
 
 class Adapter {
@@ -42,6 +43,25 @@ class Adapter {
         avatar: offer.host[`avatar_url`],
         name: offer.host.name,
         status: offer.host[`is_pro`]
+      }
+    };
+  }
+
+  static loadReviews(reviews) {
+    return reviews.map(Adapter.getReview);
+  }
+
+  static getReview(review) {
+    return {
+      id: `review${review.id}`,
+      rating: Math.round(review.rating),
+      date: moment(review.date).format(`MMMM YYYY`),
+      comment: review.comment,
+      user: {
+        id: `user${review.user.id}`,
+        avatar: review.user[`avatar_url`],
+        status: review.user[`is_pro`],
+        name: review.user.name,
       }
     };
   }

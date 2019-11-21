@@ -17,14 +17,14 @@ exports[`ReviewsList correctly renders after relaunch 1`] = `
           alt="Reviews avatar"
           className="reviews__avatar user__avatar"
           height="54"
-          src="/img/avatar-max.jpg"
+          src="https://htmlacademy-react-2.appspot.com/six-cities/static/avatar/9.jpg"
           width="54"
         />
       </div>
       <span
         className="reviews__user-name"
       >
-        Max
+        Sophie
       </span>
     </div>
     <div
@@ -39,7 +39,7 @@ exports[`ReviewsList correctly renders after relaunch 1`] = `
           <span
             style={
               Object {
-                "width": "96%",
+                "width": "60%",
               }
             }
           />
@@ -53,13 +53,13 @@ exports[`ReviewsList correctly renders after relaunch 1`] = `
       <p
         className="reviews__text"
       >
-        
+        Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.
       </p>
       <time
         className="reviews__time"
         dateTime="2019-04-24"
       >
-        April 2019
+        November 2019
       </time>
     </div>
   </li>
