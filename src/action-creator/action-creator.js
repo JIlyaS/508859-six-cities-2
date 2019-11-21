@@ -1,5 +1,6 @@
 import {ActionType} from '../constants';
 import {getCityOffers} from '../utils';
+import Adapter from '../adapter';
 
 const ActionCreator = {
   changeCity: (city) => ({
@@ -33,14 +34,20 @@ const ActionCreator = {
     type: ActionType.ADD_LOGIN,
     payload: loginData,
   }),
-  loadOffers: (offers) => ({
-    type: ActionType.LOAD_OFFERS,
-    payload: offers,
-  }),
-  loadReviews: (reviews) => ({
-    type: ActionType.LOAD_REVIEWS,
-    payload: reviews,
-  }),
+  loadOffers: (dataOffers) => {
+    const offers = Adapter.getOffers(dataOffers);
+    return {
+      type: ActionType.LOAD_OFFERS,
+      payload: offers,
+    };
+  },
+  loadReviews: (dataReviews) => {
+    const reviews = Adapter.loadReviews(dataReviews);
+    return {
+      type: ActionType.LOAD_REVIEWS,
+      payload: reviews,
+    };
+  },
 };
 
 export default ActionCreator;

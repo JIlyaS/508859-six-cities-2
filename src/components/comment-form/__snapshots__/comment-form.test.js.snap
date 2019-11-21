@@ -110,7 +110,7 @@ exports[`CommentForm correctly renders after relaunch 1`] = `
     </label>
     <input
       className="form__rating-input visually-hidden"
-      id="1-star"
+      id="1-stars"
       name="rating"
       onChange={[Function]}
       type="radio"
@@ -118,7 +118,7 @@ exports[`CommentForm correctly renders after relaunch 1`] = `
     />
     <label
       className="reviews__rating-label form__rating-label"
-      htmlFor="1-star"
+      htmlFor="1-stars"
       title="terribly"
     >
       <svg

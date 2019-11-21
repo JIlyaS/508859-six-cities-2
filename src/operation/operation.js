@@ -1,13 +1,12 @@
 import ActionCreator from '../action-creator/action-creator';
-import Adapter from '../adapter';
+// import Adapter from '../adapter';
 
 const Operation = {
   loadOffers: () => (dispatch, _, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        const offers = Adapter.getOffers(response.data);
-        dispatch(ActionCreator.changeCity(offers[0].city.name));
-        dispatch(ActionCreator.loadOffers(offers));
+        dispatch(ActionCreator.changeCity(response.data[0].city.name));
+        dispatch(ActionCreator.loadOffers(response.data));
       });
   },
   checkLogin: (email, password) => (dispatch, _, api) => {
@@ -23,8 +22,7 @@ const Operation = {
   loadReviews: (idHotel) => (dispatch, _, api) => {
     return api.get(`/comments/${idHotel}`)
       .then((response) => {
-        const reviews = Adapter.loadReviews(response.data);
-        dispatch(ActionCreator.loadReviews(reviews));
+        dispatch(ActionCreator.loadReviews(response.data));
       });
   },
   addReview: (idHotel, rating, comment) => (dispatch, _, api) => {
@@ -33,8 +31,7 @@ const Operation = {
       comment
     })
       .then((response) => {
-        const reviews = Adapter.loadReviews(response.data);
-        dispatch(ActionCreator.loadReviews(reviews));
+        dispatch(ActionCreator.loadReviews(response.data));
       });
   },
 };

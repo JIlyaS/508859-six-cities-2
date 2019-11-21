@@ -9,6 +9,13 @@ export const ActionType = {
   ADD_LOGIN: `ADD_LOGIN`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
 };
+export const RATINGS = [
+  {title: `perfect`, stars: `5`},
+  {title: `good`, stars: `4`},
+  {title: `not bad`, stars: `3`},
+  {title: `badly`, stars: `2`},
+  {title: `terribly`, stars: `1`}
+];
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;
 export const ICON = {

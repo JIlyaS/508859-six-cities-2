@@ -1,5 +1,5 @@
 import ActionCreator from './action-creator';
-import {DEFAULT_LOGIN, MOCK_DATA_ADAPTER, DEFAULT_REVIEW} from '../constants';
+import {DEFAULT_LOGIN, MOCK_DATA_ADAPTER, MOCK_DATA_COMMENTS_ADAPTER, MOCK_DATA_COMMENTS_SERVER, MOCK_DATA_SERVER} from '../constants';
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for change city returns correct action`, () => {
@@ -111,7 +111,7 @@ describe(`Action creators work correctly`, () => {
     });
   });
   it(`Action creator for load offers returns action with array data payload`, () => {
-    expect(ActionCreator.loadOffers(MOCK_DATA_ADAPTER)).toEqual({
+    expect(ActionCreator.loadOffers(MOCK_DATA_SERVER)).toEqual({
       type: `LOAD_OFFERS`,
       payload: MOCK_DATA_ADAPTER
     });
@@ -123,9 +123,9 @@ describe(`Action creators work correctly`, () => {
     });
   });
   it(`Action creator for load reviews returns action with array data payload`, () => {
-    expect(ActionCreator.loadReviews(DEFAULT_REVIEW)).toEqual({
+    expect(ActionCreator.loadReviews(MOCK_DATA_COMMENTS_SERVER)).toEqual({
       type: `LOAD_REVIEWS`,
-      payload: DEFAULT_REVIEW
+      payload: MOCK_DATA_COMMENTS_ADAPTER
     });
   });
   it(`Action creator for load reviews returns action with empty data payload`, () => {
