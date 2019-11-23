@@ -9,7 +9,7 @@ class OfferList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._cardTitleClickHandler = this._cardTitleClickHandler.bind(this);
+    // this._cardTitleClickHandler = this._cardTitleClickHandler.bind(this);
   }
 
   render() {
@@ -24,16 +24,16 @@ class OfferList extends PureComponent {
         key={offer.id}
         activeOfferMouseEnterHandler={activeOfferMouseEnterHandler}
         deactiveOfferMouseLeaveHandler={deactiveOfferMouseLeaveHandler}
-        cardTitleClickHandler={this._cardTitleClickHandler}
+        // cardTitleClickHandler={this._cardTitleClickHandler}
         isNearPlace
       />)}
     </div>;
   }
 
-  _cardTitleClickHandler(evt, offerId) {
-    evt.preventDefault();
-    location.replace(`/offer/${offerId}`);
-  }
+  // _cardTitleClickHandler(evt, offerId) {
+  //   evt.preventDefault();
+  //   location.replace(`/offer/${offerId}`);
+  // }
 }
 
 OfferList.propTypes = {

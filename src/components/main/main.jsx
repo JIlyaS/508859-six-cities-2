@@ -7,7 +7,6 @@ import Map from '../map/map';
 import CityList from '../city-list/city-list';
 import SortList from '../sort-list/sort-list';
 import MainEmpty from '../main-empty/main-empty';
-import Header from '../header/header';
 import withSortList from '../../hocs/with-sort-list/with-sort-list';
 import {
   getMapCoordinates,
@@ -29,46 +28,43 @@ class Main extends PureComponent {
     const coordinates = getMapCoordinates(currentOffers, activeOfferCard);
     const activeCityCoordinate = getActiveCityCoordinate(currentOffers, city);
     return (
-      <div className="page page--gray page--main">
-        <Header />
-        <main
-          className={`page__main page__main--index ${currentOffers.length ===
-            0 && `page__main--index-empty`}`}
-        >
-          <h1 className="visually-hidden">Cities</h1>
-          <div className="tabs">
-            <section className="locations container">
-              <CityList />
-            </section>
-          </div>
-          <div className="cities">
-            {currentOffers.length ? (
-              <div className="cities__places-container container">
-                <section className="cities__places places">
-                  <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">
-                    {currentOffers.length} places to stay in {city}
-                  </b>
-                  <SortListWrapped />
-                  <OfferList offers={currentOffers} />
+      <main
+        className={`page__main page__main--index ${currentOffers.length ===
+          0 && `page__main--index-empty`}`}
+      >
+        <h1 className="visually-hidden">Cities</h1>
+        <div className="tabs">
+          <section className="locations container">
+            <CityList />
+          </section>
+        </div>
+        <div className="cities">
+          {currentOffers.length ? (
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">
+                  {currentOffers.length} places to stay in {city}
+                </b>
+                <SortListWrapped />
+                <OfferList offers={currentOffers} />
+              </section>
+              <div className="cities__right-section">
+                <section className="cities__map map">
+                  <Map
+                    activeCityCoordinate={activeCityCoordinate.coordinateCity}
+                    coordinates={coordinates}
+                    activeCoordinate={activeOfferCard.location}
+                    city={city}
+                  />
                 </section>
-                <div className="cities__right-section">
-                  <section className="cities__map map">
-                    <Map
-                      activeCityCoordinate={activeCityCoordinate.coordinateCity}
-                      coordinates={coordinates}
-                      activeCoordinate={activeOfferCard.location}
-                      city={city}
-                    />
-                  </section>
-                </div>
               </div>
-            ) : (
-              <MainEmpty />
-            )}
-          </div>
-        </main>
-      </div>
+            </div>
+          ) : (
+            <MainEmpty />
+          )}
+        </div>
+      </main>
     );
   }
 }

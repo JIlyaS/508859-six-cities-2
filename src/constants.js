@@ -16,6 +16,11 @@ export const RATINGS = [
   {title: `badly`, stars: `2`},
   {title: `terribly`, stars: `1`}
 ];
+export const PageNames = {
+  SIGN: `sign`,
+  MAIN: `main`,
+  DETAIL: `detail`
+};
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;
 export const ICON = {
@@ -30,8 +35,6 @@ export const TILE_LAYER = {
   img: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
   attributions: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
 };
-export const OFFER_ID_EXP = /id([0-9]+)/;
-export const OFFER_PATH_EXT = /\/offer\/([0-9]+)/;
 export const MAX_NEARBY_OFFER = 3;
 export const SortNames = {
   POPULAR: `Popular`,

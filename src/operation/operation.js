@@ -1,5 +1,4 @@
 import ActionCreator from '../action-creator/action-creator';
-// import Adapter from '../adapter';
 
 const Operation = {
   loadOffers: () => (dispatch, _, api) => {

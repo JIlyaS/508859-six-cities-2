@@ -8,7 +8,7 @@ class Adapter {
 
   static getOffer(offer) {
     return {
-      id: `id${offer.id}`,
+      id: offer.id,
       city: {
         name: offer.city.name,
         location: {

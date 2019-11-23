@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
 import {firstUpperCase, convertRating} from '../../utils';
-import {OFFER_ID_EXP} from '../../constants';
 
 const OfferCard = (props) => {
   const {
@@ -9,10 +10,9 @@ const OfferCard = (props) => {
     offerId,
     activeOfferMouseEnterHandler,
     deactiveOfferMouseLeaveHandler,
-    cardTitleClickHandler,
     isNearPlace
   } = props;
-  const offerIdForPath = Number(offerId.match(OFFER_ID_EXP)[1]);
+
   return <article
     className={`${isNearPlace ? `near-places__` : `cities__place-`}card place-card`}
     onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}
@@ -46,7 +46,7 @@ const OfferCard = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#" onClick={(evt) => cardTitleClickHandler(evt, offerIdForPath)}>{title}</a>
+        <Link to={`/offer/${offerId}`}>{title}</Link>
       </h2>
       <p className="place-card__type">{firstUpperCase(type)}</p>
     </div>
@@ -62,10 +62,9 @@ OfferCard.propTypes = {
     rating: PropTypes.number.isRequired,
     type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`])
   }),
-  offerId: PropTypes.string.isRequired,
+  offerId: PropTypes.number.isRequired,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
   deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
-  cardTitleClickHandler: PropTypes.func.isRequired,
   isNearPlace: PropTypes.bool
 };
 
