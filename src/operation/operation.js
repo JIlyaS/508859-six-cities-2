@@ -28,6 +28,7 @@ const Operation = {
     return api.get(`/login`)
       .then((response) => {
         if (response) {
+          dispatch(ActionCreator.requireAuthorization(false));
           dispatch(ActionCreator.addLogin(response.data));
         }
       });
