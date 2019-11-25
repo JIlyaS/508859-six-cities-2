@@ -8,6 +8,7 @@ export const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   ADD_LOGIN: `ADD_LOGIN`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
+  UPDATE_FAVORITE_OFFER: `UPDATE_FAVORITE_OFFER`,
 };
 export const RATINGS = [
   {title: `perfect`, stars: `5`},

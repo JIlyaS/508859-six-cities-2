@@ -74,7 +74,7 @@ Main.propTypes = {
   activeSortName: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   activeOfferCard: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     location: PropTypes.object,
   }),
 };

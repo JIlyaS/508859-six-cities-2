@@ -8,6 +8,12 @@ const Operation = {
         dispatch(ActionCreator.loadOffers(response.data));
       });
   },
+  changeOfferFavorite: (hotelId, status) => (dispatch, _, api) => {
+    return api.post(`/favorite/${hotelId}/${status}`, {})
+      .then((response) => {
+        dispatch(ActionCreator.updateFavoriteOffer(response.data));
+      });
+  },
   checkLogin: (email, password) => (dispatch, _, api) => {
     return api.post(`/login`, {
       email,
@@ -18,14 +24,22 @@ const Operation = {
         dispatch(ActionCreator.addLogin(response.data));
       });
   },
-  loadReviews: (idHotel) => (dispatch, _, api) => {
-    return api.get(`/comments/${idHotel}`)
+  getLogin: () => (dispatch, _, api) => {
+    return api.get(`/login`)
+      .then((response) => {
+        if (response) {
+          dispatch(ActionCreator.addLogin(response.data));
+        }
+      });
+  },
+  loadReviews: (hotelId) => (dispatch, _, api) => {
+    return api.get(`/comments/${hotelId}`)
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
       });
   },
-  addReview: (idHotel, rating, comment) => (dispatch, _, api) => {
-    return api.post(`/comments/${idHotel}`, {
+  addReview: (hotelId, rating, comment) => (dispatch, _, api) => {
+    return api.post(`/comments/${hotelId}`, {
       rating,
       comment
     })

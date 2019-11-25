@@ -78,8 +78,8 @@ SignIn.propTypes = {
   password: PropTypes.string.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func
-  }),
-  checkLogin: PropTypes.func,
+  }).isRequired,
+  checkLogin: PropTypes.func.isRequired,
   addValueFormChangeHandler: PropTypes.func.isRequired,
 };
 

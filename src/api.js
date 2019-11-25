@@ -11,6 +11,7 @@ const configureAPI = (onLoginFail) => {
   const onFail = (err) => {
     if (err.response.status === 401) {
       onLoginFail();
+      return;
     }
   };
 

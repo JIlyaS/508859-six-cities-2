@@ -6,10 +6,11 @@ import {firstUpperCase, convertRating} from '../../utils';
 
 const OfferCard = (props) => {
   const {
-    offer: {img, isPremium, price, title, type, rating},
+    offer: {img, isPremium, isFavorite, price, title, type, rating},
     offerId,
     activeOfferMouseEnterHandler,
     deactiveOfferMouseLeaveHandler,
+    changeFavoriteOfferClickHandler,
     isNearPlace
   } = props;
 
@@ -32,7 +33,11 @@ const OfferCard = (props) => {
           <b className="place-card__price-value">&euro;{price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <button className="place-card__bookmark-button button" type="button">
+        <button
+          className={`place-card__bookmark-button ${isFavorite && `place-card__bookmark-button--active`} button`}
+          type="button"
+          onClick={() => changeFavoriteOfferClickHandler(offerId, isFavorite)}
+        >
           <svg className="place-card__bookmark-icon" width="18" height="19">
             <use xlinkHref="#icon-bookmark"></use>
           </svg>
@@ -55,6 +60,7 @@ const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   offer: PropTypes.shape({
+    isFavorite: PropTypes.bool.isRequired,
     isPremium: PropTypes.bool.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -65,6 +71,7 @@ OfferCard.propTypes = {
   offerId: PropTypes.number.isRequired,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
   deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
+  changeFavoriteOfferClickHandler: PropTypes.func.isRequired,
   isNearPlace: PropTypes.bool
 };
 
