@@ -1,24 +1,45 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import Enzyme, {shallow} from 'enzyme';
+import toJSON from 'enzyme-to-json';
+import Adapter from 'enzyme-adapter-react-16';
+import {shape} from 'prop-types';
+import {BrowserRouter} from 'react-router-dom';
+
 import {OfferList} from './offer-list';
 
-it(`OfferList correctly renders after relaunch`, () => {
-  const tree = renderer
-    .create(<OfferList
-      offers={[{
-        id: `id0`,
-        title: ``,
-        type: `room`,
-        price: 0,
-        img: `room.jpg`,
-        rating: 0,
-        isPremium: false
-      }]}
-      isNearPlace={true}
-      activeOfferMouseEnterHandler={() => {}}
-      deactiveOfferMouseLeaveHandler={() => {}}
-    />)
-    .toJSON();
+Enzyme.configure({adapter: new Adapter()});
 
-  expect(tree).toMatchSnapshot();
+const router = {
+  history: new BrowserRouter().history,
+  route: {
+    location: {},
+    match: {},
+  },
+};
+
+const createContext = () => ({
+  context: {router},
+  childContextTypes: {router: shape({})},
+});
+
+it(`OfferList correctly renders after relaunch`, () => {
+  const tree = shallow(<OfferList
+    offers={[{
+      id: 0,
+      title: ``,
+      type: `room`,
+      price: 0,
+      img: `room.jpg`,
+      rating: 0,
+      isPremium: false,
+      isFavorite: false,
+    }]}
+    isNearPlace={true}
+    activeOfferMouseEnterHandler={() => {}}
+    deactiveOfferMouseLeaveHandler={() => {}}
+    changeOfferFavorite={() => {}}
+    getLogin={() => {}}
+  />, createContext());
+
+  expect(toJSON(tree)).toMatchSnapshot();
 });

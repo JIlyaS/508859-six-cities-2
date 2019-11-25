@@ -43,7 +43,8 @@ exports[`OfferCard correctly renders after relaunch 1`] = `
         </span>
       </div>
       <button
-        className="place-card__bookmark-button button"
+        className="place-card__bookmark-button false button"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -85,12 +86,9 @@ exports[`OfferCard correctly renders after relaunch 1`] = `
     <h2
       className="place-card__name"
     >
-      <a
-        href="#"
-        onClick={[Function]}
-      >
-        
-      </a>
+      <Link
+        to="/offer/0"
+      />
     </h2>
     <p
       className="place-card__type"

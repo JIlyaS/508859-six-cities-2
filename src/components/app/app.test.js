@@ -17,7 +17,7 @@ const props = {
     changedOffers: [],
     activeOfferCard: {},
     cities: [],
-    isAuthorizationRequired: true,
+    // isAuthorizationRequired: true,
   },
   userReducer: {
     offers: [],

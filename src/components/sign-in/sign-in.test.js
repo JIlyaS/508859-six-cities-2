@@ -11,7 +11,11 @@ it(`SignIn correctly renders after relaunch`, () => {
   const tree = shallow(<SignIn
     email={``}
     password={``}
+    history={{
+      push: () => {}
+    }}
     addValueFormChangeHandler={() => {}}
+    checkLogin={() => {}}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

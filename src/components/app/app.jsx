@@ -46,7 +46,7 @@ class App extends PureComponent {
 }
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  isAuthorizationRequired: state.userReducer.isAuthorizationRequired
+  // isAuthorizationRequired: state.userReducer.isAuthorizationRequired
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 App.propTypes = {
   loadOffers: PropTypes.func.isRequired,
-  isAuthorizationRequired: PropTypes.bool.isRequired,
+  // isAuthorizationRequired: PropTypes.bool.isRequired,
 };
 
 export {App};

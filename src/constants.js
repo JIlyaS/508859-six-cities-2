@@ -62,7 +62,7 @@ export const SORT_LIST = [
   }
 ];
 export const DEFAULT_OFFERS = [{
-  id: `id0`,
+  id: 0,
   city: {
     name: `Amsterdam`,
     location: {
@@ -73,6 +73,7 @@ export const DEFAULT_OFFERS = [{
   },
   img: `apartment-01.jpg`,
   isPremium: true,
+  isFavorite: false,
   price: 110,
   title: `Beautiful & luxurious apartment at great location`,
   type: `apartment`,
@@ -215,7 +216,7 @@ export const DEFAULT_OFFERS = [{
 }];
 
 export const DEFAULT_OFFER = {
-  id: `id0`,
+  id: 0,
   city: {
     name: `Amsterdam`,
     location: {
@@ -260,7 +261,7 @@ export const DEFAULT_OFFER = {
 };
 
 export const CURRENT_OFFER = {
-  id: `id9`,
+  id: 9,
   city: {
     name: `Cologne`,
     location: {
@@ -271,6 +272,7 @@ export const CURRENT_OFFER = {
   },
   img: `apartment-01.jpg`,
   isPremium: true,
+  isFavorite: false,
   price: 120,
   title: `Beautiful & luxurious apartment at great location`,
   type: `apartment`,
@@ -352,8 +354,43 @@ export const MOCK_DATA_SERVER = [
   }
 ];
 
-export const MOCK_DATA_ADAPTER = [{
-  id: `id1`,
+export const DEFAULT_OFFER_SERVER = {
+  id: 1,
+  city: {
+    name: `Amsterdam`,
+    location: {
+      latitude: 52.370216,
+      longitude: 4.895168,
+      zoom: 10
+    }
+  },
+  [`preview_image`]: `img/1.png`,
+  images: [],
+  title: `Beautiful & luxurious studio at great location`,
+  [`is_favorite`]: false,
+  [`is_premium`]: false,
+  rating: 4.8,
+  type: `apartment`,
+  bedrooms: 3,
+  [`max_adults`]: 4,
+  price: 120,
+  goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  host: {
+    id: 3,
+    [`is_pro`]: true,
+    name: `Angelina`,
+    [`avatar_url`]: `img/1.png`
+  },
+  description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  location: {
+    latitude: 52.35514938496378,
+    longitude: 4.673877537499948,
+    zoom: 8
+  }
+};
+
+export const DEFAULT_OFFER_ADAPTER = {
+  id: 1,
   city: {
     name: `Amsterdam`,
     location: {
@@ -363,6 +400,100 @@ export const MOCK_DATA_ADAPTER = [{
   },
   img: `img/1.png`,
   isPremium: false,
+  isFavorite: false,
+  photos: [],
+  title: `Beautiful & luxurious studio at great location`,
+  rating: 5,
+  type: `apartment`,
+  price: 120,
+  location: {
+    coordinate: [52.35514938496378, 4.673877537499948],
+    zoom: 8
+  },
+  features: [`Entire place`, `3 Bedrooms`, `Max 4 adults`],
+  insideProperties: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  hostUser: {
+    id: 3,
+    avatar: `img/1.png`,
+    name: `Angelina`,
+    status: true
+  }
+};
+
+export const MOCK_DATA_ADAPTER = [{
+  id: 1,
+  city: {
+    name: `Amsterdam`,
+    location: {
+      coordinateCity: [52.370216, 4.895168],
+      zoomCity: 10
+    }
+  },
+  img: `img/1.png`,
+  isPremium: false,
+  isFavorite: false,
+  photos: [],
+  title: `Beautiful & luxurious studio at great location`,
+  rating: 5,
+  type: `apartment`,
+  price: 120,
+  location: {
+    coordinate: [52.35514938496378, 4.673877537499948],
+    zoom: 8
+  },
+  features: [`Entire place`, `3 Bedrooms`, `Max 4 adults`],
+  insideProperties: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  hostUser: {
+    id: 3,
+    avatar: `img/1.png`,
+    name: `Angelina`,
+    status: true
+  }
+}];
+
+export const DEFAULT_OFFER_UPDATED_FAVORITE = {
+  id: 1,
+  city: {
+    name: `Amsterdam`,
+    location: {
+      coordinateCity: [52.370216, 4.895168],
+      zoomCity: 10
+    }
+  },
+  img: `img/1.png`,
+  isPremium: false,
+  isFavorite: true,
+  photos: [],
+  title: `Beautiful & luxurious studio at great location`,
+  rating: 5,
+  type: `apartment`,
+  price: 120,
+  location: {
+    coordinate: [52.35514938496378, 4.673877537499948],
+    zoom: 8
+  },
+  features: [`Entire place`, `3 Bedrooms`, `Max 4 adults`],
+  insideProperties: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  hostUser: {
+    id: 3,
+    avatar: `img/1.png`,
+    name: `Angelina`,
+    status: true
+  }
+};
+
+export const MOCK_DATA_UPDATED_FAVORITE = [{
+  id: 1,
+  city: {
+    name: `Amsterdam`,
+    location: {
+      coordinateCity: [52.370216, 4.895168],
+      zoomCity: 10
+    }
+  },
+  img: `img/1.png`,
+  isPremium: false,
+  isFavorite: true,
   photos: [],
   title: `Beautiful & luxurious studio at great location`,
   rating: 5,
