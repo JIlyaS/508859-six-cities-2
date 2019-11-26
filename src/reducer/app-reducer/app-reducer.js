@@ -20,6 +20,10 @@ const appReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         reviews: action.payload
       });
+    case ActionType.UPDATE_FAVORITE_OFFER:
+      return Object.assign({}, state, {
+        offers: [...state.offers.slice(0, action.payload.id - 1), action.payload, ...state.offers.slice(action.payload.id)]
+      });
     default:
       return state;
   }

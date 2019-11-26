@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
 import {firstUpperCase, convertRating} from '../../utils';
-import {OFFER_ID_EXP} from '../../constants';
 
 const OfferCard = (props) => {
   const {
-    offer: {img, isPremium, price, title, type, rating},
+    offer: {img, isPremium, isFavorite, price, title, type, rating},
     offerId,
     activeOfferMouseEnterHandler,
     deactiveOfferMouseLeaveHandler,
-    cardTitleClickHandler,
+    changeFavoriteOfferClickHandler,
     isNearPlace
   } = props;
-  const offerIdForPath = Number(offerId.match(OFFER_ID_EXP)[1]);
+
   return <article
     className={`${isNearPlace ? `near-places__` : `cities__place-`}card place-card`}
     onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}
@@ -32,7 +33,11 @@ const OfferCard = (props) => {
           <b className="place-card__price-value">&euro;{price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <button className="place-card__bookmark-button button" type="button">
+        <button
+          className={`place-card__bookmark-button ${isFavorite && `place-card__bookmark-button--active`} button`}
+          type="button"
+          onClick={() => changeFavoriteOfferClickHandler(offerId, isFavorite)}
+        >
           <svg className="place-card__bookmark-icon" width="18" height="19">
             <use xlinkHref="#icon-bookmark"></use>
           </svg>
@@ -46,7 +51,7 @@ const OfferCard = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#" onClick={(evt) => cardTitleClickHandler(evt, offerIdForPath)}>{title}</a>
+        <Link to={`/offer/${offerId}`}>{title}</Link>
       </h2>
       <p className="place-card__type">{firstUpperCase(type)}</p>
     </div>
@@ -55,6 +60,7 @@ const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   offer: PropTypes.shape({
+    isFavorite: PropTypes.bool.isRequired,
     isPremium: PropTypes.bool.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -62,10 +68,10 @@ OfferCard.propTypes = {
     rating: PropTypes.number.isRequired,
     type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`])
   }),
-  offerId: PropTypes.string.isRequired,
+  offerId: PropTypes.number.isRequired,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
   deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
-  cardTitleClickHandler: PropTypes.func.isRequired,
+  changeFavoriteOfferClickHandler: PropTypes.func.isRequired,
   isNearPlace: PropTypes.bool
 };
 

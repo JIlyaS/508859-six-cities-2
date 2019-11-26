@@ -4,12 +4,13 @@ import {connect} from 'react-redux';
 
 import ActionCreator from '../../action-creator/action-creator';
 import OfferCard from '../offer-card/offer-card';
+import Operation from '../../operation/operation';
 
 class OfferList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._cardTitleClickHandler = this._cardTitleClickHandler.bind(this);
+    this._changeFavoriteOfferClickHandler = this._changeFavoriteOfferClickHandler.bind(this);
   }
 
   render() {
@@ -24,15 +25,19 @@ class OfferList extends PureComponent {
         key={offer.id}
         activeOfferMouseEnterHandler={activeOfferMouseEnterHandler}
         deactiveOfferMouseLeaveHandler={deactiveOfferMouseLeaveHandler}
-        cardTitleClickHandler={this._cardTitleClickHandler}
+        changeFavoriteOfferClickHandler={this._changeFavoriteOfferClickHandler}
         isNearPlace
       />)}
     </div>;
   }
 
-  _cardTitleClickHandler(evt, offerId) {
-    evt.preventDefault();
-    location.replace(`/offer/${offerId}`);
+  _changeFavoriteOfferClickHandler(offerId, isFavorite) {
+    const {changeOfferFavorite, getLogin, login} = this.props;
+    getLogin();
+    if (login) {
+      const status = isFavorite === true ? 0 : 1;
+      changeOfferFavorite(offerId, status);
+    }
   }
 }
 
@@ -40,7 +45,10 @@ OfferList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   isNearPlace: PropTypes.bool,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
-  deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired
+  deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
+  changeOfferFavorite: PropTypes.func.isRequired,
+  getLogin: PropTypes.func.isRequired,
+  login: PropTypes.any,
 };
 
 OfferList.defaultProps = {
@@ -48,12 +56,15 @@ OfferList.defaultProps = {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  activeOfferCard: state.userReducer.activeOfferCard
+  activeOfferCard: state.userReducer.activeOfferCard,
+  login: state.appReducer.login
 });
 
 const mapDispatchToProps = (dispatch) => ({
   activeOfferMouseEnterHandler: (offerCard) => dispatch(ActionCreator.changeActiveCard(offerCard)),
-  deactiveOfferMouseLeaveHandler: () => dispatch(ActionCreator.removeActiveCard())
+  deactiveOfferMouseLeaveHandler: () => dispatch(ActionCreator.removeActiveCard()),
+  changeOfferFavorite: (offerId, status) => dispatch(Operation.changeOfferFavorite(offerId, status)),
+  getLogin: () => dispatch(Operation.getLogin()),
 });
 
 export {OfferList};

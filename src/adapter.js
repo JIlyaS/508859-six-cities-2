@@ -8,7 +8,7 @@ class Adapter {
 
   static getOffer(offer) {
     return {
-      id: `id${offer.id}`,
+      id: offer.id,
       city: {
         name: offer.city.name,
         location: {
@@ -21,6 +21,7 @@ class Adapter {
       },
       img: offer.preview_image,
       isPremium: offer[`is_premium`],
+      isFavorite: offer[`is_favorite`],
       price: offer.price,
       title: offer.title,
       type: offer.type,

@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Header from '../header/header';
+import PageLayout from '../page-layout/page-layout';
 import Operation from '../../operation/operation';
 
 class SignIn extends PureComponent {
@@ -15,9 +15,7 @@ class SignIn extends PureComponent {
 
   render() {
     const {email, password, addValueFormChangeHandler} = this.props;
-    return <div className="page page--gray page--login">
-      <Header />
-
+    return <PageLayout pageName="sign">
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -59,14 +57,15 @@ class SignIn extends PureComponent {
           </section>
         </div>
       </main>
-    </div>;
+    </PageLayout>;
   }
 
   _authFormSubmitHandler(evt) {
     evt.preventDefault();
-    const {email, password, checkLogin} = this.props;
+    const {email, password, history, checkLogin} = this.props;
     if (email.length && password.length) {
       checkLogin(email, password);
+      history.push(`/`);
     }
   }
 }
@@ -80,7 +79,10 @@ const mapDispatchToProps = (dispatch) => ({
 SignIn.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-  checkLogin: PropTypes.func,
+  history: PropTypes.shape({
+    push: PropTypes.func
+  }).isRequired,
+  checkLogin: PropTypes.func.isRequired,
   addValueFormChangeHandler: PropTypes.func.isRequired,
 };
 

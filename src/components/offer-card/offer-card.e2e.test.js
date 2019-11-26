@@ -14,15 +14,16 @@ it(`OfferCard correct callback function`, () => {
     price: 0,
     img: `room.jpg`,
     rating: 0,
-    isPremium: false
+    isPremium: false,
+    isFavorite: false
   };
   const offerCard = shallow(<OfferCard
     offer={mockOfferCardData}
-    offerId={`id0`}
+    offerId={0}
     activeOfferMouseEnterHandler={offerMouseEnterHandler}
     deactiveOfferMouseLeaveHandler={offerMouseLeaveHandler}
-    cardTitleClickHandler={() => {}}
     isNearPlace={true}
+    changeFavoriteOfferClickHandler={() => {}}
   />);
 
   const mouseenterButton = offerCard.find(`.place-card`);

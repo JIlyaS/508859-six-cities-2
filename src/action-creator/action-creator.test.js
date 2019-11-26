@@ -1,5 +1,13 @@
 import ActionCreator from './action-creator';
-import {DEFAULT_LOGIN, MOCK_DATA_ADAPTER, MOCK_DATA_COMMENTS_ADAPTER, MOCK_DATA_COMMENTS_SERVER, MOCK_DATA_SERVER} from '../constants';
+import {
+  DEFAULT_LOGIN,
+  MOCK_DATA_ADAPTER,
+  MOCK_DATA_COMMENTS_ADAPTER,
+  MOCK_DATA_COMMENTS_SERVER,
+  MOCK_DATA_SERVER,
+  DEFAULT_OFFER_SERVER,
+  DEFAULT_OFFER_ADAPTER
+} from '../constants';
 
 describe(`Action creators work correctly`, () => {
   it(`Action creator for change city returns correct action`, () => {
@@ -132,6 +140,12 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.loadReviews([])).toEqual({
       type: `LOAD_REVIEWS`,
       payload: []
+    });
+  });
+  it(`Action creator for updated favorite offer returns action with object data payload`, () => {
+    expect(ActionCreator.updateFavoriteOffer(DEFAULT_OFFER_SERVER)).toEqual({
+      type: `UPDATE_FAVORITE_OFFER`,
+      payload: DEFAULT_OFFER_ADAPTER
     });
   });
 });

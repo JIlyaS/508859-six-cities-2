@@ -6,7 +6,7 @@ import ReviewsList from '../reviews-list/reviews-list';
 import CommentForm from '../comment-form/comment-form';
 import Map from '../map/map';
 import OfferList from '../offer-list/offer-list';
-import Header from '../header/header';
+import PageLayout from '../page-layout/page-layout';
 import withCommentForm from '../../hocs/with-comment-form/with-comment-form';
 import {getMapCoordinates, convertRating, getOtherCityOffers} from '../../utils';
 import Operation from '../../operation/operation';
@@ -14,6 +14,13 @@ import Operation from '../../operation/operation';
 const CommentFormWrapped = withCommentForm(CommentForm);
 
 class DetailInfo extends PureComponent {
+
+  constructor(props) {
+    super(props);
+
+    this._changeFavoriteOfferClickHandler = this._changeFavoriteOfferClickHandler.bind(this);
+  }
+
   render() {
     if (!this.props.offers.length) {
       return null;
@@ -21,6 +28,7 @@ class DetailInfo extends PureComponent {
     const {
       currentOffer: {
         isPremium,
+        isFavorite,
         price,
         title,
         rating,
@@ -33,20 +41,26 @@ class DetailInfo extends PureComponent {
       otherOffers,
       activeOfferCard,
       reviews,
-      idPath,
       login,
+      match: {
+        params: {
+          offerId
+        }
+      },
     } = this.props;
 
     const coordinates = getMapCoordinates(otherOffers, activeOfferCard);
     return (
-      <div className="page">
-        <Header />
+      <PageLayout pageName="detail">
         <main className="page__main page__main--property">
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                {photos.map((photo, id) => (
-                  <div className="property__image-wrapper" key={`photo-${id}`}>
+                {photos.map((photo, index) => (
+                  <div
+                    className="property__image-wrapper"
+                    key={`photo-${index}`}
+                  >
                     <img
                       className="property__image"
                       src={`${photo}`}
@@ -66,11 +80,15 @@ class DetailInfo extends PureComponent {
                 <div className="property__name-wrapper">
                   <h1 className="property__name">{title}</h1>
                   <button
-                    className="property__bookmark-button button"
+                    className={`property__bookmark-button ${isFavorite &&
+                      `property__bookmark-button--active`} button`}
                     type="button"
+                    onClick={() =>
+                      this._changeFavoriteOfferClickHandler(offerId, isFavorite)
+                    }
                   >
                     <svg
-                      className="property__bookmark-icon"
+                      className="place-card__bookmark-icon property__bookmark-icon"
                       width="31"
                       height="33"
                     >
@@ -89,10 +107,10 @@ class DetailInfo extends PureComponent {
                   </span>
                 </div>
                 <ul className="property__features">
-                  {features.map((feature, id) => (
+                  {features.map((feature, index) => (
                     <li
                       className="property__feature property__feature--entire"
-                      key={`feature-${id}`}
+                      key={`feature-${index}`}
                     >
                       {feature}
                     </li>
@@ -105,10 +123,10 @@ class DetailInfo extends PureComponent {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {insideProperties.map((insideProperty, id) => (
+                    {insideProperties.map((insideProperty, index) => (
                       <li
                         className="property__inside-item"
-                        key={`inside-property-${id}`}
+                        key={`inside-property-${index}`}
                       >
                         {insideProperty}
                       </li>
@@ -147,7 +165,7 @@ class DetailInfo extends PureComponent {
                     <span className="reviews__amount">{reviews.length}</span>
                   </h2>
                   <ReviewsList reviews={reviews} />
-                  {login && <CommentFormWrapped idHotel={idPath} />}
+                  {login && <CommentFormWrapped idHotel={offerId} />}
                 </section>
               </div>
             </div>
@@ -168,21 +186,35 @@ class DetailInfo extends PureComponent {
             </section>
           </div>
         </main>
-      </div>
+      </PageLayout>
     );
   }
 
   componentDidMount() {
-    const {idPath, loadReviews} = this.props;
-    loadReviews(idPath);
+    const {match: {params: {offerId}}, loadReviews} = this.props;
+    loadReviews(offerId);
+  }
+
+  _changeFavoriteOfferClickHandler(offerId, isFavorite) {
+    const {changeOfferFavorite, getLogin, login} = this.props;
+    getLogin();
+    if (login) {
+      const status = isFavorite === true ? 0 : 1;
+      changeOfferFavorite(offerId, status);
+    }
   }
 }
 
 DetailInfo.propTypes = {
-  idPath: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      offerId: PropTypes.string
+    }).isRequired
+  }).isRequired,
   currentOffer: PropTypes.shape({
     city: PropTypes.object.isRequired,
     isPremium: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -199,18 +231,20 @@ DetailInfo.propTypes = {
   }),
   otherOffers: PropTypes.array.isRequired,
   activeOfferCard: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     location: PropTypes.object
   }),
   offers: PropTypes.array.isRequired,
   loadReviews: PropTypes.func.isRequired,
   reviews: PropTypes.array.isRequired,
   login: PropTypes.any,
+  changeOfferFavorite: PropTypes.func.isRequired,
+  getLogin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  currentOffer: state.appReducer.offers.find((offer) => offer.id === `id${Number(ownProps.idPath)}`),
-  otherOffers: getOtherCityOffers(ownProps.idPath, state.appReducer.offers),
+  currentOffer: state.appReducer.offers.find((offer) => offer.id === Number(ownProps.match.params.offerId)),
+  otherOffers: getOtherCityOffers(ownProps.match.params.offerId, state.appReducer.offers),
   activeOfferCard: state.userReducer.activeOfferCard,
   offers: state.appReducer.offers,
   reviews: state.appReducer.reviews,
@@ -218,9 +252,9 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadReviews: (idHotel) => {
-    dispatch(Operation.loadReviews(idHotel));
-  },
+  loadReviews: (idHotel) => dispatch(Operation.loadReviews(idHotel)),
+  changeOfferFavorite: (offerId, status) => dispatch(Operation.changeOfferFavorite(offerId, status)),
+  getLogin: () => dispatch(Operation.getLogin()),
 });
 
 export {DetailInfo};

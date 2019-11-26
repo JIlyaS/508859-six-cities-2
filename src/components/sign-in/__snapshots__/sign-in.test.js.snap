@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SignIn correctly renders after relaunch 1`] = `
-<div
-  className="page page--gray page--login"
+<PageLayout
+  pageName="sign"
 >
-  <Connect(Header) />
   <main
     className="page__main page__main--login"
   >
@@ -87,5 +86,5 @@ exports[`SignIn correctly renders after relaunch 1`] = `
       </section>
     </div>
   </main>
-</div>
+</PageLayout>
 `;

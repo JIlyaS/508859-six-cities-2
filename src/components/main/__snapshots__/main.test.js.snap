@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Main correctly renders after relaunch 1`] = `
-<div
-  className="page page--gray page--main"
+<PageLayout
+  pageName="main"
 >
-  <Connect(Header) />
   <main
     className="page__main page__main--index false"
   >
@@ -71,7 +70,7 @@ exports[`Main correctly renders after relaunch 1`] = `
                     "name": "Angelina",
                     "status": true,
                   },
-                  "id": "id0",
+                  "id": 0,
                   "img": "apartment-01.jpg",
                   "insideProperties": Array [
                     "Wi-Fi",
@@ -85,6 +84,7 @@ exports[`Main correctly renders after relaunch 1`] = `
                     "Cabel TV",
                     "Fridge",
                   ],
+                  "isFavorite": false,
                   "isPremium": true,
                   "photos": Array [
                     "room.jpg",
@@ -287,5 +287,5 @@ exports[`Main correctly renders after relaunch 1`] = `
       </div>
     </div>
   </main>
-</div>
+</PageLayout>
 `;

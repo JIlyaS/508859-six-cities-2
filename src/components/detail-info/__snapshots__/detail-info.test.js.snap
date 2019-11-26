@@ -1,10 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailInfo correctly renders after relaunch 1`] = `
-<div
-  className="page"
+<PageLayout
+  pageName="detail"
 >
-  <Connect(Header) />
   <main
     className="page__main page__main--property"
   >
@@ -101,11 +100,12 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
               Beautiful & luxurious apartment at great location
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="property__bookmark-button false button"
+              onClick={[Function]}
               type="button"
             >
               <svg
-                className="property__bookmark-icon"
+                className="place-card__bookmark-icon property__bookmark-icon"
                 height="33"
                 width="31"
               >
@@ -392,7 +392,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
                   "name": "Angelina",
                   "status": true,
                 },
-                "id": "id0",
+                "id": 0,
                 "img": "apartment-01.jpg",
                 "insideProperties": Array [
                   "Wi-Fi",
@@ -406,6 +406,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
                   "Cabel TV",
                   "Fridge",
                 ],
+                "isFavorite": false,
                 "isPremium": true,
                 "photos": Array [
                   "room.jpg",
@@ -582,5 +583,5 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
       </section>
     </div>
   </main>
-</div>
+</PageLayout>
 `;

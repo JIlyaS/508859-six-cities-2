@@ -1,4 +1,11 @@
-import {DEFAULT_OFFERS, DEFAULT_LOGIN, DEFAULT_REVIEW} from '../../constants';
+import {
+  DEFAULT_OFFERS,
+  DEFAULT_LOGIN,
+  DEFAULT_REVIEW,
+  MOCK_DATA_ADAPTER,
+  MOCK_DATA_UPDATED_FAVORITE,
+  DEFAULT_OFFER_UPDATED_FAVORITE
+} from '../../constants';
 import reducer from './app-reducer';
 
 describe(`Reducer work correctly`, () => {
@@ -91,6 +98,20 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       login: DEFAULT_LOGIN,
       reviews: null,
+    });
+  });
+  it(`Reducer should update offer by a given value`, () => {
+    expect(reducer({
+      offers: MOCK_DATA_ADAPTER,
+      login: null,
+      reviews: [],
+    }, {
+      type: `UPDATE_FAVORITE_OFFER`,
+      payload: DEFAULT_OFFER_UPDATED_FAVORITE
+    })).toEqual({
+      offers: MOCK_DATA_UPDATED_FAVORITE,
+      login: null,
+      reviews: [],
     });
   });
 });

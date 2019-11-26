@@ -17,7 +17,7 @@ const props = {
     changedOffers: [],
     activeOfferCard: {},
     cities: [],
-    isAuthorizationRequired: true,
+    // isAuthorizationRequired: true,
   },
   userReducer: {
     offers: [],
@@ -30,7 +30,6 @@ const store = mockStore(props);
 
 it(`App correctly renders after relaunch`, () => {
   const tree = shallow(<App
-    isAuthorizationRequired={false}
     loadOffers={() => {}}
     store={store}
   />);

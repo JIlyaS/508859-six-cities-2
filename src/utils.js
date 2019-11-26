@@ -1,4 +1,4 @@
-import {RATING_PERSENT, MAX_RATING_COUNT, MAX_NEARBY_OFFER, SortNames} from './constants';
+import {RATING_PERSENT, MAX_RATING_COUNT, MAX_NEARBY_OFFER, SortNames, PageNames} from './constants';
 
 export const firstUpperCase = (word) => {
   return word[0].toUpperCase() + word.slice(1);
@@ -48,8 +48,21 @@ export const shuffleElements = (array) => {
 };
 
 export const getOtherCityOffers = (id, offers) => {
-  const currentOffer = offers.find((offer) => offer.id === `id${Number(id)}`);
+  const currentOffer = offers.find((offer) => offer.id === Number(id));
   const otherOffers = offers.filter((offer) => offer.city.name === currentOffer.city.name).slice(0, MAX_NEARBY_OFFER);
 
   return otherOffers;
+};
+
+export const getClassPageName = (pageName) => {
+  switch (pageName) {
+    case PageNames.SIGN:
+      return `page page--gray page--login`;
+    case PageNames.MAIN:
+      return `page page--gray page--main`;
+    case PageNames.DETAIL:
+      return `page`;
+    default:
+      return null;
+  }
 };

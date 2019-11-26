@@ -48,6 +48,13 @@ const ActionCreator = {
       payload: reviews,
     };
   },
+  updateFavoriteOffer: (updateOffer) => {
+    const offer = Adapter.getOffer(updateOffer);
+    return {
+      type: ActionType.UPDATE_FAVORITE_OFFER,
+      payload: offer,
+    };
+  },
 };
 
 export default ActionCreator;

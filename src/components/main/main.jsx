@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
+import PageLayout from '../page-layout/page-layout';
 import CityList from '../city-list/city-list';
 import SortList from '../sort-list/sort-list';
 import MainEmpty from '../main-empty/main-empty';
-import Header from '../header/header';
 import withSortList from '../../hocs/with-sort-list/with-sort-list';
 import {
   getMapCoordinates,
@@ -29,8 +29,7 @@ class Main extends PureComponent {
     const coordinates = getMapCoordinates(currentOffers, activeOfferCard);
     const activeCityCoordinate = getActiveCityCoordinate(currentOffers, city);
     return (
-      <div className="page page--gray page--main">
-        <Header />
+      <PageLayout pageName="main">
         <main
           className={`page__main page__main--index ${currentOffers.length ===
             0 && `page__main--index-empty`}`}
@@ -68,7 +67,7 @@ class Main extends PureComponent {
             )}
           </div>
         </main>
-      </div>
+      </PageLayout>
     );
   }
 }
@@ -78,7 +77,7 @@ Main.propTypes = {
   activeSortName: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   activeOfferCard: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     location: PropTypes.object,
   }),
 };

@@ -11,6 +11,9 @@ jest.mock(`../map/map`);
 
 it(`DetailInfo correctly renders after relaunch`, () => {
   const tree = shallow(<DetailInfo
+    match={{params: {
+      offerId: `1`
+    }}}
     currentOffer={CURRENT_OFFER}
     otherOffers={DEFAULT_OFFERS}
     activeOfferCard={DEFAULT_OFFER}
@@ -19,6 +22,8 @@ it(`DetailInfo correctly renders after relaunch`, () => {
     idPath={`1`}
     login={DEFAULT_LOGIN}
     loadReviews={() => {}}
+    changeOfferFavorite={() => {}}
+    getLogin={() => {}}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();
