@@ -1,287 +1,291 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Main correctly renders after relaunch 1`] = `
-<main
-  className="page__main page__main--index false"
+<PageLayout
+  pageName="main"
 >
-  <h1
-    className="visually-hidden"
+  <main
+    className="page__main page__main--index false"
   >
-    Cities
-  </h1>
-  <div
-    className="tabs"
-  >
-    <section
-      className="locations container"
+    <h1
+      className="visually-hidden"
     >
-      <Connect(CityList) />
-    </section>
-  </div>
-  <div
-    className="cities"
-  >
+      Cities
+    </h1>
     <div
-      className="cities__places-container container"
+      className="tabs"
     >
       <section
-        className="cities__places places"
+        className="locations container"
       >
-        <h2
-          className="visually-hidden"
-        >
-          Places
-        </h2>
-        <b
-          className="places__found"
-        >
-          4
-           places to stay in 
-          Amsterdam
-        </b>
-        <WithSortList />
-        <Connect(OfferList)
-          offers={
-            Array [
-              Object {
-                "city": Object {
-                  "location": Object {
-                    "latitude": 52.3909553943508,
-                    "longitude": 4.85309666406198,
-                    "zoom": 12,
-                  },
-                  "name": "Amsterdam",
-                },
-                "coordinate": Array [
-                  52.3909553943508,
-                  4.85309666406198,
-                ],
-                "features": Array [
-                  "Entire place",
-                  "3 Bedrooms",
-                  "Max 4 adults",
-                ],
-                "hostUser": Object {
-                  "avatar": "avatar-angelina.jpg",
-                  "id": 1,
-                  "name": "Angelina",
-                  "status": true,
-                },
-                "id": 0,
-                "img": "apartment-01.jpg",
-                "insideProperties": Array [
-                  "Wi-Fi",
-                  "Washing machine",
-                  "Towels",
-                  "Heating",
-                  "Coffee machine",
-                  "Baby seat",
-                  "Kitchen",
-                  "Dishwasher",
-                  "Cabel TV",
-                  "Fridge",
-                ],
-                "isFavorite": false,
-                "isPremium": true,
-                "photos": Array [
-                  "room.jpg",
-                  "apartment-01.jpg",
-                  "apartment-02.jpg",
-                  "apartment-03.jpg",
-                  "studio-01.jpg",
-                  "apartment-01.jpg",
-                ],
-                "price": 110,
-                "rating": 4.8,
-                "title": "Beautiful & luxurious apartment at great location",
-                "type": "apartment",
-              },
-              Object {
-                "city": Object {
-                  "location": Object {
-                    "latitude": 52.3909553943508,
-                    "longitude": 4.85309666406198,
-                    "zoom": 12,
-                  },
-                  "name": "Amsterdam",
-                },
-                "coordinate": Array [
-                  52.369553943508,
-                  4.85309666406198,
-                ],
-                "features": Array [
-                  "Entire place",
-                  "3 Bedrooms",
-                  "Max 4 adults",
-                ],
-                "hostUser": Object {
-                  "avatar": "avatar-angelina.jpg",
-                  "id": 2,
-                  "name": "Angelina",
-                  "status": false,
-                },
-                "id": "id1",
-                "img": "room.jpg",
-                "insideProperties": Array [
-                  "Wi-Fi",
-                  "Washing machine",
-                  "Towels",
-                  "Heating",
-                  "Coffee machine",
-                  "Baby seat",
-                  "Kitchen",
-                  "Dishwasher",
-                  "Cabel TV",
-                  "Fridge",
-                ],
-                "isPremium": false,
-                "photos": Array [
-                  "room.jpg",
-                  "apartment-01.jpg",
-                  "apartment-02.jpg",
-                  "apartment-03.jpg",
-                  "studio-01.jpg",
-                  "apartment-01.jpg",
-                ],
-                "price": 120,
-                "rating": 4,
-                "title": "Wood and stone place",
-                "type": "room",
-              },
-              Object {
-                "city": Object {
-                  "location": Object {
-                    "latitude": 52.3909553943508,
-                    "longitude": 4.85309666406198,
-                    "zoom": 12,
-                  },
-                  "name": "Amsterdam",
-                },
-                "coordinate": Array [
-                  52.3909553943508,
-                  4.929309666406198,
-                ],
-                "features": Array [
-                  "Entire place",
-                  "3 Bedrooms",
-                  "Max 4 adults",
-                ],
-                "hostUser": Object {
-                  "avatar": "avatar-angelina.jpg",
-                  "id": 3,
-                  "name": "Angelina",
-                  "status": true,
-                },
-                "id": "id2",
-                "img": "apartment-02.jpg",
-                "insideProperties": Array [
-                  "Wi-Fi",
-                  "Washing machine",
-                  "Towels",
-                  "Heating",
-                  "Coffee machine",
-                  "Baby seat",
-                  "Kitchen",
-                  "Dishwasher",
-                  "Cabel TV",
-                  "Fridge",
-                ],
-                "isPremium": false,
-                "photos": Array [
-                  "room.jpg",
-                  "apartment-01.jpg",
-                  "apartment-02.jpg",
-                  "apartment-03.jpg",
-                  "studio-01.jpg",
-                  "apartment-01.jpg",
-                ],
-                "price": 200,
-                "rating": 4,
-                "title": "Canal View Prinsengracht",
-                "type": "apartment",
-              },
-              Object {
-                "city": Object {
-                  "location": Object {
-                    "latitude": 52.3909553943508,
-                    "longitude": 4.85309666406198,
-                    "zoom": 12,
-                  },
-                  "name": "Amsterdam",
-                },
-                "coordinate": Array [
-                  52.3809553943508,
-                  4.939309666406198,
-                ],
-                "features": Array [
-                  "Entire place",
-                  "3 Bedrooms",
-                  "Max 4 adults",
-                ],
-                "hostUser": Object {
-                  "avatar": "avatar-angelina.jpg",
-                  "id": 4,
-                  "name": "Angelina",
-                  "status": false,
-                },
-                "id": "id3",
-                "img": "apartment-03.jpg",
-                "insideProperties": Array [
-                  "Wi-Fi",
-                  "Washing machine",
-                  "Towels",
-                  "Heating",
-                  "Coffee machine",
-                  "Baby seat",
-                  "Kitchen",
-                  "Dishwasher",
-                  "Cabel TV",
-                  "Fridge",
-                ],
-                "isPremium": true,
-                "photos": Array [
-                  "room.jpg",
-                  "apartment-01.jpg",
-                  "apartment-02.jpg",
-                  "apartment-03.jpg",
-                  "studio-01.jpg",
-                  "apartment-01.jpg",
-                ],
-                "price": 180,
-                "rating": 5,
-                "title": "Nice, cozy, warm big bed apartment",
-                "type": "apartment",
-              },
-            ]
-          }
-        />
+        <Connect(CityList) />
       </section>
+    </div>
+    <div
+      className="cities"
+    >
       <div
-        className="cities__right-section"
+        className="cities__places-container container"
       >
         <section
-          className="cities__map map"
+          className="cities__places places"
         >
-          <Map
-            activeCityCoordinate={
-              Object {
-                "latitude": 52.3909553943508,
-                "longitude": 4.85309666406198,
-                "zoom": 12,
-              }
-            }
-            city="Amsterdam"
-            coordinates={
+          <h2
+            className="visually-hidden"
+          >
+            Places
+          </h2>
+          <b
+            className="places__found"
+          >
+            4
+             places to stay in 
+            Amsterdam
+          </b>
+          <WithSortList />
+          <Connect(OfferList)
+            offers={
               Array [
-                undefined,
-                undefined,
-                undefined,
+                Object {
+                  "city": Object {
+                    "location": Object {
+                      "latitude": 52.3909553943508,
+                      "longitude": 4.85309666406198,
+                      "zoom": 12,
+                    },
+                    "name": "Amsterdam",
+                  },
+                  "coordinate": Array [
+                    52.3909553943508,
+                    4.85309666406198,
+                  ],
+                  "features": Array [
+                    "Entire place",
+                    "3 Bedrooms",
+                    "Max 4 adults",
+                  ],
+                  "hostUser": Object {
+                    "avatar": "avatar-angelina.jpg",
+                    "id": 1,
+                    "name": "Angelina",
+                    "status": true,
+                  },
+                  "id": 0,
+                  "img": "apartment-01.jpg",
+                  "insideProperties": Array [
+                    "Wi-Fi",
+                    "Washing machine",
+                    "Towels",
+                    "Heating",
+                    "Coffee machine",
+                    "Baby seat",
+                    "Kitchen",
+                    "Dishwasher",
+                    "Cabel TV",
+                    "Fridge",
+                  ],
+                  "isFavorite": false,
+                  "isPremium": true,
+                  "photos": Array [
+                    "room.jpg",
+                    "apartment-01.jpg",
+                    "apartment-02.jpg",
+                    "apartment-03.jpg",
+                    "studio-01.jpg",
+                    "apartment-01.jpg",
+                  ],
+                  "price": 110,
+                  "rating": 4.8,
+                  "title": "Beautiful & luxurious apartment at great location",
+                  "type": "apartment",
+                },
+                Object {
+                  "city": Object {
+                    "location": Object {
+                      "latitude": 52.3909553943508,
+                      "longitude": 4.85309666406198,
+                      "zoom": 12,
+                    },
+                    "name": "Amsterdam",
+                  },
+                  "coordinate": Array [
+                    52.369553943508,
+                    4.85309666406198,
+                  ],
+                  "features": Array [
+                    "Entire place",
+                    "3 Bedrooms",
+                    "Max 4 adults",
+                  ],
+                  "hostUser": Object {
+                    "avatar": "avatar-angelina.jpg",
+                    "id": 2,
+                    "name": "Angelina",
+                    "status": false,
+                  },
+                  "id": "id1",
+                  "img": "room.jpg",
+                  "insideProperties": Array [
+                    "Wi-Fi",
+                    "Washing machine",
+                    "Towels",
+                    "Heating",
+                    "Coffee machine",
+                    "Baby seat",
+                    "Kitchen",
+                    "Dishwasher",
+                    "Cabel TV",
+                    "Fridge",
+                  ],
+                  "isPremium": false,
+                  "photos": Array [
+                    "room.jpg",
+                    "apartment-01.jpg",
+                    "apartment-02.jpg",
+                    "apartment-03.jpg",
+                    "studio-01.jpg",
+                    "apartment-01.jpg",
+                  ],
+                  "price": 120,
+                  "rating": 4,
+                  "title": "Wood and stone place",
+                  "type": "room",
+                },
+                Object {
+                  "city": Object {
+                    "location": Object {
+                      "latitude": 52.3909553943508,
+                      "longitude": 4.85309666406198,
+                      "zoom": 12,
+                    },
+                    "name": "Amsterdam",
+                  },
+                  "coordinate": Array [
+                    52.3909553943508,
+                    4.929309666406198,
+                  ],
+                  "features": Array [
+                    "Entire place",
+                    "3 Bedrooms",
+                    "Max 4 adults",
+                  ],
+                  "hostUser": Object {
+                    "avatar": "avatar-angelina.jpg",
+                    "id": 3,
+                    "name": "Angelina",
+                    "status": true,
+                  },
+                  "id": "id2",
+                  "img": "apartment-02.jpg",
+                  "insideProperties": Array [
+                    "Wi-Fi",
+                    "Washing machine",
+                    "Towels",
+                    "Heating",
+                    "Coffee machine",
+                    "Baby seat",
+                    "Kitchen",
+                    "Dishwasher",
+                    "Cabel TV",
+                    "Fridge",
+                  ],
+                  "isPremium": false,
+                  "photos": Array [
+                    "room.jpg",
+                    "apartment-01.jpg",
+                    "apartment-02.jpg",
+                    "apartment-03.jpg",
+                    "studio-01.jpg",
+                    "apartment-01.jpg",
+                  ],
+                  "price": 200,
+                  "rating": 4,
+                  "title": "Canal View Prinsengracht",
+                  "type": "apartment",
+                },
+                Object {
+                  "city": Object {
+                    "location": Object {
+                      "latitude": 52.3909553943508,
+                      "longitude": 4.85309666406198,
+                      "zoom": 12,
+                    },
+                    "name": "Amsterdam",
+                  },
+                  "coordinate": Array [
+                    52.3809553943508,
+                    4.939309666406198,
+                  ],
+                  "features": Array [
+                    "Entire place",
+                    "3 Bedrooms",
+                    "Max 4 adults",
+                  ],
+                  "hostUser": Object {
+                    "avatar": "avatar-angelina.jpg",
+                    "id": 4,
+                    "name": "Angelina",
+                    "status": false,
+                  },
+                  "id": "id3",
+                  "img": "apartment-03.jpg",
+                  "insideProperties": Array [
+                    "Wi-Fi",
+                    "Washing machine",
+                    "Towels",
+                    "Heating",
+                    "Coffee machine",
+                    "Baby seat",
+                    "Kitchen",
+                    "Dishwasher",
+                    "Cabel TV",
+                    "Fridge",
+                  ],
+                  "isPremium": true,
+                  "photos": Array [
+                    "room.jpg",
+                    "apartment-01.jpg",
+                    "apartment-02.jpg",
+                    "apartment-03.jpg",
+                    "studio-01.jpg",
+                    "apartment-01.jpg",
+                  ],
+                  "price": 180,
+                  "rating": 5,
+                  "title": "Nice, cozy, warm big bed apartment",
+                  "type": "apartment",
+                },
               ]
             }
           />
         </section>
+        <div
+          className="cities__right-section"
+        >
+          <section
+            className="cities__map map"
+          >
+            <Map
+              activeCityCoordinate={
+                Object {
+                  "latitude": 52.3909553943508,
+                  "longitude": 4.85309666406198,
+                  "zoom": 12,
+                }
+              }
+              city="Amsterdam"
+              coordinates={
+                Array [
+                  undefined,
+                  undefined,
+                  undefined,
+                ]
+              }
+            />
+          </section>
+        </div>
       </div>
     </div>
-  </div>
-</main>
+  </main>
+</PageLayout>
 `;

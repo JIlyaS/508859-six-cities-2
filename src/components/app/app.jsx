@@ -8,13 +8,10 @@ import Main from '../main/main';
 import SignIn from '../sign-in/sign-in';
 import DetailInfo from '../detail-info/detail-info';
 import withSignIn from '../../hocs/with-sign-in/with-sign-in';
-import withPageLayout from '../../hocs/with-page-layout/with-page-layout';
 import Operation from '../../operation/operation';
 import {PageNames} from '../../constants';
 
-const MainWrapped = compose(withPageLayout)(Main, PageNames.MAIN);
-const SignInWrapped = compose(withSignIn, withPageLayout)(SignIn, PageNames.SIGN);
-const DetailInfoWrapped = compose(withPageLayout)(DetailInfo, PageNames.DETAIL);
+const SignInWrapped = compose(withSignIn)(SignIn, PageNames.SIGN);
 
 // const PrivateRoute = (({component: Component}, ...rest) => (
 //   <Route
@@ -32,11 +29,13 @@ const DetailInfoWrapped = compose(withPageLayout)(DetailInfo, PageNames.DETAIL);
 class App extends PureComponent {
 
   render() {
-    return <Switch>
-      <Route path="/" component={MainWrapped} exact />
-      <Route path="/login" component={SignInWrapped} exact />
-      <Route path="/offer/:offerId" component={DetailInfoWrapped} exact />
-    </Switch>;
+    return (
+      <Switch>
+        <Route path="/" component={Main} exact />
+        <Route path="/login" component={SignInWrapped} exact />
+        <Route path="/offer/:offerId" component={DetailInfo} exact />
+      </Switch>
+    );
   }
 
   componentDidMount() {
