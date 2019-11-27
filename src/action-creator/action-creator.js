@@ -41,6 +41,13 @@ const ActionCreator = {
       payload: offers,
     };
   },
+  loadFavorites: (dataFavorites) => {
+    const offers = Adapter.getOffers(dataFavorites);
+    return {
+      type: ActionType.LOAD_FAVORITES,
+      payload: offers,
+    };
+  },
   loadReviews: (dataReviews) => {
     const reviews = Adapter.loadReviews(dataReviews);
     return {

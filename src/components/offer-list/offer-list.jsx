@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator/action-creator';
 import OfferCard from '../offer-card/offer-card';
 import Operation from '../../operation/operation';
+import {getClassOfferCardName} from '../../utils';
 
 class OfferList extends PureComponent {
   constructor(props) {
@@ -14,11 +15,9 @@ class OfferList extends PureComponent {
   }
 
   render() {
-    const {offers, isNearPlace, activeOfferMouseEnterHandler, deactiveOfferMouseLeaveHandler} = this.props;
-    return <div className={isNearPlace ?
-      `near-places__list places__list` :
-      `cities__places-list places__list tabs__content`}
-    >
+    const {offers, classOfferCard, activeOfferMouseEnterHandler, deactiveOfferMouseLeaveHandler} = this.props;
+    const classCard = getClassOfferCardName(classOfferCard);
+    return <div className={classCard.list}>
       {offers.map((offer) => <OfferCard
         offerId={offer.id}
         offer={offer}
@@ -26,7 +25,7 @@ class OfferList extends PureComponent {
         activeOfferMouseEnterHandler={activeOfferMouseEnterHandler}
         deactiveOfferMouseLeaveHandler={deactiveOfferMouseLeaveHandler}
         changeFavoriteOfferClickHandler={this._changeFavoriteOfferClickHandler}
-        isNearPlace
+        classCard={classCard}
       />)}
     </div>;
   }
@@ -43,16 +42,12 @@ class OfferList extends PureComponent {
 
 OfferList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  isNearPlace: PropTypes.bool,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
   deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
   changeOfferFavorite: PropTypes.func.isRequired,
   getLogin: PropTypes.func.isRequired,
   login: PropTypes.any,
-};
-
-OfferList.defaultProps = {
-  isNearPlace: false
+  classOfferCard: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

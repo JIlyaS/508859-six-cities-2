@@ -9,6 +9,7 @@ export const ActionType = {
   ADD_LOGIN: `ADD_LOGIN`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   UPDATE_FAVORITE_OFFER: `UPDATE_FAVORITE_OFFER`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
 };
 export const RATINGS = [
   {title: `perfect`, stars: `5`},
@@ -20,7 +21,14 @@ export const RATINGS = [
 export const PageNames = {
   SIGN: `sign`,
   MAIN: `main`,
-  DETAIL: `detail`
+  DETAIL: `detail`,
+  FAVORITES: `favorites`,
+  FAVORITES_EMPTY: `favorites_empty`
+};
+export const OfferCardNames = {
+  MAIN_OFFER: `main_offer`,
+  DETAIL_OFFER: `detail_offer`,
+  FAVORITE_OFFER: `favorite_offer`,
 };
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;

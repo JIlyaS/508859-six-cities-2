@@ -1,4 +1,4 @@
-import {RATING_PERSENT, MAX_RATING_COUNT, MAX_NEARBY_OFFER, SortNames, PageNames} from './constants';
+import {RATING_PERSENT, MAX_RATING_COUNT, MAX_NEARBY_OFFER, SortNames, PageNames, OfferCardNames} from './constants';
 
 export const firstUpperCase = (word) => {
   return word[0].toUpperCase() + word.slice(1);
@@ -62,6 +62,37 @@ export const getClassPageName = (pageName) => {
       return `page page--gray page--main`;
     case PageNames.DETAIL:
       return `page`;
+    case PageNames.FAVORITES:
+      return `page`;
+    case PageNames.FAVORITES_EMPTY:
+      return `page page--favorites-empty`;
+    default:
+      return null;
+  }
+};
+
+export const getClassOfferCardName = (offerCardName) => {
+  switch (offerCardName) {
+    case OfferCardNames.MAIN_OFFER:
+      return {
+        list: `cities__places-list places__list tabs__content`,
+        card: `cities__place-`,
+        wrapper: `cities`,
+        info: ``,
+      };
+    case OfferCardNames.DETAIL_OFFER:
+      return {
+        list: `near-places__list places__list`,
+        card: `near-places__`,
+        wrapper: `near-places`,
+        info: ``,
+      };
+    case OfferCardNames.FAVORITE_OFFER:
+      return {
+        card: `favorites__`,
+        wrapper: `favorites`,
+        info: `favorites__card-info`,
+      };
     default:
       return null;
   }

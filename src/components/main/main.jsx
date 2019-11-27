@@ -15,6 +15,7 @@ import {
   getActiveCityCoordinate
 } from "../../utils";
 import {getCurrentCityOffers} from '../../selectors/selectors';
+import {OfferCardNames} from '../../constants';
 
 const SortListWrapped = withSortList(SortList);
 
@@ -49,7 +50,7 @@ class Main extends PureComponent {
                     {currentOffers.length} places to stay in {city}
                   </b>
                   <SortListWrapped />
-                  <OfferList offers={currentOffers} />
+                  <OfferList offers={currentOffers} classOfferCard={OfferCardNames.MAIN_OFFER} />
                 </section>
                 <div className="cities__right-section">
                   <section className="cities__map map">

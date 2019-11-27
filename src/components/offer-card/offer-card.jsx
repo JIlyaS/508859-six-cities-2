@@ -11,23 +11,30 @@ const OfferCard = (props) => {
     activeOfferMouseEnterHandler,
     deactiveOfferMouseLeaveHandler,
     changeFavoriteOfferClickHandler,
-    isNearPlace
+    classCard,
+    isFavoriteOffer,
   } = props;
 
   return <article
-    className={`${isNearPlace ? `near-places__` : `cities__place-`}card place-card`}
+    className={`${classCard.card}card place-card`}
     onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}
     onMouseLeave={deactiveOfferMouseLeaveHandler}
   >
-    {isPremium && <div className="place-card__mark">
+    {!isFavoriteOffer && isPremium && <div className="place-card__mark">
       <span>Premium</span>
     </div>}
-    <div className={`${isNearPlace ? `near-places` : `cities`}__image-wrapper place-card__image-wrapper`}>
+    <div className={`${classCard.wrapper}__image-wrapper place-card__image-wrapper`}>
       <a href="#">
-        <img className="place-card__image" src={img} width="260" height="200" alt="Place image" />
+        <img
+          className="place-card__image"
+          src={img}
+          width={isFavoriteOffer ? `150` : `260`}
+          height={isFavoriteOffer ? `110` : `200`}
+          alt="Place image"
+        />
       </a>
     </div>
-    <div className="place-card__info">
+    <div className={`${classCard.info} place-card__info`}>
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
           <b className="place-card__price-value">&euro;{price}</b>
@@ -72,11 +79,16 @@ OfferCard.propTypes = {
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
   deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
   changeFavoriteOfferClickHandler: PropTypes.func.isRequired,
-  isNearPlace: PropTypes.bool
+  classCard: PropTypes.shape({
+    card: PropTypes.string.isRequired,
+    wrapper: PropTypes.string.isRequired,
+    info: PropTypes.string.isRequired,
+  }).isRequired,
+  isFavoriteOffer: PropTypes.bool,
 };
 
 OfferCard.defaultProps = {
-  isNearPlace: false
+  isFavoriteOffer: false
 };
 
 export default OfferCard;

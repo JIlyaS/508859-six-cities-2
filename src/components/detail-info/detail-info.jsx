@@ -10,6 +10,7 @@ import PageLayout from '../page-layout/page-layout';
 import withCommentForm from '../../hocs/with-comment-form/with-comment-form';
 import {getMapCoordinates, convertRating, getOtherCityOffers} from '../../utils';
 import Operation from '../../operation/operation';
+import {OfferCardNames} from '../../constants';
 
 const CommentFormWrapped = withCommentForm(CommentForm);
 
@@ -182,7 +183,7 @@ class DetailInfo extends PureComponent {
               <h2 className="near-places__title">
                 Other places in the neighbourhood
               </h2>
-              <OfferList offers={otherOffers} isNearPlace />
+              <OfferList offers={otherOffers} classOfferCard={OfferCardNames.DETAIL_OFFER} />
             </section>
           </div>
         </main>

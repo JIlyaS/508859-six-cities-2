@@ -4,6 +4,7 @@ const initialState = {
   offers: [],
   login: null,
   reviews: [],
+  favorites: [],
 };
 
 const appReducer = (state = initialState, action) => {
@@ -23,6 +24,10 @@ const appReducer = (state = initialState, action) => {
     case ActionType.UPDATE_FAVORITE_OFFER:
       return Object.assign({}, state, {
         offers: [...state.offers.slice(0, action.payload.id - 1), action.payload, ...state.offers.slice(action.payload.id)]
+      });
+    case ActionType.LOAD_FAVORITES:
+      return Object.assign({}, state, {
+        favorites: action.payload
       });
     default:
       return state;

@@ -35,7 +35,7 @@ const Header = (props) => {
                 </Link>
               ) : (
                 <Link
-                  to="/"
+                  to="/favorites"
                   className="header__nav-link header__nav-link--profile"
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>

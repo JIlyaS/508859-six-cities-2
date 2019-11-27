@@ -8,6 +8,12 @@ const Operation = {
         dispatch(ActionCreator.loadOffers(response.data));
       });
   },
+  loadFavorites: () => (dispatch, _, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFavorites(response.data));
+      });
+  },
   changeOfferFavorite: (hotelId, status) => (dispatch, _, api) => {
     return api.post(`/favorite/${hotelId}/${status}`, {})
       .then((response) => {

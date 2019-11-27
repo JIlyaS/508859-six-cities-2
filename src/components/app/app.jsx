@@ -6,6 +6,7 @@ import compose from 'recompose/compose';
 
 import Main from '../main/main';
 import SignIn from '../sign-in/sign-in';
+import FavoritesList from '../favorites-list/favorites-list';
 import DetailInfo from '../detail-info/detail-info';
 import withSignIn from '../../hocs/with-sign-in/with-sign-in';
 import Operation from '../../operation/operation';
@@ -34,6 +35,7 @@ class App extends PureComponent {
         <Route path="/" component={Main} exact />
         <Route path="/login" component={SignInWrapped} exact />
         <Route path="/offer/:offerId" component={DetailInfo} exact />
+        <Route path="/favorites" component={FavoritesList} exact />
       </Switch>
     );
   }
