@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Switch, Route} from 'react-router-dom';
-import compose from 'recompose/compose';
 
 import Main from '../main/main';
 import SignIn from '../sign-in/sign-in';
@@ -10,22 +9,10 @@ import FavoritesList from '../favorites-list/favorites-list';
 import DetailInfo from '../detail-info/detail-info';
 import withSignIn from '../../hocs/with-sign-in/with-sign-in';
 import Operation from '../../operation/operation';
+import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 import {PageNames} from '../../constants';
 
-const SignInWrapped = compose(withSignIn)(SignIn, PageNames.SIGN);
-
-// const PrivateRoute = (({component: Component}, ...rest) => (
-//   <Route
-//     {...rest}
-//     render={
-//       (props) => props.isAuthorizationRequired ? (
-//         <Component {...props} />
-//       ) : (
-//         <Redirect to="/login" />
-//       )
-//     }
-//   />
-// ));
+const SignInWrapped = withSignIn(SignIn, PageNames.SIGN);
 
 class App extends PureComponent {
 
@@ -35,7 +22,7 @@ class App extends PureComponent {
         <Route path="/" component={Main} exact />
         <Route path="/login" component={SignInWrapped} exact />
         <Route path="/offer/:offerId" component={DetailInfo} exact />
-        <Route path="/favorites" component={FavoritesList} exact />
+        <Route path="/favorites" component={withPrivateRoute(FavoritesList)} exact />
       </Switch>
     );
   }
@@ -46,10 +33,6 @@ class App extends PureComponent {
   }
 }
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  // isAuthorizationRequired: state.userReducer.isAuthorizationRequired
-});
-
 const mapDispatchToProps = (dispatch) => ({
   loadOffers: () => {
     dispatch(Operation.loadOffers());
@@ -58,9 +41,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 App.propTypes = {
   loadOffers: PropTypes.func.isRequired,
-  // isAuthorizationRequired: PropTypes.bool.isRequired,
 };
 
 export {App};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

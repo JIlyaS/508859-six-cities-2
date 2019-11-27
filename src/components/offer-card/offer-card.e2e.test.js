@@ -22,7 +22,12 @@ it(`OfferCard correct callback function`, () => {
     offerId={0}
     activeOfferMouseEnterHandler={offerMouseEnterHandler}
     deactiveOfferMouseLeaveHandler={offerMouseLeaveHandler}
-    isNearPlace={true}
+    classCard={{
+      list: ``,
+      card: ``,
+      wrapper: ``,
+      info: ``
+    }}
     changeFavoriteOfferClickHandler={() => {}}
   />);
 

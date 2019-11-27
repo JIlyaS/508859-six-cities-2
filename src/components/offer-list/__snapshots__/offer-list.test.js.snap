@@ -2,13 +2,21 @@
 
 exports[`OfferList correctly renders after relaunch 1`] = `
 <div
-  className="near-places__list places__list"
+  className="cities__places-list places__list tabs__content"
 >
   <OfferCard
     activeOfferMouseEnterHandler={[Function]}
     changeFavoriteOfferClickHandler={[Function]}
+    classCard={
+      Object {
+        "card": "cities__place-",
+        "info": "",
+        "list": "cities__places-list places__list tabs__content",
+        "wrapper": "cities",
+      }
+    }
     deactiveOfferMouseLeaveHandler={[Function]}
-    isNearPlace={true}
+    isFavoriteOffer={false}
     key="0"
     offer={
       Object {

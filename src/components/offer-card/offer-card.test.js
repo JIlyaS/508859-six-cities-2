@@ -38,7 +38,12 @@ it(`OfferCard correctly renders after relaunch`, () => {
     deactiveOfferMouseLeaveHandler={() => {}}
     cardTitleClickHandler={() => {}}
     changeFavoriteOfferClickHandler={() => {}}
-    isNearPlace={true}
+    classCard={{
+      list: ``,
+      card: ``,
+      wrapper: ``,
+      info: ``
+    }}
   />, createContext());
 
   expect(toJSON(tree)).toMatchSnapshot();

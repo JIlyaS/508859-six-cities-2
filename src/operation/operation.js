@@ -11,13 +11,16 @@ const Operation = {
   loadFavorites: () => (dispatch, _, api) => {
     return api.get(`/favorite`)
       .then((response) => {
-        dispatch(ActionCreator.loadFavorites(response.data));
+        if (response) {
+          dispatch(ActionCreator.loadFavorites(response.data));
+        }
       });
   },
   changeOfferFavorite: (hotelId, status) => (dispatch, _, api) => {
     return api.post(`/favorite/${hotelId}/${status}`, {})
       .then((response) => {
         dispatch(ActionCreator.updateFavoriteOffer(response.data));
+        dispatch(Operation.loadFavorites());
       });
   },
   checkLogin: (email, password) => (dispatch, _, api) => {

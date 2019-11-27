@@ -6,26 +6,13 @@ import {
   DEFAULT_LOGIN,
   MOCK_DATA_COMMENTS_SERVER,
   MOCK_DATA_COMMENTS_ADAPTER,
+  MOCK_DATA_UPDATED_FAVORITE_SERVER,
+  MOCK_DATA_UPDATED_FAVORITE,
   DEFAULT_COMMENT,
   ActionType
 } from '../constants';
 import {configureAPI} from '../api';
 import Operation from '../operation/operation';
-
-// const mockApi = jest.genMockFromModule(`../api`);
-
-// mockApi.get = jest.fn(() => {
-//   return Promise.resolve({
-//     data: MOCK_DATA_SERVER
-//   });
-// });
-
-// mockApi.post = jest.fn(() => {
-//   return Promise.resolve({
-//     data: DEFAULT_LOGIN
-//   });
-// });
-
 
 describe(`Reducer load data work correctly`, () => {
   it(`Should make a correct API call to /hotels`, () => {
@@ -100,6 +87,23 @@ describe(`Reducer post data work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_REVIEWS,
           payload: MOCK_DATA_COMMENTS_ADAPTER
+        });
+      });
+  });
+  it(`Should make a correct post API call to /favorite`, () => {
+    const dispatch = jest.fn();
+    const api = configureAPI(dispatch);
+    const apiMock = new MockAdapter(api);
+    const offerLoader = Operation.loadFavorites();
+
+    apiMock.onGet(`/favorite`).reply(200, MOCK_DATA_UPDATED_FAVORITE_SERVER);
+
+    return offerLoader(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_FAVORITES,
+          payload: MOCK_DATA_UPDATED_FAVORITE
         });
       });
   });

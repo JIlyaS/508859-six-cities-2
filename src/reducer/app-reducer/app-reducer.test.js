@@ -14,6 +14,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: null,
       reviews: [],
+      favorites: [],
     });
   });
   it(`Reducer should load offers by a given value`, () => {
@@ -21,6 +22,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: null,
       reviews: [],
+      favorites: [],
     }, {
       type: `LOAD_OFFERS`,
       payload: DEFAULT_OFFERS
@@ -28,6 +30,7 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       login: null,
       reviews: [],
+      favorites: [],
     });
   });
   it(`Reducer should load offers empty array by a given value`, () => {
@@ -35,6 +38,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: null,
       reviews: [],
+      favorites: [],
     }, {
       type: `LOAD_OFFERS`,
       payload: []
@@ -42,6 +46,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: null,
       reviews: [],
+      favorites: [],
     });
   });
   it(`Reducer should add login by a given value`, () => {
@@ -49,6 +54,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: null,
       reviews: [],
+      favorites: [],
     }, {
       type: `ADD_LOGIN`,
       payload: DEFAULT_LOGIN
@@ -56,6 +62,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: DEFAULT_LOGIN,
       reviews: [],
+      favorites: [],
     });
   });
   it(`Reducer should add login empty array by a given value`, () => {
@@ -63,6 +70,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: DEFAULT_LOGIN,
       reviews: [],
+      favorites: [],
     }, {
       type: `ADD_LOGIN`,
       payload: null
@@ -70,6 +78,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: null,
       reviews: [],
+      favorites: [],
     });
   });
   it(`Reducer should load reviews by a given value`, () => {
@@ -77,6 +86,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: null,
       reviews: [],
+      favorites: [],
     }, {
       type: `LOAD_REVIEWS`,
       payload: DEFAULT_REVIEW
@@ -84,6 +94,7 @@ describe(`Reducer work correctly`, () => {
       offers: [],
       login: null,
       reviews: DEFAULT_REVIEW,
+      favorites: [],
     });
   });
   it(`Reducer should load reviews empty array by a given value`, () => {
@@ -91,6 +102,7 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       login: DEFAULT_LOGIN,
       reviews: [],
+      favorites: [],
     }, {
       type: `LOAD_REVIEWS`,
       payload: null
@@ -98,6 +110,7 @@ describe(`Reducer work correctly`, () => {
       offers: DEFAULT_OFFERS,
       login: DEFAULT_LOGIN,
       reviews: null,
+      favorites: [],
     });
   });
   it(`Reducer should update offer by a given value`, () => {
@@ -105,6 +118,7 @@ describe(`Reducer work correctly`, () => {
       offers: MOCK_DATA_ADAPTER,
       login: null,
       reviews: [],
+      favorites: [],
     }, {
       type: `UPDATE_FAVORITE_OFFER`,
       payload: DEFAULT_OFFER_UPDATED_FAVORITE
@@ -112,6 +126,39 @@ describe(`Reducer work correctly`, () => {
       offers: MOCK_DATA_UPDATED_FAVORITE,
       login: null,
       reviews: [],
+      favorites: [],
+    });
+  });
+  it(`Reducer should load favorites by a given value`, () => {
+    expect(reducer({
+      offers: MOCK_DATA_UPDATED_FAVORITE,
+      login: null,
+      reviews: [],
+      favorites: [],
+    }, {
+      type: `LOAD_FAVORITES`,
+      payload: MOCK_DATA_UPDATED_FAVORITE
+    })).toEqual({
+      offers: MOCK_DATA_UPDATED_FAVORITE,
+      login: null,
+      reviews: [],
+      favorites: MOCK_DATA_UPDATED_FAVORITE,
+    });
+  });
+  it(`Reducer should load favorites empty array by a given value`, () => {
+    expect(reducer({
+      offers: MOCK_DATA_ADAPTER,
+      login: null,
+      reviews: [],
+      favorites: [],
+    }, {
+      type: `LOAD_FAVORITES`,
+      payload: []
+    })).toEqual({
+      offers: MOCK_DATA_ADAPTER,
+      login: null,
+      reviews: [],
+      favorites: [],
     });
   });
 });

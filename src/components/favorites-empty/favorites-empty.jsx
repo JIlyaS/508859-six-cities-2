@@ -24,4 +24,6 @@ const FavoritesEmpty = () => {
   </PageLayout>;
 };
 
+export {FavoritesEmpty};
+
 export default FavoritesEmpty;

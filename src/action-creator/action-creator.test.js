@@ -4,6 +4,8 @@ import {
   MOCK_DATA_ADAPTER,
   MOCK_DATA_COMMENTS_ADAPTER,
   MOCK_DATA_COMMENTS_SERVER,
+  MOCK_DATA_UPDATED_FAVORITE_SERVER,
+  MOCK_DATA_UPDATED_FAVORITE,
   MOCK_DATA_SERVER,
   DEFAULT_OFFER_SERVER,
   DEFAULT_OFFER_ADAPTER
@@ -146,6 +148,18 @@ describe(`Action creators work correctly`, () => {
     expect(ActionCreator.updateFavoriteOffer(DEFAULT_OFFER_SERVER)).toEqual({
       type: `UPDATE_FAVORITE_OFFER`,
       payload: DEFAULT_OFFER_ADAPTER
+    });
+  });
+  it(`Action creator for load favorites returns action with array data payload`, () => {
+    expect(ActionCreator.loadFavorites(MOCK_DATA_UPDATED_FAVORITE_SERVER)).toEqual({
+      type: `LOAD_FAVORITES`,
+      payload: MOCK_DATA_UPDATED_FAVORITE
+    });
+  });
+  it(`Action creator for load favorites returns action with empty data payload`, () => {
+    expect(ActionCreator.loadFavorites([])).toEqual({
+      type: `LOAD_FAVORITES`,
+      payload: []
     });
   });
 });

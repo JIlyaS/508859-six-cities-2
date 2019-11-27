@@ -34,11 +34,17 @@ it(`OfferList correctly renders after relaunch`, () => {
       isPremium: false,
       isFavorite: false,
     }]}
-    isNearPlace={true}
     activeOfferMouseEnterHandler={() => {}}
     deactiveOfferMouseLeaveHandler={() => {}}
     changeOfferFavorite={() => {}}
     getLogin={() => {}}
+    classOfferCard="main_offer"
+    classCard={{
+      list: ``,
+      card: ``,
+      wrapper: ``,
+      info: ``
+    }}
   />, createContext());
 
   expect(toJSON(tree)).toMatchSnapshot();

@@ -33,5 +33,10 @@ exports[`App correctly renders after relaunch 1`] = `
     exact={true}
     path="/offer/:offerId"
   />
+  <Route
+    component={[Function]}
+    exact={true}
+    path="/favorites"
+  />
 </Switch>
 `;
