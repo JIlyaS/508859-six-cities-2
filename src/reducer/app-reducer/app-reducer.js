@@ -1,6 +1,8 @@
 import {ActionType} from '../../constants';
 
 const initialState = {
+  isOffersFetching: false,
+  isFavoritesFetching: false,
   offers: [],
   login: null,
   reviews: [],
@@ -11,7 +13,12 @@ const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return Object.assign({}, state, {
-        offers: action.payload
+        offers: action.payload,
+        isOffersFetching: false,
+      });
+    case ActionType.REQUEST_OFFERS:
+      return Object.assign({}, state, {
+        isOffersFetching: true
       });
     case ActionType.ADD_LOGIN:
       return Object.assign({}, state, {
@@ -27,7 +34,12 @@ const appReducer = (state = initialState, action) => {
       });
     case ActionType.LOAD_FAVORITES:
       return Object.assign({}, state, {
-        favorites: action.payload
+        favorites: action.payload,
+        isFavoritesFetching: false,
+      });
+    case ActionType.REQUEST_FAVORITES:
+      return Object.assign({}, state, {
+        isFavoritesFetching: true
       });
     default:
       return state;

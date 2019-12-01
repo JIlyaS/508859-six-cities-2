@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator/action-creator';
 import OfferCard from '../offer-card/offer-card';
 import Operation from '../../operation/operation';
-import {getClassOfferCardName} from '../../utils';
+import {getClassOfferCardName, getLocalStorageLogin} from '../../utils';
 
 class OfferList extends PureComponent {
   constructor(props) {
@@ -31,8 +31,9 @@ class OfferList extends PureComponent {
   }
 
   _changeFavoriteOfferClickHandler(offerId, isFavorite) {
-    const {changeOfferFavorite, getLogin, login} = this.props;
+    const {changeOfferFavorite, getLogin} = this.props;
     getLogin();
+    const login = getLocalStorageLogin();
     if (login) {
       const status = isFavorite === true ? 0 : 1;
       changeOfferFavorite(offerId, status);
@@ -46,13 +47,11 @@ OfferList.propTypes = {
   deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
   changeOfferFavorite: PropTypes.func.isRequired,
   getLogin: PropTypes.func.isRequired,
-  login: PropTypes.any,
   classOfferCard: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeOfferCard: state.userReducer.activeOfferCard,
-  login: state.appReducer.login
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,6 +2,7 @@ import ActionCreator from '../action-creator/action-creator';
 
 const Operation = {
   loadOffers: () => (dispatch, _, api) => {
+    dispatch(ActionCreator.requestOffers());
     return api.get(`/hotels`)
       .then((response) => {
         dispatch(ActionCreator.changeCity(response.data[0].city.name));
@@ -9,6 +10,7 @@ const Operation = {
       });
   },
   loadFavorites: () => (dispatch, _, api) => {
+    dispatch(ActionCreator.requestFavorites());
     return api.get(`/favorite`)
       .then((response) => {
         if (response) {
@@ -29,6 +31,9 @@ const Operation = {
       password
     })
       .then((response) => {
+        const serializeLogin = JSON.stringify(response.data);
+        localStorage.setItem(`login`, serializeLogin);
+
         dispatch(ActionCreator.requireAuthorization(false));
         dispatch(ActionCreator.addLogin(response.data));
       });

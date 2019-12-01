@@ -41,6 +41,9 @@ const ActionCreator = {
       payload: offers,
     };
   },
+  requestOffers: () => ({
+    type: ActionType.REQUEST_OFFERS
+  }),
   loadFavorites: (dataFavorites) => {
     const offers = Adapter.getOffers(dataFavorites);
     return {
@@ -48,6 +51,9 @@ const ActionCreator = {
       payload: offers,
     };
   },
+  requestFavorites: () => ({
+    type: ActionType.REQUEST_FAVORITES
+  }),
   loadReviews: (dataReviews) => {
     const reviews = Adapter.loadReviews(dataReviews);
     return {

@@ -35,9 +35,14 @@ export const getMapCoordinates = (offers, activeOfferCard) => {
   return otherOfferCards.map((offer) => offer.location);
 };
 
-export const getActiveCityCoordinate = (offers) => ({
-  coordinateCity: offers[0].city.location,
-});
+export const getActiveCityCoordinate = (offers) => {
+  if (offers.length === 0) {
+    return ``;
+  }
+  return {
+    coordinateCity: offers[0].city.location,
+  };
+};
 
 export const shuffleElements = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -49,7 +54,10 @@ export const shuffleElements = (array) => {
 
 export const getOtherCityOffers = (id, offers) => {
   const currentOffer = offers.find((offer) => offer.id === Number(id));
-  const otherOffers = offers.filter((offer) => offer.city.name === currentOffer.city.name).slice(0, MAX_NEARBY_OFFER);
+  const otherOffers = offers
+    .filter((offer) => offer.city.name === currentOffer.city.name)
+    .filter((offer) => offer.id !== currentOffer.id)
+    .slice(0, MAX_NEARBY_OFFER);
 
   return otherOffers;
 };
@@ -96,4 +104,8 @@ export const getClassOfferCardName = (offerCardName) => {
     default:
       return null;
   }
+};
+
+export const getLocalStorageLogin = () => {
+  return JSON.parse(localStorage.getItem(`login`));
 };

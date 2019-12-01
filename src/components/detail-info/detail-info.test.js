@@ -23,7 +23,6 @@ it(`DetailInfo correctly renders after relaunch`, () => {
     login={DEFAULT_LOGIN}
     loadReviews={() => {}}
     changeOfferFavorite={() => {}}
-    getLogin={() => {}}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

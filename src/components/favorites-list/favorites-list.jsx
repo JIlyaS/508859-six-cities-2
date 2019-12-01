@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import PageLayout from '../page-layout/page-layout';
 import Operation from '../../operation/operation';
 import OfferCard from '../offer-card/offer-card';
+import Preloader from '../preloader/preloader';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import {getClassOfferCardName} from '../../utils';
 import {OfferCardNames} from '../../constants';
@@ -18,49 +19,52 @@ class FavoritesList extends PureComponent {
   }
 
   render() {
-    const {favoriteOffers} = this.props;
-
-    if (!favoriteOffers.length) {
-      return <FavoritesEmpty />;
-    }
+    const {isFavoritesFetching, favoriteOffers} = this.props;
+    const isFavoritesLoading = isFavoritesFetching && favoriteOffers.length === 0;
 
     const favoriteCities = [...new Set(favoriteOffers.map((offer) => offer.city.name))];
     const classCard = getClassOfferCardName(OfferCardNames.FAVORITE_OFFER);
 
+    if (isFavoritesLoading) {
+      return <Preloader />;
+    }
+
     return <PageLayout pageName="favorites">
       <Fragment>
-        <main className="page__main page__main--favorites">
-          <div className="page__favorites-container container">
-            <section className="favorites">
-              <h1 className="favorites__title">Saved listing</h1>
-              <ul className="favorites__list">
-                {favoriteCities.map((city, index) => (
-                  <li className="favorites__locations-items" key={`${city}-${index}`}>
-                    <div className="favorites__locations locations locations--current">
-                      <div className="locations__item">
-                        <a className="locations__item-link" href="#">
-                          <span>{city}</span>
-                        </a>
+        {
+          !favoriteOffers.length ? <FavoritesEmpty /> : <main className="page__main page__main--favorites">
+            <div className="page__favorites-container container">
+              <section className="favorites">
+                <h1 className="favorites__title">Saved listing</h1>
+                <ul className="favorites__list">
+                  {favoriteCities.map((city, index) => (
+                    <li className="favorites__locations-items" key={`${city}-${index}`}>
+                      <div className="favorites__locations locations locations--current">
+                        <div className="locations__item">
+                          <a className="locations__item-link" href="#">
+                            <span>{city}</span>
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                    <div className="favorites__places">
-                      {favoriteOffers.filter((offer) => offer.city.name === city).map((offer) => <OfferCard
-                        offerId={offer.id}
-                        offer={offer}
-                        key={offer.id}
-                        activeOfferMouseEnterHandler={() => {}}
-                        deactiveOfferMouseLeaveHandler={() => {}}
-                        changeFavoriteOfferClickHandler={this._changeFavoriteOfferClickHandler}
-                        classCard={classCard}
-                        isFavoriteOffer
-                      />)}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </div>
-        </main>
+                      <div className="favorites__places">
+                        {favoriteOffers.filter((offer) => offer.city.name === city).map((offer) => <OfferCard
+                          offerId={offer.id}
+                          offer={offer}
+                          key={offer.id}
+                          activeOfferMouseEnterHandler={() => {}}
+                          deactiveOfferMouseLeaveHandler={() => {}}
+                          changeFavoriteOfferClickHandler={this._changeFavoriteOfferClickHandler}
+                          classCard={classCard}
+                          isFavoriteOffer
+                        />)}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
+          </main>
+        }
         <footer className="footer container">
           <Link to="/" className="footer__logo-link">
             <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
@@ -84,6 +88,7 @@ class FavoritesList extends PureComponent {
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   favoriteOffers: state.appReducer.favorites,
+  isFavoritesFetching: state.appReducer.isFavoritesFetching,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -94,6 +99,7 @@ const mapDispatchToProps = (dispatch) => ({
 FavoritesList.propTypes = {
   favoriteOffers: PropTypes.array.isRequired,
   loadFavorites: PropTypes.func.isRequired,
+  isFavoritesFetching: PropTypes.bool.isRequired,
   changeOfferFavorite: PropTypes.func.isRequired,
 };
 

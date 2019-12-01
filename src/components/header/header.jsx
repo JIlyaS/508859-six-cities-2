@@ -3,8 +3,11 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import {getLocalStorageLogin} from '../../utils';
+
 const Header = (props) => {
-  const {login, isAuthorizationRequired} = props;
+  const {isAuthorizationRequired} = props;
+  const login = getLocalStorageLogin();
   return <header className="header">
     <div className="container">
       <div className="header__wrapper">
@@ -54,14 +57,10 @@ const Header = (props) => {
 
 Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  login: PropTypes.shape({
-    email: PropTypes.string,
-  }),
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isAuthorizationRequired: state.userReducer.isAuthorizationRequired,
-  login: state.appReducer.login,
 });
 
 export {Header};

@@ -1,5 +1,4 @@
 import moment from 'moment';
-import {shuffleElements} from './utils';
 
 class Adapter {
   static getOffers(offers) {
@@ -26,7 +25,7 @@ class Adapter {
       title: offer.title,
       type: offer.type,
       rating: Math.round(offer.rating),
-      photos: (shuffleElements(offer.images)).slice(0, 6),
+      photos: (offer.images).slice(0, 6),
       location: {
         coordinate: [offer.location.latitude, offer.location.longitude],
         zoom: offer.location.zoom,

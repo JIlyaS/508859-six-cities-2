@@ -10,6 +10,7 @@ const configureAPI = (onLoginFail) => {
   const onSuccess = (response) => response;
   const onFail = (err) => {
     if (err.response.status === 401) {
+      localStorage.removeItem(`login`);
       onLoginFail();
       return;
     }
