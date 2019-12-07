@@ -37,6 +37,7 @@ it(`OfferList correctly renders after relaunch`, () => {
     activeOfferMouseEnterHandler={() => {}}
     deactiveOfferMouseLeaveHandler={() => {}}
     changeOfferFavorite={() => {}}
+    getLogin={() => {}}
     classOfferCard="main_offer"
     classCard={{
       list: ``,

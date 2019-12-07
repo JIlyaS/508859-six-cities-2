@@ -14,7 +14,16 @@ it(`CommentForm correctly renders after relaunch`, () => {
     comment={DEFAULT_COMMENT}
     addReview={() => {}}
     addValueFormChangeHandler={() => {}}
+    getDefaultForm={() => {}}
+    resetFormSubmitHandler={() => {}}
     idHotel="1"
+    refSubmitBtn={null}
+    formSubmit={{
+      blockedInput: false,
+      error: false,
+      blockedSubmit: true,
+      submit: false
+    }}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

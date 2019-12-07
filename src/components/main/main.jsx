@@ -28,47 +28,49 @@ class Main extends PureComponent {
     const currentOffers = sortOfferList(offers, activeSortName);
     const coordinates = getMapCoordinates(currentOffers, activeOfferCard);
     const activeCityCoordinate = getActiveCityCoordinate(currentOffers);
+    if (isOffersLoading) {
+      return <Preloader />;
+    }
+
     return (
       <PageLayout pageName="main">
         <main
           className={`page__main page__main--index ${currentOffers.length ===
             0 && `page__main--index-empty`}`}
         >
-          {
-            isOffersLoading ? <Preloader /> : <Fragment><h1 className="visually-hidden">Cities</h1>
-              <div className="tabs">
-                <section className="locations container">
-                  <CityList />
-                </section>
-              </div>
-              <div className="cities">
-                {currentOffers.length ? (
-                  <div className="cities__places-container container">
-                    <section className="cities__places places">
-                      <h2 className="visually-hidden">Places</h2>
-                      <b className="places__found">
-                        {currentOffers.length} places to stay in {city}
-                      </b>
-                      <SortListWrapped />
-                      <OfferList offers={currentOffers} classOfferCard={OfferCardNames.MAIN_OFFER} />
+          <Fragment><h1 className="visually-hidden">Cities</h1>
+            <div className="tabs">
+              <section className="locations container">
+                <CityList />
+              </section>
+            </div>
+            <div className="cities">
+              {currentOffers.length ? (
+                <div className="cities__places-container container">
+                  <section className="cities__places places">
+                    <h2 className="visually-hidden">Places</h2>
+                    <b className="places__found">
+                      {currentOffers.length} places to stay in {city}
+                    </b>
+                    <SortListWrapped />
+                    <OfferList offers={currentOffers} classOfferCard={OfferCardNames.MAIN_OFFER} />
+                  </section>
+                  <div className="cities__right-section">
+                    <section className="cities__map map">
+                      <Map
+                        activeCityCoordinate={activeCityCoordinate.coordinateCity}
+                        coordinates={coordinates}
+                        activeCoordinate={activeOfferCard.location}
+                        city={city}
+                      />
                     </section>
-                    <div className="cities__right-section">
-                      <section className="cities__map map">
-                        <Map
-                          activeCityCoordinate={activeCityCoordinate.coordinateCity}
-                          coordinates={coordinates}
-                          activeCoordinate={activeOfferCard.location}
-                          city={city}
-                        />
-                      </section>
-                    </div>
                   </div>
-                ) : (
-                  <MainEmpty />
-                )}
-              </div>
-            </Fragment>
-          }
+                </div>
+              ) : (
+                <MainEmpty />
+              )}
+            </div>
+          </Fragment>
         </main>
       </PageLayout>
     );

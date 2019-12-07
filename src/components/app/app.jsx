@@ -1,7 +1,9 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, Fragment} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Switch, Route} from 'react-router-dom';
+import ReactNotification from 'react-notifications-component';
+import '../../../node_modules/react-notifications-component/dist/theme.css';
 
 import Main from '../main/main';
 import SignIn from '../sign-in/sign-in';
@@ -20,12 +22,15 @@ class App extends PureComponent {
     const FavoritesListWrapper = withPrivateRoute(FavoritesList, !isAuthorizationRequired, `/login`);
 
     return (
-      <Switch>
-        <Route path="/" component={Main} exact />
-        <Route path="/login" component={SignInWrapped} exact />
-        <Route path="/offer/:offerId" component={DetailInfo} exact />
-        <Route path="/favorites" component={FavoritesListWrapper} exact />
-      </Switch>
+      <Fragment>
+        <ReactNotification />
+        <Switch>
+          <Route path="/" component={Main} exact />
+          <Route path="/login" component={SignInWrapped} exact />
+          <Route path="/offer/:offerId" component={DetailInfo} exact />
+          <Route path="/favorites" component={FavoritesListWrapper} exact />
+        </Switch>
+      </Fragment>
     );
   }
 
@@ -33,7 +38,7 @@ class App extends PureComponent {
     const {loadOffers, requireAuthorization} = this.props;
     loadOffers();
     if (localStorage.getItem(`login`)) {
-      requireAuthorization();
+      requireAuthorization(false);
     }
   }
 }
@@ -44,7 +49,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 
 const mapDispatchToProps = (dispatch) => ({
   loadOffers: () => dispatch(Operation.loadOffers()),
-  requireAuthorization: () => dispatch(ActionCreator.requireAuthorization(false)),
+  requireAuthorization: (auth) => dispatch(ActionCreator.requireAuthorization(auth)),
 });
 
 App.propTypes = {

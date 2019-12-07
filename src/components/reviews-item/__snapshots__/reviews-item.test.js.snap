@@ -54,7 +54,7 @@ exports[`ReviewsItem correctly renders after relaunch 1`] = `
     </p>
     <time
       className="reviews__time"
-      dateTime="2019-04-24"
+      dateTime="2019-11-10"
     >
       November 2019
     </time>

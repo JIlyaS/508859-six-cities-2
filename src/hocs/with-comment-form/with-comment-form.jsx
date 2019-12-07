@@ -5,11 +5,13 @@ const withCommentForm = (Component) => {
     constructor(props) {
       super(props);
       this.state = {
-        rating: `0`,
+        rating: ``,
         comment: ``
       };
+      this.refSubmitBtn = React.createRef();
 
       this._addValueFormChangeHandler = this._addValueFormChangeHandler.bind(this);
+      this._resetFormSubmitHandler = this._resetFormSubmitHandler.bind(this);
     }
 
     render() {
@@ -17,14 +19,30 @@ const withCommentForm = (Component) => {
 
       return <Component
         {...this.props}
+        refSubmitBtn={this.refSubmitBtn}
         rating={rating}
         comment={comment}
         addValueFormChangeHandler={this._addValueFormChangeHandler}
+        resetFormSubmitHandler={this._resetFormSubmitHandler}
       />;
     }
 
     _addValueFormChangeHandler(evt, nameInput) {
-      this.setState({[nameInput]: evt.target.value});
+      this.setState({[nameInput]: evt.target.value}, () => {
+        const {rating, comment} = this.state;
+        if (rating !== `` && comment.length >= 50 && comment.length <= 300) {
+          this.refSubmitBtn.current.disabled = false;
+        } else {
+          this.refSubmitBtn.current.disabled = true;
+        }
+      });
+    }
+
+    _resetFormSubmitHandler() {
+      this.setState({
+        rating: ``,
+        comment: ``
+      });
     }
   }
 

@@ -8,6 +8,7 @@ it(`ReviewsItem correctly renders after relaunch`, () => {
       review={{
         comment: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
         date: `November 2019`,
+        dateTime: `2019-11-10`,
         id: `review1`,
         rating: 3,
         user: {

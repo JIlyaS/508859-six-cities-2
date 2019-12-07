@@ -10,6 +10,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [],
       isAuthorizationRequired: true,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should change city by a given value`, () => {
@@ -20,6 +26,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
       type: `CHANGE_CITY`,
       payload: `Paris`
@@ -30,6 +42,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should get offers city by a given value`, () => {
@@ -40,6 +58,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
       type: `GET_OFFERS`,
       payload: [{
@@ -60,6 +84,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should get offers city empty array by a given value`, () => {
@@ -70,6 +100,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
       type: `GET_OFFERS`,
       payload: []
@@ -80,6 +116,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should change sort name by a given value`, () => {
@@ -90,6 +132,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
       type: `CHANGE_SORT`,
       payload: `Top rated first`
@@ -100,6 +148,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should add active card object data by a given value`, () => {
@@ -110,6 +164,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
       type: `ADD_ACTIVE_CARD`,
       payload: DEFAULT_OFFER
@@ -120,6 +180,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: DEFAULT_OFFER,
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should remove active card empty by a given value`, () => {
@@ -130,6 +196,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: DEFAULT_OFFER,
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
       type: `REMOVE_ACTIVE_CARD`,
       payload: {}
@@ -140,6 +212,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should authorization by a given value`, () => {
@@ -150,6 +228,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: DEFAULT_OFFER,
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
       type: `REQUIRED_AUTHORIZATION`,
       payload: true
@@ -160,6 +244,12 @@ describe(`Reducer work correctly`, () => {
       activeOfferCard: DEFAULT_OFFER,
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: true,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
 });

@@ -7,6 +7,12 @@ const initialState = {
   activeOfferCard: {},
   cities: [],
   isAuthorizationRequired: true,
+  formSubmit: {
+    blockedInput: false,
+    blockedSubmit: true,
+    submit: false,
+    error: false
+  }
 };
 
 const userReducer = (state = initialState, action) => {
@@ -35,6 +41,13 @@ const userReducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         isAuthorizationRequired: action.payload,
+      });
+    case ActionType.FORM_SUBMISSION:
+    case ActionType.FORM_SUBMISSION_SUCCESS:
+    case ActionType.FORM_SUBMISSION_ERROR:
+    case ActionType.FORM_SUBMISSION_DEFAULT:
+      return Object.assign({}, state, {
+        formSubmit: action.payload,
       });
     default:
       return state;

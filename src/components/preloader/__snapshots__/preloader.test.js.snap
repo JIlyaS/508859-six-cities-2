@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Prelaoder correctly renders after relaunch 1`] = `
+<svg
+  height="163px"
+  preserveAspectRatio="xMidYMid"
+  style={
+    Object {
+      "background": "#F5F5F5",
+      "display": "block",
+      "height": "100vh",
+      "margin": "auto",
+      "shapeRendering": "auto",
+    }
+  }
+  viewBox="0 0 100 100"
+  width="163px"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlnsXlink="http://www.w3.org/1999/xlink"
+>
+  <circle
+    cx="50"
+    cy="50"
+    fill="none"
+    r="30"
+    stroke="#4481c3"
+    strokeDasharray="141.37166941154067 49.12388980384689"
+    strokeWidth="10"
+    transform="rotate(325.358 50 50)"
+  >
+    <animateTransform
+      attributeName="transform"
+      dur="1.2345679012345678s"
+      keyTimes="0;1"
+      repeatCount="indefinite"
+      type="rotate"
+      values="0 50 50;360 50 50"
+    />
+  </circle>
+</svg>
+`;

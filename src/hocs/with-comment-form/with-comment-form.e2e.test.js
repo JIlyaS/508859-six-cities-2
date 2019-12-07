@@ -6,14 +6,16 @@ import {DEFAULT_COMMENT} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
+const refMock = document.createElement(`button`);
+
 const MockComponent = () => <div />;
 const MockComponentWrapped = withCommentForm(MockComponent);
 
 describe(`withCommentForm  HOC work correct`, () => {
   it(`CommentForm component is correct`, () => {
     const wrapper = shallow(<MockComponentWrapped />);
-
-    expect(wrapper.state().rating).toEqual(`0`);
+    wrapper.instance().refSubmitBtn.current = refMock;
+    expect(wrapper.state().rating).toEqual(``);
     expect(wrapper.state().comment).toEqual(``);
     wrapper.props().addValueFormChangeHandler({target: {value: `5`}}, `rating`);
     wrapper.props().addValueFormChangeHandler({target: {value: DEFAULT_COMMENT}}, `comment`);

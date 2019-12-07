@@ -9,6 +9,7 @@ import {App} from './app';
 Enzyme.configure({adapter: new Adapter()});
 
 jest.mock(`../map/map`);
+jest.mock(`../../../node_modules/react-notifications-component/dist/theme.css`, () => jest.fn());
 
 const props = {
   appReducer: {
@@ -30,6 +31,8 @@ const store = mockStore(props);
 it(`App correctly renders after relaunch`, () => {
   const tree = shallow(<App
     loadOffers={() => {}}
+    requireAuthorization={() => {}}
+    isAuthorizationRequired={false}
     store={store}
   />);
 

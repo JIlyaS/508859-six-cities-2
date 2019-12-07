@@ -4,7 +4,7 @@ import {convertRating} from '../../utils';
 
 class ReviewsItem extends PureComponent {
   render() {
-    const {review: {rating, date, comment, user: {avatar, name}}} = this.props;
+    const {review: {rating, date, comment, user: {avatar, name}, dateTime}} = this.props;
     return <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
@@ -24,7 +24,7 @@ class ReviewsItem extends PureComponent {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{date}</time>
+        <time className="reviews__time" dateTime={dateTime}>{date}</time>
       </div>
     </li>;
   }
@@ -34,6 +34,7 @@ ReviewsItem.propTypes = {
   review: PropTypes.shape({
     rating: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
+    dateTime: PropTypes.string.isRequired,
     comment: PropTypes.string.isRequired,
     user: PropTypes.shape({
       avatar: PropTypes.string,

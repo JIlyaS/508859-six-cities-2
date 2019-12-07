@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 import {getLocalStorageLogin} from '../../utils';
 
 const Header = (props) => {
-  const {isAuthorizationRequired} = props;
-  const login = getLocalStorageLogin();
+  const {isAuthorizationRequired, loginStore} = props;
+  const login = loginStore || getLocalStorageLogin();
+  const isAuth = !login || isAuthorizationRequired;
   return <header className="header">
     <div className="container">
       <div className="header__wrapper">
@@ -28,7 +29,7 @@ const Header = (props) => {
         <nav className="header__nav">
           <ul className="header__nav-list">
             <li className="header__nav-item user">
-              {isAuthorizationRequired ? (
+              {isAuth ? (
                 <Link
                   to="/login"
                   className="header__nav-link header__nav-link--profile"
@@ -57,10 +58,12 @@ const Header = (props) => {
 
 Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
+  loginStore: PropTypes.any,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isAuthorizationRequired: state.userReducer.isAuthorizationRequired,
+  loginStore: state.appReducer.login,
 });
 
 export {Header};

@@ -26,6 +26,7 @@ const createContext = () => ({
 it(`FavoritesList correctly renders after relaunch`, () => {
   const tree = shallow(<FavoritesList
     favoriteOffers={MOCK_DATA_UPDATED_FAVORITE}
+    isFavoritesFetching={false}
     loadFavorites={() => {}}
     changeOfferFavorite={() => {}}
   />, createContext());

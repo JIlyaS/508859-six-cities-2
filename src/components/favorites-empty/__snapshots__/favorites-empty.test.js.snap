@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FavoritesEmpty correctly renders after relaunch 1`] = `
-<PageLayout
-  pageName="favorites_empty"
->
+<Fragment>
   <main
     className="page__main page__main--favorites page__main--favorites-empty"
   >
@@ -35,21 +33,5 @@ exports[`FavoritesEmpty correctly renders after relaunch 1`] = `
       </section>
     </div>
   </main>
-  <footer
-    className="footer"
-  >
-    <a
-      className="footer__logo-link"
-      href="main.html"
-    >
-      <img
-        alt="6 cities logo"
-        className="footer__logo"
-        height="33"
-        src="img/logo.svg"
-        width="64"
-      />
-    </a>
-  </footer>
-</PageLayout>
+</Fragment>
 `;

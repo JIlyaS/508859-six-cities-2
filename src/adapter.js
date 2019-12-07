@@ -56,6 +56,8 @@ class Adapter {
       id: `review${review.id}`,
       rating: Math.round(review.rating),
       date: moment(review.date).format(`MMMM YYYY`),
+      dateTimestamp: Number(moment(review.date).format(`x`)),
+      dateTime: moment(review.date).format(`YYYY-MM-DD`),
       comment: review.comment,
       user: {
         id: `user${review.user.id}`,

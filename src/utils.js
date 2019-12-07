@@ -1,3 +1,4 @@
+import {store} from 'react-notifications-component';
 import {RATING_PERSENT, MAX_RATING_COUNT, MAX_NEARBY_OFFER, SortNames, PageNames, OfferCardNames} from './constants';
 
 export const firstUpperCase = (word) => {
@@ -108,4 +109,19 @@ export const getClassOfferCardName = (offerCardName) => {
 
 export const getLocalStorageLogin = () => {
   return JSON.parse(localStorage.getItem(`login`));
+};
+
+export const getNotificationError = (error) => {
+  store.addNotification({
+    title: `Error! Server is not available!`,
+    message: `${error}`,
+    type: `danger`,
+    container: `bottom-left`,
+    animationIn: [`animated`, `fadeIn`],
+    animationOut: [`animated`, `fadeOut`],
+    dismiss: {
+      duration: 3000,
+      pauseOnHover: true,
+    }
+  });
 };

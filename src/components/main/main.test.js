@@ -16,6 +16,7 @@ it(`Main correctly renders after relaunch`, () => {
     offers={DEFAULT_OFFERS}
     activeOfferCard={DEFAULT_OFFER}
     activeSortName={`Popular`}
+    isOffersFetching={false}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

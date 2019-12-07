@@ -21,6 +21,7 @@ it(`DetailInfo correctly renders after relaunch`, () => {
     reviews={DEFAULT_REVIEW}
     idPath={`1`}
     login={DEFAULT_LOGIN}
+    getLogin={() => {}}
     loadReviews={() => {}}
     changeOfferFavorite={() => {}}
   />);
