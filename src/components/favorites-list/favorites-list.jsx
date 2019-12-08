@@ -12,10 +12,22 @@ import {getClassOfferCardName} from '../../utils';
 import {OfferCardName} from '../../constants';
 
 class FavoritesList extends PureComponent {
+
   constructor(props) {
     super(props);
 
-    this._changeFavoriteOfferClickHandler = this._changeFavoriteOfferClickHandler.bind(this);
+    this.handleFavoriteOfferClick = this.handleFavoriteOfferClick.bind(this);
+  }
+
+  componentDidMount() {
+    const {onLoadFavorites} = this.props;
+    onLoadFavorites();
+  }
+
+  handleFavoriteOfferClick(offerId, isFavorite) {
+    const {onChangeOfferFavorite} = this.props;
+    const status = isFavorite === true ? 0 : 1;
+    onChangeOfferFavorite(offerId, status);
   }
 
   render() {
@@ -51,9 +63,7 @@ class FavoritesList extends PureComponent {
                           offerId={offer.id}
                           offer={offer}
                           key={offer.id}
-                          activeOfferMouseEnterHandler={() => {}}
-                          deactiveOfferMouseLeaveHandler={() => {}}
-                          changeFavoriteOfferClickHandler={this._changeFavoriteOfferClickHandler}
+                          onFavoriteOfferClick={this.handleFavoriteOfferClick}
                           classCard={classCard}
                           isFavoriteOffer
                         />)}
@@ -73,18 +83,14 @@ class FavoritesList extends PureComponent {
       </Fragment>
     </PageLayout>;
   }
-
-  componentDidMount() {
-    const {loadFavorites} = this.props;
-    loadFavorites();
-  }
-
-  _changeFavoriteOfferClickHandler(offerId, isFavorite) {
-    const {changeOfferFavorite} = this.props;
-    const status = isFavorite === true ? 0 : 1;
-    changeOfferFavorite(offerId, status);
-  }
 }
+
+FavoritesList.propTypes = {
+  favoriteOffers: PropTypes.array.isRequired,
+  onLoadFavorites: PropTypes.func.isRequired,
+  isFavoritesFetching: PropTypes.bool.isRequired,
+  onChangeOfferFavorite: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   favoriteOffers: state.appReducer.favorites,
@@ -92,16 +98,9 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFavorites: () => dispatch(Operation.loadFavorites()),
-  changeOfferFavorite: (offerId, status) => dispatch(Operation.changeOfferFavorite(offerId, status)),
+  onLoadFavorites: () => dispatch(Operation.loadFavorites()),
+  onChangeOfferFavorite: (offerId, status) => dispatch(Operation.changeOfferFavorite(offerId, status)),
 });
-
-FavoritesList.propTypes = {
-  favoriteOffers: PropTypes.array.isRequired,
-  loadFavorites: PropTypes.func.isRequired,
-  isFavoritesFetching: PropTypes.bool.isRequired,
-  changeOfferFavorite: PropTypes.func.isRequired,
-};
 
 export {FavoritesList};
 

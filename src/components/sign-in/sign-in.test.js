@@ -14,8 +14,8 @@ it(`SignIn correctly renders after relaunch`, () => {
     history={{
       push: () => {}
     }}
-    addValueFormChangeHandler={() => {}}
-    checkLogin={() => {}}
+    onValueFormChange={() => {}}
+    onCheckLogin={() => {}}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

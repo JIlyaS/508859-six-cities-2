@@ -6,17 +6,23 @@ import ActionCreator from '../../action-creator/action-creator';
 import {SORT_LIST} from '../../constants';
 
 class SortList extends PureComponent {
+
   constructor(props) {
     super(props);
-    this._changeSortElemClickHandler = this._changeSortElemClickHandler.bind(this);
+    this._handleSortElemClick = this._handleSortElemClick.bind(this);
+  }
+
+  _handleSortElemClick(name, openSort, changeSort) {
+    openSort();
+    changeSort(name);
   }
 
   render() {
-    const {activeSortName, changeSortElemClickHandler, isSortOpened, openSortListClickHandler} = this.props;
+    const {activeSortName, onSortElemClick, isSortOpened, onSortListClick} = this.props;
     return <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       &nbsp;
-      <span className="places__sorting-type" tabIndex="0" onClick={openSortListClickHandler}>
+      <span className="places__sorting-type" tabIndex="0" onClick={onSortListClick}>
         {activeSortName}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select" />
@@ -26,7 +32,7 @@ class SortList extends PureComponent {
         {SORT_LIST.map((it) => (
           <li
             key={`sort-${it.id}`}
-            onClick={() => this._changeSortElemClickHandler(it.name, openSortListClickHandler, changeSortElemClickHandler)}
+            onClick={() => this._handleSortElemClick(it.name, onSortListClick, onSortElemClick)}
             className={`places__option ${it.name === activeSortName && `places__option--active`}`}
             tabIndex="0">
             {it.name}
@@ -35,18 +41,13 @@ class SortList extends PureComponent {
       </ul>
     </form>;
   }
-
-  _changeSortElemClickHandler(name, openSort, changeSort) {
-    openSort();
-    changeSort(name);
-  }
 }
 
 SortList.propTypes = {
   isSortOpened: PropTypes.bool.isRequired,
   activeSortName: PropTypes.string.isRequired,
-  changeSortElemClickHandler: PropTypes.func.isRequired,
-  openSortListClickHandler: PropTypes.func.isRequired
+  onSortElemClick: PropTypes.func.isRequired,
+  onSortListClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
@@ -54,9 +55,7 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeSortElemClickHandler: (sortName) => {
-    dispatch(ActionCreator.changeSortName(sortName));
-  }
+  onSortElemClick: (sortName) => dispatch(ActionCreator.changeSortName(sortName))
 });
 
 export {SortList};

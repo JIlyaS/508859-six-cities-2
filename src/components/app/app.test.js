@@ -13,14 +13,25 @@ jest.mock(`../../../node_modules/react-notifications-component/dist/theme.css`, 
 
 const props = {
   appReducer: {
+    isOffersFetching: false,
+    isFavoritesFetching: false,
+    offers: [],
+    login: null,
+    reviews: [],
+    favorites: [],
+  },
+  userReducer: {
     city: ``,
     activeSortName: `Popular`,
     activeOfferCard: {},
     cities: [],
-  },
-  userReducer: {
-    offers: [],
-    login: {},
+    isAuthorizationRequired: true,
+    formSubmit: {
+      blockedInput: false,
+      blockedSubmit: true,
+      submit: false,
+      error: false
+    },
   }
 };
 
@@ -29,8 +40,8 @@ const store = mockStore(props);
 
 it(`App correctly renders after relaunch`, () => {
   const tree = shallow(<App
-    loadOffers={() => {}}
-    requireAuthorization={() => {}}
+    onOffersLoad={() => {}}
+    onAuthorizationRequire={() => {}}
     isAuthorizationRequired={false}
     store={store}
   />);

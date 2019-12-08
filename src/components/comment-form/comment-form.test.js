@@ -12,10 +12,10 @@ it(`CommentForm correctly renders after relaunch`, () => {
   const tree = shallow(<CommentForm
     rating={CommentFormMock.RATING}
     comment={CommentFormMock.COMMENT}
-    addReview={() => {}}
-    addValueFormChangeHandler={() => {}}
-    getDefaultForm={() => {}}
-    resetFormSubmitHandler={() => {}}
+    onAddReview={() => {}}
+    onValueFormChange={() => {}}
+    onGetDefaultForm={() => {}}
+    onFormResetSubmit={() => {}}
     idHotel={CommentFormMock.ID_HOTEL}
     refSubmitBtn={null}
     formSubmit={CommentFormMock.FORM_SUBMIT}

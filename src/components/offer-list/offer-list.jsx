@@ -11,42 +11,42 @@ class OfferList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._changeFavoriteOfferClickHandler = this._changeFavoriteOfferClickHandler.bind(this);
+    this.handleFavoriteOfferClick = this.handleFavoriteOfferClick.bind(this);
+  }
+
+  handleFavoriteOfferClick(offerId, isFavorite) {
+    const {onChangeOfferFavorite, onGetLogin} = this.props;
+    onGetLogin();
+    const login = getLocalStorageLogin();
+    if (login) {
+      const status = isFavorite === true ? 0 : 1;
+      onChangeOfferFavorite(offerId, status);
+    }
   }
 
   render() {
-    const {offers, classOfferCard, activeOfferMouseEnterHandler, deactiveOfferMouseLeaveHandler} = this.props;
+    const {offers, classOfferCard, onActiveOfferMouseEnter, onDeactiveOfferMouseLeave} = this.props;
     const classCard = getClassOfferCardName(classOfferCard);
     return <div className={classCard.list}>
       {offers.map((offer) => <OfferCard
         offerId={offer.id}
         offer={offer}
         key={offer.id}
-        activeOfferMouseEnterHandler={activeOfferMouseEnterHandler}
-        deactiveOfferMouseLeaveHandler={deactiveOfferMouseLeaveHandler}
-        changeFavoriteOfferClickHandler={this._changeFavoriteOfferClickHandler}
+        onActiveOfferMouseEnter={onActiveOfferMouseEnter}
+        onDeactiveOfferMouseLeave={onDeactiveOfferMouseLeave}
+        onFavoriteOfferClick={this.handleFavoriteOfferClick}
         classCard={classCard}
       />)}
     </div>;
-  }
-
-  _changeFavoriteOfferClickHandler(offerId, isFavorite) {
-    const {changeOfferFavorite, getLogin} = this.props;
-    getLogin();
-    const login = getLocalStorageLogin();
-    if (login) {
-      const status = isFavorite === true ? 0 : 1;
-      changeOfferFavorite(offerId, status);
-    }
   }
 }
 
 OfferList.propTypes = {
   offers: PropTypes.array.isRequired,
-  activeOfferMouseEnterHandler: PropTypes.func.isRequired,
-  deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
-  changeOfferFavorite: PropTypes.func.isRequired,
-  getLogin: PropTypes.func.isRequired,
+  onActiveOfferMouseEnter: PropTypes.func.isRequired,
+  onDeactiveOfferMouseLeave: PropTypes.func.isRequired,
+  onChangeOfferFavorite: PropTypes.func.isRequired,
+  onGetLogin: PropTypes.func.isRequired,
   classOfferCard: PropTypes.string.isRequired,
 };
 
@@ -55,10 +55,10 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  activeOfferMouseEnterHandler: (offerCard) => dispatch(ActionCreator.changeActiveCard(offerCard)),
-  deactiveOfferMouseLeaveHandler: () => dispatch(ActionCreator.removeActiveCard()),
-  changeOfferFavorite: (offerId, status) => dispatch(Operation.changeOfferFavorite(offerId, status)),
-  getLogin: () => dispatch(Operation.getLogin()),
+  onActiveOfferMouseEnter: (offerCard) => dispatch(ActionCreator.changeActiveCard(offerCard)),
+  onDeactiveOfferMouseLeave: () => dispatch(ActionCreator.removeActiveCard()),
+  onChangeOfferFavorite: (offerId, status) => dispatch(Operation.changeOfferFavorite(offerId, status)),
+  onGetLogin: () => dispatch(Operation.getLogin()),
 });
 
 export {OfferList};

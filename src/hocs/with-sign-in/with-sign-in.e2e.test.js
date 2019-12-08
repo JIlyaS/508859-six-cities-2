@@ -16,11 +16,11 @@ describe(`withSignIn HOC work correct`, () => {
 
     expect(wrapper.state().email).toEqual(``);
     expect(wrapper.state().password).toEqual(``);
-    wrapper.props().addValueFormChangeHandler(
+    wrapper.props().onValueFormChange(
         {target: {value: WithSignInMock.EMAIL}},
         WithSignInMock.EMAIL_NAME
     );
-    wrapper.props().addValueFormChangeHandler(
+    wrapper.props().onValueFormChange(
         {target: {value: WithSignInMock.PASSWORD}},
         WithSignInMock.PASSWORD_NAME
     );

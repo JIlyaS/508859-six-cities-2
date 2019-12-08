@@ -17,15 +17,18 @@ describe(`withCommentForm  HOC work correct`, () => {
     wrapper.instance().refSubmitBtn.current = refMock;
     expect(wrapper.state().rating).toEqual(``);
     expect(wrapper.state().comment).toEqual(``);
-    wrapper.props().addValueFormChangeHandler(
+    wrapper.props().onValueFormChange(
         {target: {value: WithCommentFormMock.RATING}},
         WithCommentFormMock.RATING_NAME
     );
-    wrapper.props().addValueFormChangeHandler(
+    wrapper.props().onValueFormChange(
         {target: {value: WithCommentFormMock.COMMENT}},
         WithCommentFormMock.COMMENT_NAME
     );
     expect(wrapper.state().rating).toEqual(WithCommentFormMock.RATING);
     expect(wrapper.state().comment).toEqual(WithCommentFormMock.COMMENT);
+    wrapper.props().onFormResetSubmit();
+    expect(wrapper.state().rating).toEqual(``);
+    expect(wrapper.state().comment).toEqual(``);
   });
 });

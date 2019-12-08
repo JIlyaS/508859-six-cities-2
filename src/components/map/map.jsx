@@ -21,10 +21,6 @@ class Map extends PureComponent {
     this._mapMarkers = [];
   }
 
-  render() {
-    return <div id="map" style={{height: 100 + `%`}}></div>;
-  }
-
   componentDidMount() {
     const {activeCityCoordinate, coordinates, activeCoordinate} = this.props;
     this._addMapLayer(activeCityCoordinate);
@@ -73,6 +69,10 @@ class Map extends PureComponent {
         .addTo(this._map);
       this._mapMarkers.push(this._activeMarker);
     }
+  }
+
+  render() {
+    return <div id="map" style={{height: 100 + `%`}}></div>;
   }
 }
 

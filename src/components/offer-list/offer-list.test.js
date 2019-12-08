@@ -26,10 +26,11 @@ const createContext = () => ({
 it(`OfferList correctly renders after relaunch`, () => {
   const tree = shallow(<OfferList
     offers={OfferListMock.OFFERS}
-    activeOfferMouseEnterHandler={() => {}}
-    deactiveOfferMouseLeaveHandler={() => {}}
-    changeOfferFavorite={() => {}}
-    getLogin={() => {}}
+    onActiveOfferMouseEnter={() => {}}
+    onDeactiveOfferMouseLeave={() => {}}
+    onFavoriteOfferClick={() => {}}
+    onGetLogin={() => {}}
+    onChangeOfferFavorite={() => {}}
     classOfferCard={OfferListMock.CLASS_OFFER_CARD}
     classCard={OfferListMock.CLASS_CARD}
   />, createContext());

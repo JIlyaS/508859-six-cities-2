@@ -27,10 +27,9 @@ it(`OfferCard correctly renders after relaunch`, () => {
   const tree = shallow(<OfferCard
     offer={OfferCardMock.OFFER}
     offerId={OfferCardMock.OFFER_ID}
-    activeOfferMouseEnterHandler={() => {}}
-    deactiveOfferMouseLeaveHandler={() => {}}
-    cardTitleClickHandler={() => {}}
-    changeFavoriteOfferClickHandler={() => {}}
+    onActiveOfferMouseEnter={() => {}}
+    onDeactiveOfferMouseLeave={() => {}}
+    onFavoriteOfferClick={() => {}}
     classCard={OfferCardMock.CLASS_CARD}
   />, createContext());
 

@@ -1,4 +1,4 @@
-import React, {PureComponent, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -20,63 +20,61 @@ import {OfferCardName} from '../../constants';
 
 const SortListWrapped = withSortList(SortList);
 
-class Main extends PureComponent {
-  render() {
-    const {offers, city, isOffersFetching, activeSortName, activeOfferCard} = this.props;
-    const isOffersLoading = isOffersFetching && offers.length === 0;
+const Main = (props) => {
+  const {offers, city, isOffersFetching, activeSortName, activeOfferCard} = props;
+  const isOffersLoading = isOffersFetching && offers.length === 0;
 
-    const currentOffers = sortOfferList(offers, activeSortName);
-    const coordinates = getMapCoordinates(currentOffers, activeOfferCard);
-    const activeCityCoordinate = getActiveCityCoordinate(currentOffers);
+  const currentOffers = sortOfferList(offers, activeSortName);
+  const coordinates = getMapCoordinates(currentOffers, activeOfferCard);
+  const activeCityCoordinate = getActiveCityCoordinate(currentOffers);
 
-    if (isOffersLoading) {
-      return <Preloader />;
-    }
-
-    return (
-      <PageLayout pageName="main">
-        <main
-          className={`page__main page__main--index ${currentOffers.length ===
-            0 && `page__main--index-empty`}`}
-        >
-          <Fragment><h1 className="visually-hidden">Cities</h1>
-            <div className="tabs">
-              <section className="locations container">
-                <CityList />
-              </section>
-            </div>
-            <div className="cities">
-              {currentOffers.length ? (
-                <div className="cities__places-container container">
-                  <section className="cities__places places">
-                    <h2 className="visually-hidden">Places</h2>
-                    <b className="places__found">
-                      {currentOffers.length} places to stay in {city}
-                    </b>
-                    <SortListWrapped />
-                    <OfferList offers={currentOffers} classOfferCard={OfferCardName.MAIN_OFFER} />
-                  </section>
-                  <div className="cities__right-section">
-                    <section className="cities__map map">
-                      <Map
-                        activeCityCoordinate={activeCityCoordinate.coordinateCity}
-                        coordinates={coordinates}
-                        activeCoordinate={activeOfferCard.location}
-                        city={city}
-                      />
-                    </section>
-                  </div>
-                </div>
-              ) : (
-                <MainEmpty />
-              )}
-            </div>
-          </Fragment>
-        </main>
-      </PageLayout>
-    );
+  if (isOffersLoading) {
+    return <Preloader />;
   }
-}
+
+  return (
+    <PageLayout pageName="main">
+      <main
+        className={`page__main page__main--index ${currentOffers.length ===
+          0 && `page__main--index-empty`}`}
+      >
+        <Fragment><h1 className="visually-hidden">Cities</h1>
+          <div className="tabs">
+            <section className="locations container">
+              <CityList />
+            </section>
+          </div>
+          <div className="cities">
+            {currentOffers.length ? (
+              <div className="cities__places-container container">
+                <section className="cities__places places">
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found">
+                    {currentOffers.length} places to stay in {city}
+                  </b>
+                  <SortListWrapped />
+                  <OfferList offers={currentOffers} classOfferCard={OfferCardName.MAIN_OFFER} />
+                </section>
+                <div className="cities__right-section">
+                  <section className="cities__map map">
+                    <Map
+                      activeCityCoordinate={activeCityCoordinate.coordinateCity}
+                      coordinates={coordinates}
+                      activeCoordinate={activeOfferCard.location}
+                      city={city}
+                    />
+                  </section>
+                </div>
+              </div>
+            ) : (
+              <MainEmpty />
+            )}
+          </div>
+        </Fragment>
+      </main>
+    </PageLayout>
+  );
+};
 
 Main.propTypes = {
   city: PropTypes.string.isRequired,

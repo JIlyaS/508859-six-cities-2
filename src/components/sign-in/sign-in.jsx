@@ -10,17 +10,26 @@ class SignIn extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._authFormSubmitHandler = this._authFormSubmitHandler.bind(this);
+    this._handleFormSubmit = this._handleFormSubmit.bind(this);
+  }
+
+  _handleFormSubmit(evt) {
+    evt.preventDefault();
+    const {email, password, history, onCheckLogin} = this.props;
+    if (email.length && password.length) {
+      onCheckLogin(email, password);
+      history.push(`/`);
+    }
   }
 
   render() {
-    const {email, password, addValueFormChangeHandler} = this.props;
+    const {email, password, onValueFormChange} = this.props;
     return <PageLayout pageName="sign">
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form className="login__form form" action="#" method="post" onSubmit={this._authFormSubmitHandler}>
+            <form className="login__form form" action="#" method="post" onSubmit={this._handleFormSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input
@@ -29,7 +38,7 @@ class SignIn extends PureComponent {
                   name="email"
                   placeholder="Email"
                   value={email}
-                  onChange={(evt) => addValueFormChangeHandler(evt, `email`)}
+                  onChange={(evt) => onValueFormChange(evt, `email`)}
                   required=""
                 />
               </div>
@@ -41,7 +50,7 @@ class SignIn extends PureComponent {
                   name="password"
                   placeholder="Password"
                   value={password}
-                  onChange={(evt) => addValueFormChangeHandler(evt, `password`)}
+                  onChange={(evt) => onValueFormChange(evt, `password`)}
                   required=""
                 />
               </div>
@@ -59,19 +68,10 @@ class SignIn extends PureComponent {
       </main>
     </PageLayout>;
   }
-
-  _authFormSubmitHandler(evt) {
-    evt.preventDefault();
-    const {email, password, history, checkLogin} = this.props;
-    if (email.length && password.length) {
-      checkLogin(email, password);
-      history.push(`/`);
-    }
-  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  checkLogin: (email, password) => {
+  onCheckLogin: (email, password) => {
     dispatch(Operation.checkLogin(email, password));
   }
 });
@@ -82,8 +82,8 @@ SignIn.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func
   }).isRequired,
-  checkLogin: PropTypes.func.isRequired,
-  addValueFormChangeHandler: PropTypes.func.isRequired,
+  onCheckLogin: PropTypes.func.isRequired,
+  onValueFormChange: PropTypes.func.isRequired,
 };
 
 export {SignIn};

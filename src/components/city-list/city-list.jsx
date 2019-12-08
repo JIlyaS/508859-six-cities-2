@@ -5,13 +5,13 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator/action-creator';
 
 const CityList = (props) => {
-  const {city, cities, changeCityClickHandler} = props;
+  const {city, cities, onChangedCityClick} = props;
   return <ul className="locations__list tabs__list">
     {[...new Set(cities)].map((offerCity) => <li className="locations__item" key={`location-${offerCity}`}>
       <a
         className={`locations__item-link tabs__item ${city === offerCity && `tabs__item--active`}`}
         href="#"
-        onClick={() => changeCityClickHandler(offerCity)}
+        onClick={() => onChangedCityClick(offerCity)}
       >
         <span>{offerCity}</span>
       </a>
@@ -21,8 +21,8 @@ const CityList = (props) => {
 
 CityList.propTypes = {
   city: PropTypes.string.isRequired,
-  cities: PropTypes.array.isRequired,
-  changeCityClickHandler: PropTypes.func.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onChangedCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>
@@ -32,7 +32,7 @@ const mapStateToProps = (state, ownProps) =>
   });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeCityClickHandler: (city) => dispatch(ActionCreator.changeCity(city))
+  onChangedCityClick: (city) => dispatch(ActionCreator.changeCity(city))
 });
 
 export {CityList};

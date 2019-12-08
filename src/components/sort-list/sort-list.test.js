@@ -9,8 +9,8 @@ it(`SortList correctly renders after relaunch`, () => {
     .create(<SortList
       isSortOpened={SortListMock.IS_SORT_OPENED}
       activeSortName={SortListMock.ACTIVE_SORT_NAME}
-      changeSortElemClickHandler={() => {}}
-      openSortListClickHandler={() => {}}
+      onSortElemClick={() => {}}
+      onSortListClick={() => {}}
     />)
     .toJSON();
 

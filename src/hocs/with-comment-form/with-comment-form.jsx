@@ -11,24 +11,11 @@ const withCommentForm = (Component) => {
       };
       this.refSubmitBtn = React.createRef();
 
-      this._addValueFormChangeHandler = this._addValueFormChangeHandler.bind(this);
-      this._resetFormSubmitHandler = this._resetFormSubmitHandler.bind(this);
+      this.handleValueFormChange = this.handleValueFormChange.bind(this);
+      this.handleFormResetSubmit = this.handleFormResetSubmit.bind(this);
     }
 
-    render() {
-      const {rating, comment} = this.state;
-
-      return <Component
-        {...this.props}
-        refSubmitBtn={this.refSubmitBtn}
-        rating={rating}
-        comment={comment}
-        addValueFormChangeHandler={this._addValueFormChangeHandler}
-        resetFormSubmitHandler={this._resetFormSubmitHandler}
-      />;
-    }
-
-    _addValueFormChangeHandler(evt, nameInput) {
+    handleValueFormChange(evt, nameInput) {
       this.setState({[nameInput]: evt.target.value}, () => {
         const {rating, comment} = this.state;
         if (rating !== `` && comment.length >= Comment.MIN && comment.length <= Comment.MAX) {
@@ -39,11 +26,24 @@ const withCommentForm = (Component) => {
       });
     }
 
-    _resetFormSubmitHandler() {
+    handleFormResetSubmit() {
       this.setState({
         rating: ``,
         comment: ``
       });
+    }
+
+    render() {
+      const {rating, comment} = this.state;
+
+      return <Component
+        {...this.props}
+        refSubmitBtn={this.refSubmitBtn}
+        rating={rating}
+        comment={comment}
+        onValueFormChange={this.handleValueFormChange}
+        onFormResetSubmit={this.handleFormResetSubmit}
+      />;
     }
   }
 

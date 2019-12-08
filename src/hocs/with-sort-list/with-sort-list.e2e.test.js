@@ -13,7 +13,7 @@ describe(`withSortList HOC work correct`, () => {
     const wrapper = shallow(<MockComponentWrapped />);
 
     expect(wrapper.state().isSortOpened).toEqual(false);
-    wrapper.props().openSortListClickHandler();
+    wrapper.props().onSortListClick();
     expect(wrapper.state().isSortOpened).toEqual(true);
   });
 });

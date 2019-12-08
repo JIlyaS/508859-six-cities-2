@@ -11,7 +11,7 @@ const initialState = {
     blockedSubmit: true,
     submit: false,
     error: false
-  }
+  },
 };
 
 const userReducer = (state = initialState, action) => {

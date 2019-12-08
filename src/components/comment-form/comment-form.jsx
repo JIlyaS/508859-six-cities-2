@@ -11,14 +11,39 @@ class CommentForm extends PureComponent {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
-    this._commentFormSubmitHandler = this._commentFormSubmitHandler.bind(this);
+    this._handleСommentFormSubmit = this._handleСommentFormSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    const {onFormResetSubmit, onGetDefaultForm, formSubmit: {submit}} = this.props;
+    if (submit) {
+      this.formRef.current.reset();
+      onFormResetSubmit();
+      onGetDefaultForm();
+    }
+  }
+
+  _handleСommentFormSubmit(evt) {
+    evt.preventDefault();
+    const {
+      rating,
+      comment,
+      onAddReview,
+      idHotel,
+      formSubmit: {blockedSubmit},
+      refSubmitBtn} = this.props;
+
+    if (blockedSubmit) {
+      refSubmitBtn.current.disabled = true;
+    }
+    onAddReview(idHotel, rating, comment);
   }
 
   render() {
-    const {comment, addValueFormChangeHandler, formSubmit: {blockedInput, error}, refSubmitBtn} = this.props;
+    const {comment, onValueFormChange, formSubmit: {blockedInput, error}, refSubmitBtn} = this.props;
     const errorValueBtn = error ? `red` : ``;
     const errorValueTextArea = error ? `1px solid red` : ``;
-    return <form className="reviews__form form" action="#" method="post" ref={this.formRef} onSubmit={this._commentFormSubmitHandler}>
+    return <form className="reviews__form form" action="#" method="post" ref={this.formRef} onSubmit={this._handleСommentFormSubmit}>
       <label
         className="reviews__label form__label"
         htmlFor="review"
@@ -35,7 +60,7 @@ class CommentForm extends PureComponent {
                 value={stars}
                 id={`${stars}-stars`}
                 type="radio"
-                onChange={(evt) => addValueFormChangeHandler(evt, `rating`)}
+                onChange={(evt) => onValueFormChange(evt, `rating`)}
                 disabled={blockedInput}
               />
               <label
@@ -61,7 +86,7 @@ class CommentForm extends PureComponent {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={comment}
-        onChange={(evt) => addValueFormChangeHandler(evt, `comment`)}
+        onChange={(evt) => onValueFormChange(evt, `comment`)}
         style={{border: errorValueTextArea}}
         disabled={blockedInput}
       ></textarea>
@@ -84,48 +109,20 @@ class CommentForm extends PureComponent {
       </div>
     </form>;
   }
-
-  componentDidUpdate() {
-    const {resetFormSubmitHandler, getDefaultForm, formSubmit: {submit}} = this.props;
-    if (submit) {
-      this.formRef.current.reset();
-      resetFormSubmitHandler();
-      getDefaultForm();
-    }
-  }
-
-  _commentFormSubmitHandler(evt) {
-    evt.preventDefault();
-    const {formSubmit: {blockedSubmit}, refSubmitBtn} = this.props;
-    if (blockedSubmit) {
-      refSubmitBtn.current.disabled = true;
-    }
-    const {rating, comment, addReview, idHotel} = this.props;
-    addReview(idHotel, rating, comment);
-  }
 }
-
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  formSubmit: state.userReducer.formSubmit,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  addReview: (idHotel, rating, comment) => dispatch(Operation.addReview(idHotel, rating, comment)),
-  getDefaultForm: () => dispatch(ActionCreator.submitFormDefault())
-});
 
 CommentForm.propTypes = {
   rating: PropTypes.string.isRequired,
   comment: PropTypes.string.isRequired,
-  addReview: PropTypes.func,
-  addValueFormChangeHandler: PropTypes.func.isRequired,
+  onAddReview: PropTypes.func,
+  onValueFormChange: PropTypes.func.isRequired,
   idHotel: PropTypes.string.isRequired,
   refSubmitBtn: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({current: PropTypes.instanceOf(Element)})
   ]),
-  resetFormSubmitHandler: PropTypes.func.isRequired,
-  getDefaultForm: PropTypes.func.isRequired,
+  onFormResetSubmit: PropTypes.func.isRequired,
+  onGetDefaultForm: PropTypes.func.isRequired,
   formSubmit: PropTypes.shape({
     blockedInput: PropTypes.bool.isRequired,
     blockedSubmit: PropTypes.bool.isRequired,
@@ -133,6 +130,15 @@ CommentForm.propTypes = {
     error: PropTypes.bool.isRequired,
   }).isRequired,
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  formSubmit: state.userReducer.formSubmit,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onAddReview: (idHotel, rating, comment) => dispatch(Operation.addReview(idHotel, rating, comment)),
+  onGetDefaultForm: () => dispatch(ActionCreator.submitFormDefault())
+});
 
 export {CommentForm};
 

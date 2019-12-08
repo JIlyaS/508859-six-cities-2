@@ -14,7 +14,7 @@ it(`CityList correctly renders after relaunch`, () => {
         city={CityListMock.CITY}
         cities={CityListMock.CITIES}
         offers={DEFAULT_OFFERS}
-        changeCityClickHandler={() => {}}
+        onChangedCityClick={() => {}}
       />
   );
 

@@ -45,8 +45,6 @@ exports[`FavoritesList correctly renders after relaunch 1`] = `
               className="favorites__places"
             >
               <OfferCard
-                activeOfferMouseEnterHandler={[Function]}
-                changeFavoriteOfferClickHandler={[Function]}
                 classCard={
                   Object {
                     "card": "favorites__",
@@ -54,7 +52,6 @@ exports[`FavoritesList correctly renders after relaunch 1`] = `
                     "wrapper": "favorites",
                   }
                 }
-                deactiveOfferMouseLeaveHandler={[Function]}
                 isFavoriteOffer={true}
                 key="1"
                 offer={
@@ -107,6 +104,9 @@ exports[`FavoritesList correctly renders after relaunch 1`] = `
                   }
                 }
                 offerId={1}
+                onActiveOfferMouseEnter={[Function]}
+                onDeactiveOfferMouseLeave={[Function]}
+                onFavoriteOfferClick={[Function]}
               />
             </div>
           </li>

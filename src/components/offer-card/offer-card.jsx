@@ -9,17 +9,17 @@ const OfferCard = (props) => {
   const {
     offer: {img, isPremium, isFavorite, price, title, type, rating},
     offerId,
-    activeOfferMouseEnterHandler,
-    deactiveOfferMouseLeaveHandler,
-    changeFavoriteOfferClickHandler,
+    onActiveOfferMouseEnter,
+    onDeactiveOfferMouseLeave,
+    onFavoriteOfferClick,
     classCard,
     isFavoriteOffer,
   } = props;
 
   return <article
     className={`${classCard.card}card place-card`}
-    onMouseEnter={() => activeOfferMouseEnterHandler(props.offer)}
-    onMouseLeave={deactiveOfferMouseLeaveHandler}
+    onMouseEnter={() => onActiveOfferMouseEnter(props.offer)}
+    onMouseLeave={onDeactiveOfferMouseLeave}
   >
     {!isFavoriteOffer && isPremium && <div className="place-card__mark">
       <span>Premium</span>
@@ -44,7 +44,7 @@ const OfferCard = (props) => {
         <button
           className={`place-card__bookmark-button ${isFavorite && `place-card__bookmark-button--active`} button`}
           type="button"
-          onClick={() => changeFavoriteOfferClickHandler(offerId, isFavorite)}
+          onClick={() => onFavoriteOfferClick(offerId, isFavorite)}
         >
           <svg className="place-card__bookmark-icon" width="18" height="19">
             <use xlinkHref="#icon-bookmark"></use>
@@ -77,9 +77,9 @@ OfferCard.propTypes = {
     type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`])
   }),
   offerId: PropTypes.number.isRequired,
-  activeOfferMouseEnterHandler: PropTypes.func.isRequired,
-  deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
-  changeFavoriteOfferClickHandler: PropTypes.func.isRequired,
+  onActiveOfferMouseEnter: PropTypes.func,
+  onDeactiveOfferMouseLeave: PropTypes.func,
+  onFavoriteOfferClick: PropTypes.func.isRequired,
   classCard: PropTypes.shape({
     card: PropTypes.string.isRequired,
     wrapper: PropTypes.string.isRequired,
@@ -89,7 +89,9 @@ OfferCard.propTypes = {
 };
 
 OfferCard.defaultProps = {
-  isFavoriteOffer: false
+  isFavoriteOffer: false,
+  onActiveOfferMouseEnter: () => {},
+  onDeactiveOfferMouseLeave: () => {}
 };
 
 export default OfferCard;

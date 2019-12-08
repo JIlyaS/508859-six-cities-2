@@ -16,6 +16,14 @@ import '../../../node_modules/react-notifications-component/dist/theme.css';
 
 class App extends PureComponent {
 
+  componentDidMount() {
+    const {onOffersLoad, onAuthorizationRequire} = this.props;
+    onOffersLoad();
+    if (localStorage.getItem(`login`)) {
+      onAuthorizationRequire(false);
+    }
+  }
+
   render() {
     const {isAuthorizationRequired} = this.props;
     const SignInWrapped = withPrivateRoute(withSignIn(SignIn), isAuthorizationRequired, `/`);
@@ -33,30 +41,22 @@ class App extends PureComponent {
       </Fragment>
     );
   }
-
-  componentDidMount() {
-    const {loadOffers, requireAuthorization} = this.props;
-    loadOffers();
-    if (localStorage.getItem(`login`)) {
-      requireAuthorization(false);
-    }
-  }
 }
+
+App.propTypes = {
+  onOffersLoad: PropTypes.func.isRequired,
+  onAuthorizationRequire: PropTypes.func.isRequired,
+  isAuthorizationRequired: PropTypes.bool.isRequired,
+};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isAuthorizationRequired: state.userReducer.isAuthorizationRequired,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadOffers: () => dispatch(Operation.loadOffers()),
-  requireAuthorization: (auth) => dispatch(ActionCreator.requireAuthorization(auth)),
+  onOffersLoad: () => dispatch(Operation.loadOffers()),
+  onAuthorizationRequire: (auth) => dispatch(ActionCreator.requireAuthorization(auth)),
 });
-
-App.propTypes = {
-  loadOffers: PropTypes.func.isRequired,
-  requireAuthorization: PropTypes.func.isRequired,
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-};
 
 export {App};
 

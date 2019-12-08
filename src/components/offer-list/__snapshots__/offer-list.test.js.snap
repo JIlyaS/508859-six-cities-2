@@ -5,8 +5,6 @@ exports[`OfferList correctly renders after relaunch 1`] = `
   className="cities__places-list places__list tabs__content"
 >
   <OfferCard
-    activeOfferMouseEnterHandler={[Function]}
-    changeFavoriteOfferClickHandler={[Function]}
     classCard={
       Object {
         "card": "cities__place-",
@@ -15,7 +13,6 @@ exports[`OfferList correctly renders after relaunch 1`] = `
         "wrapper": "cities",
       }
     }
-    deactiveOfferMouseLeaveHandler={[Function]}
     isFavoriteOffer={false}
     key="0"
     offer={
@@ -31,6 +28,9 @@ exports[`OfferList correctly renders after relaunch 1`] = `
       }
     }
     offerId={0}
+    onActiveOfferMouseEnter={[Function]}
+    onDeactiveOfferMouseLeave={[Function]}
+    onFavoriteOfferClick={[Function]}
   />
 </div>
 `;
