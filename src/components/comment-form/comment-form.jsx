@@ -142,9 +142,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {CommentForm};
 
-const ConnectedCommentForm = connect(mapStateToProps, mapDispatchToProps)(CommentForm);
-const RefCommentForm = React.forwardRef((props, ref) => <ConnectedCommentForm {...props} forwardedRef={ref} />);
-
-RefCommentForm.displayName = `CommentForm`;
-
-export default RefCommentForm;
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
