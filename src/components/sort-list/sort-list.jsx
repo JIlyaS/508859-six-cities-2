@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import ActionCreator from '../../action-creator/action-creator';
 import {SORT_LIST} from '../../constants';
 
-
 class SortList extends PureComponent {
   constructor(props) {
     super(props);

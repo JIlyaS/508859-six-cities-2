@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import ReviewsList from '../reviews-list/reviews-list';
+import ReviewsList from '../review-list/review-list';
 import CommentForm from '../comment-form/comment-form';
 import Map from '../map/map';
 import Preloader from '../preloader/preloader';
@@ -11,7 +11,7 @@ import PageLayout from '../page-layout/page-layout';
 import withCommentForm from '../../hocs/with-comment-form/with-comment-form';
 import {getMapCoordinates, convertRating, getOtherCityOffers, getLocalStorageLogin} from '../../utils';
 import Operation from '../../operation/operation';
-import {OfferCardNames} from '../../constants';
+import {OfferCardName} from '../../constants';
 
 const CommentFormWrapped = withCommentForm(CommentForm);
 
@@ -188,7 +188,7 @@ class DetailInfo extends PureComponent {
               <h2 className="near-places__title">
                 Other places in the neighbourhood
               </h2>
-              <OfferList offers={otherOffers} classOfferCard={OfferCardNames.DETAIL_OFFER} />
+              <OfferList offers={otherOffers} classOfferCard={OfferCardName.DETAIL_OFFER} />
             </section>
           </div>
         </main>

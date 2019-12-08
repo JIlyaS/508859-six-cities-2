@@ -56,9 +56,15 @@ const Header = (props) => {
   </header>;
 };
 
+Header.defaultProps = {
+  loginStore: null
+};
+
 Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  loginStore: PropTypes.any,
+  loginStore: PropTypes.shape({
+    email: PropTypes.string
+  }),
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

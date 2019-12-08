@@ -21,8 +21,8 @@ const CityList = (props) => {
 
 CityList.propTypes = {
   city: PropTypes.string.isRequired,
+  cities: PropTypes.array.isRequired,
   changeCityClickHandler: PropTypes.func.isRequired,
-  cities: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state, ownProps) =>

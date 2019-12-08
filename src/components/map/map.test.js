@@ -1,6 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+
 import Map from './map';
+import {MapMock} from '../../constants';
 
 jest.mock(`leaflet`, () => ({
   icon: jest.fn(),
@@ -19,10 +21,10 @@ jest.mock(`leaflet`, () => ({
 it(`Map correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<Map
-      coordinates={[{coordinate: [1, 2], zoom: 16}, {coordinate: [2, 3], zoom: 16}]}
-      activeCoordinate={{coordinate: [5, 6], zoom: 16}}
-      activeCityCoordinate={{coordinateCity: [1, 1], zoomCity: 13}}
-      city={`Amsterdam`}
+      coordinates={MapMock.COORDINATES}
+      activeCoordinate={MapMock.ACTIVE_COORDINATE}
+      activeCityCoordinate={MapMock.ACTIVE_CITY_COORDINATE}
+      city={MapMock.CITY}
     />)
     .toJSON();
 

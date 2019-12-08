@@ -1,4 +1,5 @@
 import moment from 'moment';
+import {MAX_DETAIL_IMG} from './constants';
 
 class Adapter {
   static getOffers(offers) {
@@ -25,7 +26,7 @@ class Adapter {
       title: offer.title,
       type: offer.type,
       rating: Math.round(offer.rating),
-      photos: (offer.images).slice(0, 6),
+      photos: (offer.images).slice(0, MAX_DETAIL_IMG),
       location: {
         coordinate: [offer.location.latitude, offer.location.longitude],
         zoom: offer.location.zoom,

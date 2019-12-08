@@ -4,26 +4,21 @@ import Enzyme, {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 import {CommentForm} from './comment-form';
-import {DEFAULT_COMMENT} from '../../constants';
+import {CommentFormMock} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`CommentForm correctly renders after relaunch`, () => {
   const tree = shallow(<CommentForm
-    rating="4"
-    comment={DEFAULT_COMMENT}
+    rating={CommentFormMock.RATING}
+    comment={CommentFormMock.COMMENT}
     addReview={() => {}}
     addValueFormChangeHandler={() => {}}
     getDefaultForm={() => {}}
     resetFormSubmitHandler={() => {}}
-    idHotel="1"
+    idHotel={CommentFormMock.ID_HOTEL}
     refSubmitBtn={null}
-    formSubmit={{
-      blockedInput: false,
-      error: false,
-      blockedSubmit: true,
-      submit: false
-    }}
+    formSubmit={CommentFormMock.FORM_SUBMIT}
   />);
 
   expect(toJSON(tree)).toMatchSnapshot();

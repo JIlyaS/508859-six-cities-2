@@ -9,7 +9,7 @@ import OfferCard from '../offer-card/offer-card';
 import Preloader from '../preloader/preloader';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import {getClassOfferCardName} from '../../utils';
-import {OfferCardNames} from '../../constants';
+import {OfferCardName} from '../../constants';
 
 class FavoritesList extends PureComponent {
   constructor(props) {
@@ -23,7 +23,7 @@ class FavoritesList extends PureComponent {
     const isFavoritesLoading = isFavoritesFetching && favoriteOffers.length === 0;
 
     const favoriteCities = [...new Set(favoriteOffers.map((offer) => offer.city.name))];
-    const classCard = getClassOfferCardName(OfferCardNames.FAVORITE_OFFER);
+    const classCard = getClassOfferCardName(OfferCardName.FAVORITE_OFFER);
 
     if (isFavoritesLoading) {
       return <Preloader />;

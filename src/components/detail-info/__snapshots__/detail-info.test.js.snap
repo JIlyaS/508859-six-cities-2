@@ -308,7 +308,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
                 1
               </span>
             </h2>
-            <ReviewsList
+            <ReviewList
               reviews={
                 Array [
                   Object {

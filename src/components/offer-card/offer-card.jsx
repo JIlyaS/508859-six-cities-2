@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 import {firstUpperCase, convertRating} from '../../utils';
+import {OfferCardImg} from '../../constants';
 
 const OfferCard = (props) => {
   const {
@@ -28,8 +29,8 @@ const OfferCard = (props) => {
         <img
           className="place-card__image"
           src={img}
-          width={isFavoriteOffer ? `150` : `260`}
-          height={isFavoriteOffer ? `110` : `200`}
+          width={isFavoriteOffer ? OfferCardImg.SMALL_WIDTH : OfferCardImg.WIDTH}
+          height={isFavoriteOffer ? OfferCardImg.SMALL_HEIGHT : OfferCardImg.HEIGHT}
           alt="Place image"
         />
       </a>

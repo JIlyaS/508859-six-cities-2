@@ -34,15 +34,18 @@ const ActionCreator = {
     };
   },
   fetchOffersRequest: () => ({
-    type: ActionType.FETCH_OFFERS_REQUEST
+    type: ActionType.FETCH_OFFERS_REQUEST,
+    payload: true,
   }),
   fetchOffersFailure: () => ({
-    type: ActionType.FETCH_OFFERS_FAILURE
+    type: ActionType.FETCH_OFFERS_FAILURE,
+    payload: false,
   }),
   fetchFavoritesRequest: () => ({
-    type: ActionType.FETCH_FAVORITES_REQUEST
+    type: ActionType.FETCH_FAVORITES_REQUEST,
+    payload: true,
   }),
-  fetchFaviritesSuccess: (dataFavorites) => {
+  fetchFavoritesSuccess: (dataFavorites) => {
     const offers = Adapter.getOffers(dataFavorites);
     return {
       type: ActionType.FETCH_FAVORITES_SUCCESS,
@@ -50,7 +53,8 @@ const ActionCreator = {
     };
   },
   fetchFavoritesFailure: () => ({
-    type: ActionType.FETCH_FAVORITES_FAILURE
+    type: ActionType.FETCH_FAVORITES_FAILURE,
+    payload: false,
   }),
   loadReviews: (dataReviews) => {
     const reviews = Adapter.loadReviews(dataReviews);

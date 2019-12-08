@@ -2,7 +2,6 @@ import {ActionType} from '../../constants';
 
 const initialState = {
   city: ``,
-  changedOffers: [],
   activeSortName: `Popular`,
   activeOfferCard: {},
   cities: [],
@@ -21,10 +20,6 @@ const userReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         city: action.payload,
         activeSortName: `Popular`
-      });
-    case ActionType.GET_OFFERS:
-      return Object.assign({}, state, {
-        changedOffers: action.payload
       });
     case ActionType.CHANGE_SORT:
       return Object.assign({}, state, {

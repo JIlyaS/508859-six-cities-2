@@ -74,16 +74,28 @@ describe(`Action creators work correctly`, () => {
       payload: {}
     });
   });
-  it(`Action creator for load offers returns action with array data payload`, () => {
+  it(`Action creator for load offers success returns action with array data payload`, () => {
     expect(ActionCreator.fetchOffersSuccess(MOCK_DATA_SERVER)).toEqual({
       type: ActionType.FETCH_OFFERS_SUCCESS,
       payload: MOCK_DATA_ADAPTER
     });
   });
-  it(`Action creator for load offers returns action with empty data payload`, () => {
+  it(`Action creator for load offers success returns action with empty data payload`, () => {
     expect(ActionCreator.fetchOffersSuccess([])).toEqual({
       type: ActionType.FETCH_OFFERS_SUCCESS,
       payload: []
+    });
+  });
+  it(`Action creator for load offers request returns action with data payload`, () => {
+    expect(ActionCreator.fetchOffersRequest()).toEqual({
+      type: ActionType.FETCH_OFFERS_REQUEST,
+      payload: true
+    });
+  });
+  it(`Action creator for load offers failure returns action with data payload`, () => {
+    expect(ActionCreator.fetchOffersFailure()).toEqual({
+      type: ActionType.FETCH_OFFERS_FAILURE,
+      payload: false
     });
   });
   it(`Action creator for load reviews returns action with array data payload`, () => {
@@ -104,16 +116,72 @@ describe(`Action creators work correctly`, () => {
       payload: DEFAULT_OFFER_ADAPTER
     });
   });
-  it(`Action creator for load favorites returns action with array data payload`, () => {
-    expect(ActionCreator.fetchFaviritesSuccess(MOCK_DATA_UPDATED_FAVORITE_SERVER)).toEqual({
+  it(`Action creator for load favorites success returns action with array data payload`, () => {
+    expect(ActionCreator.fetchFavoritesSuccess(MOCK_DATA_UPDATED_FAVORITE_SERVER)).toEqual({
       type: ActionType.FETCH_FAVORITES_SUCCESS,
       payload: MOCK_DATA_UPDATED_FAVORITE
     });
   });
-  it(`Action creator for load favorites returns action with empty data payload`, () => {
-    expect(ActionCreator.fetchFaviritesSuccess([])).toEqual({
+  it(`Action creator for load favorites success returns action with empty data payload`, () => {
+    expect(ActionCreator.fetchFavoritesSuccess([])).toEqual({
       type: ActionType.FETCH_FAVORITES_SUCCESS,
       payload: []
+    });
+  });
+  it(`Action creator for load favorites request returns action with payload`, () => {
+    expect(ActionCreator.fetchFavoritesRequest()).toEqual({
+      type: ActionType.FETCH_FAVORITES_REQUEST,
+      payload: true
+    });
+  });
+  it(`Action creator for load favorites failure returns action with payload`, () => {
+    expect(ActionCreator.fetchFavoritesFailure()).toEqual({
+      type: ActionType.FETCH_FAVORITES_FAILURE,
+      payload: false
+    });
+  });
+  it(`Action creator for submit form start returns action with payload`, () => {
+    expect(ActionCreator.submitForm()).toEqual({
+      type: ActionType.FORM_SUBMISSION,
+      payload: {
+        blockedInput: true,
+        blockedSubmit: true,
+        submit: false,
+        error: false
+      }
+    });
+  });
+  it(`Action creator for submit form success returns action with payload`, () => {
+    expect(ActionCreator.submitFormSuccess()).toEqual({
+      type: ActionType.FORM_SUBMISSION_SUCCESS,
+      payload: {
+        blockedInput: false,
+        blockedSubmit: false,
+        submit: true,
+        error: false
+      }
+    });
+  });
+  it(`Action creator for submit form error returns action with payload`, () => {
+    expect(ActionCreator.submitFormError()).toEqual({
+      type: ActionType.FORM_SUBMISSION_ERROR,
+      payload: {
+        blockedInput: false,
+        blockedSubmit: false,
+        submit: false,
+        error: true
+      }
+    });
+  });
+  it(`Action creator for submit form default returns action with payload`, () => {
+    expect(ActionCreator.submitFormDefault()).toEqual({
+      type: ActionType.FORM_SUBMISSION_DEFAULT,
+      payload: {
+        blockedInput: false,
+        blockedSubmit: true,
+        submit: false,
+        error: false
+      }
     });
   });
 });

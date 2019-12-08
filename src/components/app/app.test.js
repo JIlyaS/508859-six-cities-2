@@ -15,7 +15,6 @@ const props = {
   appReducer: {
     city: ``,
     activeSortName: `Popular`,
-    changedOffers: [],
     activeOfferCard: {},
     cities: [],
   },

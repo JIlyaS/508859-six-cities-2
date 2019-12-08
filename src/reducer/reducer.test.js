@@ -1,4 +1,4 @@
-import {DEFAULT_OFFERS, SortNames} from '../constants';
+import {DEFAULT_OFFERS, SortName} from '../constants';
 import {getCityOffers, sortOfferList} from '../utils';
 
 describe(`Business logic is correct`, () => {
@@ -19,7 +19,7 @@ describe(`Business logic is correct`, () => {
     }], `Cologne`)).toEqual([]);
   });
 
-  expect(sortOfferList(DEFAULT_OFFERS, SortNames.POPULAR)).toEqual(DEFAULT_OFFERS);
+  expect(sortOfferList(DEFAULT_OFFERS, SortName.POPULAR)).toEqual(DEFAULT_OFFERS);
 
   expect(sortOfferList([{
     id: `id0`,
@@ -34,7 +34,7 @@ describe(`Business logic is correct`, () => {
       name: `Paris`,
     },
     rating: 4.8
-  }], SortNames.TOP_RATED)).toEqual([{
+  }], SortName.TOP_RATED)).toEqual([{
     id: `id1`,
     city: {
       name: `Paris`,

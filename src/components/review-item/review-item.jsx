@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {convertRating} from '../../utils';
 
-class ReviewsItem extends PureComponent {
+class ReviewItem extends PureComponent {
   render() {
     const {review: {rating, date, comment, user: {avatar, name}, dateTime}} = this.props;
     return <li className="reviews__item">
@@ -30,7 +30,7 @@ class ReviewsItem extends PureComponent {
   }
 }
 
-ReviewsItem.propTypes = {
+ReviewItem.propTypes = {
   review: PropTypes.shape({
     rating: PropTypes.number.isRequired,
     date: PropTypes.string.isRequired,
@@ -43,4 +43,4 @@ ReviewsItem.propTypes = {
   })
 };
 
-export default ReviewsItem;
+export default ReviewItem;

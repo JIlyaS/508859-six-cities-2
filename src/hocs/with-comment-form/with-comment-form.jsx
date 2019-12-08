@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import {Comment} from '../../constants';
 
 const withCommentForm = (Component) => {
   class WithCommentForm extends PureComponent {
@@ -30,7 +31,7 @@ const withCommentForm = (Component) => {
     _addValueFormChangeHandler(evt, nameInput) {
       this.setState({[nameInput]: evt.target.value}, () => {
         const {rating, comment} = this.state;
-        if (rating !== `` && comment.length >= 50 && comment.length <= 300) {
+        if (rating !== `` && comment.length >= Comment.MIN && comment.length <= Comment.MAX) {
           this.refSubmitBtn.current.disabled = false;
         } else {
           this.refSubmitBtn.current.disabled = true;

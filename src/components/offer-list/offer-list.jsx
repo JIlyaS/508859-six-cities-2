@@ -42,7 +42,7 @@ class OfferList extends PureComponent {
 }
 
 OfferList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  offers: PropTypes.array.isRequired,
   activeOfferMouseEnterHandler: PropTypes.func.isRequired,
   deactiveOfferMouseLeaveHandler: PropTypes.func.isRequired,
   changeOfferFavorite: PropTypes.func.isRequired,

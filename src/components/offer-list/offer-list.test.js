@@ -6,6 +6,7 @@ import {shape} from 'prop-types';
 import {BrowserRouter} from 'react-router-dom';
 
 import {OfferList} from './offer-list';
+import {OfferListMock} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -24,27 +25,13 @@ const createContext = () => ({
 
 it(`OfferList correctly renders after relaunch`, () => {
   const tree = shallow(<OfferList
-    offers={[{
-      id: 0,
-      title: ``,
-      type: `room`,
-      price: 0,
-      img: `room.jpg`,
-      rating: 0,
-      isPremium: false,
-      isFavorite: false,
-    }]}
+    offers={OfferListMock.OFFERS}
     activeOfferMouseEnterHandler={() => {}}
     deactiveOfferMouseLeaveHandler={() => {}}
     changeOfferFavorite={() => {}}
     getLogin={() => {}}
-    classOfferCard="main_offer"
-    classCard={{
-      list: ``,
-      card: ``,
-      wrapper: ``,
-      info: ``
-    }}
+    classOfferCard={OfferListMock.CLASS_OFFER_CARD}
+    classCard={OfferListMock.CLASS_CARD}
   />, createContext());
 
   expect(toJSON(tree)).toMatchSnapshot();

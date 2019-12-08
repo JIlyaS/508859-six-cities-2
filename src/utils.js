@@ -1,5 +1,5 @@
 import {store} from 'react-notifications-component';
-import {RATING_PERSENT, MAX_RATING_COUNT, MAX_NEARBY_OFFER, SortNames, PageNames, OfferCardNames} from './constants';
+import {RATING_PERSENT, MAX_RATING_COUNT, MAX_NEARBY_OFFER, SortName, PageName, OfferCardName} from './constants';
 
 export const firstUpperCase = (word) => {
   return word[0].toUpperCase() + word.slice(1);
@@ -15,13 +15,13 @@ export const getCityOffers = (allOffers, city) => {
 
 export const sortOfferList = (offers, sortName) => {
   switch (sortName) {
-    case SortNames.POPULAR:
+    case SortName.POPULAR:
       return offers.slice();
-    case SortNames.PRICE_LH:
+    case SortName.PRICE_LH:
       return offers.slice().sort((prev, curr) => prev.price - curr.price);
-    case SortNames.PRICE_HL:
+    case SortName.PRICE_HL:
       return offers.slice().sort((prev, curr) => curr.price - prev.price);
-    case SortNames.TOP_RATED:
+    case SortName.TOP_RATED:
       return offers.slice().sort((prev, curr) => curr.rating - prev.rating);
     default:
       throw new Error(`Undefined SortName element`);
@@ -45,14 +45,6 @@ export const getActiveCityCoordinate = (offers) => {
   };
 };
 
-export const shuffleElements = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-};
-
 export const getOtherCityOffers = (id, offers) => {
   const currentOffer = offers.find((offer) => offer.id === Number(id));
   const otherOffers = offers
@@ -65,15 +57,15 @@ export const getOtherCityOffers = (id, offers) => {
 
 export const getClassPageName = (pageName) => {
   switch (pageName) {
-    case PageNames.SIGN:
+    case PageName.SIGN:
       return `page page--gray page--login`;
-    case PageNames.MAIN:
+    case PageName.MAIN:
       return `page page--gray page--main`;
-    case PageNames.DETAIL:
+    case PageName.DETAIL:
       return `page`;
-    case PageNames.FAVORITES:
+    case PageName.FAVORITES:
       return `page`;
-    case PageNames.FAVORITES_EMPTY:
+    case PageName.FAVORITES_EMPTY:
       return `page page--favorites-empty`;
     default:
       return null;
@@ -82,21 +74,21 @@ export const getClassPageName = (pageName) => {
 
 export const getClassOfferCardName = (offerCardName) => {
   switch (offerCardName) {
-    case OfferCardNames.MAIN_OFFER:
+    case OfferCardName.MAIN_OFFER:
       return {
         list: `cities__places-list places__list tabs__content`,
         card: `cities__place-`,
         wrapper: `cities`,
         info: ``,
       };
-    case OfferCardNames.DETAIL_OFFER:
+    case OfferCardName.DETAIL_OFFER:
       return {
         list: `near-places__list places__list`,
         card: `near-places__`,
         wrapper: `near-places`,
         info: ``,
       };
-    case OfferCardNames.FAVORITE_OFFER:
+    case OfferCardName.FAVORITE_OFFER:
       return {
         card: `favorites__`,
         wrapper: `favorites`,

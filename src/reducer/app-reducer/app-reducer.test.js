@@ -20,7 +20,27 @@ describe(`Reducer work correctly`, () => {
       isFavoritesFetching: false,
     });
   });
-  it(`Reducer should load offers by a given value`, () => {
+  it(`Reducer should load offers request by a given value`, () => {
+    expect(reducer({
+      offers: [],
+      login: null,
+      reviews: [],
+      favorites: [],
+      isOffersFetching: false,
+      isFavoritesFetching: false,
+    }, {
+      type: ActionType.FETCH_OFFERS_REQUEST,
+      payload: true
+    })).toEqual({
+      offers: [],
+      login: null,
+      reviews: [],
+      favorites: [],
+      isOffersFetching: true,
+      isFavoritesFetching: false,
+    });
+  });
+  it(`Reducer should load offers success by a given value`, () => {
     expect(reducer({
       offers: [],
       login: null,
@@ -40,7 +60,7 @@ describe(`Reducer work correctly`, () => {
       isFavoritesFetching: false,
     });
   });
-  it(`Reducer should load offers empty array by a given value`, () => {
+  it(`Reducer should load offers success empty array by a given value`, () => {
     expect(reducer({
       offers: [],
       login: null,
@@ -51,6 +71,26 @@ describe(`Reducer work correctly`, () => {
     }, {
       type: ActionType.FETCH_OFFERS_SUCCESS,
       payload: []
+    })).toEqual({
+      offers: [],
+      login: null,
+      reviews: [],
+      favorites: [],
+      isOffersFetching: false,
+      isFavoritesFetching: false,
+    });
+  });
+  it(`Reducer should load offers failure by a given value`, () => {
+    expect(reducer({
+      offers: [],
+      login: null,
+      reviews: [],
+      favorites: [],
+      isOffersFetching: true,
+      isFavoritesFetching: false,
+    }, {
+      type: ActionType.FETCH_OFFERS_FAILURE,
+      payload: false
     })).toEqual({
       offers: [],
       login: null,
@@ -160,7 +200,27 @@ describe(`Reducer work correctly`, () => {
       isFavoritesFetching: false,
     });
   });
-  it(`Reducer should load favorites by a given value`, () => {
+  it(`Reducer should load favorites request by a given value`, () => {
+    expect(reducer({
+      offers: MOCK_DATA_UPDATED_FAVORITE,
+      login: null,
+      reviews: [],
+      favorites: [],
+      isOffersFetching: false,
+      isFavoritesFetching: false,
+    }, {
+      type: ActionType.FETCH_FAVORITES_REQUEST,
+      payload: true
+    })).toEqual({
+      offers: MOCK_DATA_UPDATED_FAVORITE,
+      login: null,
+      reviews: [],
+      favorites: [],
+      isOffersFetching: false,
+      isFavoritesFetching: true,
+    });
+  });
+  it(`Reducer should load favorites success by a given value`, () => {
     expect(reducer({
       offers: MOCK_DATA_UPDATED_FAVORITE,
       login: null,
@@ -180,7 +240,7 @@ describe(`Reducer work correctly`, () => {
       isFavoritesFetching: false,
     });
   });
-  it(`Reducer should load favorites empty array by a given value`, () => {
+  it(`Reducer should load favorites success empty array by a given value`, () => {
     expect(reducer({
       offers: MOCK_DATA_ADAPTER,
       login: null,
@@ -193,6 +253,26 @@ describe(`Reducer work correctly`, () => {
       payload: []
     })).toEqual({
       offers: MOCK_DATA_ADAPTER,
+      login: null,
+      reviews: [],
+      favorites: [],
+      isOffersFetching: false,
+      isFavoritesFetching: false,
+    });
+  });
+  it(`Reducer should load favorites failure by a given value`, () => {
+    expect(reducer({
+      offers: MOCK_DATA_UPDATED_FAVORITE,
+      login: null,
+      reviews: [],
+      favorites: [],
+      isOffersFetching: false,
+      isFavoritesFetching: true,
+    }, {
+      type: ActionType.FETCH_FAVORITES_FAILURE,
+      payload: false
+    })).toEqual({
+      offers: MOCK_DATA_UPDATED_FAVORITE,
       login: null,
       reviews: [],
       favorites: [],

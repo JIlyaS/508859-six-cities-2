@@ -13,7 +13,7 @@ const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.FETCH_OFFERS_REQUEST:
       return Object.assign({}, state, {
-        isOffersFetching: true
+        isOffersFetching: action.payload
       });
     case ActionType.FETCH_OFFERS_SUCCESS:
       return Object.assign({}, state, {
@@ -22,7 +22,7 @@ const appReducer = (state = initialState, action) => {
       });
     case ActionType.FETCH_OFFERS_FAILURE:
       return Object.assign({}, state, {
-        isOffersFetching: false
+        isOffersFetching: action.payload
       });
     case ActionType.ADD_LOGIN:
       return Object.assign({}, state, {

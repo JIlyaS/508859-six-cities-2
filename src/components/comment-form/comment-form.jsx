@@ -120,7 +120,10 @@ CommentForm.propTypes = {
   addReview: PropTypes.func,
   addValueFormChangeHandler: PropTypes.func.isRequired,
   idHotel: PropTypes.string.isRequired,
-  refSubmitBtn: PropTypes.any,
+  refSubmitBtn: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({current: PropTypes.instanceOf(Element)})
+  ]),
   resetFormSubmitHandler: PropTypes.func.isRequired,
   getDefaultForm: PropTypes.func.isRequired,
   formSubmit: PropTypes.shape({

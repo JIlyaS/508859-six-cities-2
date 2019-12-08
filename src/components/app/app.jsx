@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Switch, Route} from 'react-router-dom';
 import ReactNotification from 'react-notifications-component';
-import '../../../node_modules/react-notifications-component/dist/theme.css';
 
 import Main from '../main/main';
 import SignIn from '../sign-in/sign-in';
@@ -13,6 +12,7 @@ import withSignIn from '../../hocs/with-sign-in/with-sign-in';
 import Operation from '../../operation/operation';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 import ActionCreator from '../../action-creator/action-creator';
+import '../../../node_modules/react-notifications-component/dist/theme.css';
 
 class App extends PureComponent {
 

@@ -16,7 +16,7 @@ import {
   sortOfferList
 } from "../../utils";
 import {getCurrentCityOffers} from '../../selectors/selectors';
-import {OfferCardNames} from '../../constants';
+import {OfferCardName} from '../../constants';
 
 const SortListWrapped = withSortList(SortList);
 
@@ -28,6 +28,7 @@ class Main extends PureComponent {
     const currentOffers = sortOfferList(offers, activeSortName);
     const coordinates = getMapCoordinates(currentOffers, activeOfferCard);
     const activeCityCoordinate = getActiveCityCoordinate(currentOffers);
+
     if (isOffersLoading) {
       return <Preloader />;
     }
@@ -53,7 +54,7 @@ class Main extends PureComponent {
                       {currentOffers.length} places to stay in {city}
                     </b>
                     <SortListWrapped />
-                    <OfferList offers={currentOffers} classOfferCard={OfferCardNames.MAIN_OFFER} />
+                    <OfferList offers={currentOffers} classOfferCard={OfferCardName.MAIN_OFFER} />
                   </section>
                   <div className="cities__right-section">
                     <section className="cities__map map">
@@ -79,11 +80,11 @@ class Main extends PureComponent {
 
 Main.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  offers: PropTypes.array.isRequired,
   activeOfferCard: PropTypes.shape({
     id: PropTypes.number,
     location: PropTypes.object,
-  }),
+  }).isRequired,
   isOffersFetching: PropTypes.bool.isRequired,
   activeSortName: PropTypes.string.isRequired,
 };

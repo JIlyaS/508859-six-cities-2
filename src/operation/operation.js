@@ -19,7 +19,7 @@ const Operation = {
     return api.get(`/favorite`)
       .then((response) => {
         if (response) {
-          dispatch(ActionCreator.fetchFaviritesSuccess(response.data));
+          dispatch(ActionCreator.fetchFavoritesSuccess(response.data));
         }
       });
   },
