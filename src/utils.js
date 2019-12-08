@@ -112,7 +112,7 @@ export const getNotificationError = (error) => {
     animationIn: [`animated`, `fadeIn`],
     animationOut: [`animated`, `fadeOut`],
     dismiss: {
-      duration: 3000,
+      duration: 5000,
       pauseOnHover: true,
     }
   });
