@@ -44,6 +44,7 @@ exports[`Main correctly renders after relaunch 1`] = `
           </b>
           <WithSortList />
           <Connect(OfferList)
+            classOfferCard="main_offer"
             offers={
               Array [
                 Object {

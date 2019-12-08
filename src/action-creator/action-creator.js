@@ -1,5 +1,4 @@
 import {ActionType} from '../constants';
-import {getCityOffers} from '../utils';
 import Adapter from '../adapter';
 
 const ActionCreator = {
@@ -7,13 +6,6 @@ const ActionCreator = {
     type: ActionType.CHANGE_CITY,
     payload: city
   }),
-  getOffers: (allOfferList, city) => {
-    const cityOffers = getCityOffers(allOfferList, city);
-    return {
-      type: ActionType.GET_OFFERS,
-      payload: cityOffers,
-    };
-  },
   changeSortName: (sortName) => ({
     type: ActionType.CHANGE_SORT,
     payload: sortName,
@@ -34,13 +26,36 @@ const ActionCreator = {
     type: ActionType.ADD_LOGIN,
     payload: loginData,
   }),
-  loadOffers: (dataOffers) => {
+  fetchOffersSuccess: (dataOffers) => {
     const offers = Adapter.getOffers(dataOffers);
     return {
-      type: ActionType.LOAD_OFFERS,
+      type: ActionType.FETCH_OFFERS_SUCCESS,
       payload: offers,
     };
   },
+  fetchOffersRequest: () => ({
+    type: ActionType.FETCH_OFFERS_REQUEST,
+    payload: true,
+  }),
+  fetchOffersFailure: () => ({
+    type: ActionType.FETCH_OFFERS_FAILURE,
+    payload: false,
+  }),
+  fetchFavoritesRequest: () => ({
+    type: ActionType.FETCH_FAVORITES_REQUEST,
+    payload: true,
+  }),
+  fetchFavoritesSuccess: (dataFavorites) => {
+    const offers = Adapter.getOffers(dataFavorites);
+    return {
+      type: ActionType.FETCH_FAVORITES_SUCCESS,
+      payload: offers,
+    };
+  },
+  fetchFavoritesFailure: () => ({
+    type: ActionType.FETCH_FAVORITES_FAILURE,
+    payload: false,
+  }),
   loadReviews: (dataReviews) => {
     const reviews = Adapter.loadReviews(dataReviews);
     return {
@@ -55,6 +70,42 @@ const ActionCreator = {
       payload: offer,
     };
   },
+  submitForm: () => ({
+    type: ActionType.FORM_SUBMISSION,
+    payload: {
+      blockedInput: true,
+      blockedSubmit: true,
+      submit: false,
+      error: false
+    },
+  }),
+  submitFormSuccess: () => ({
+    type: ActionType.FORM_SUBMISSION_SUCCESS,
+    payload: {
+      blockedInput: false,
+      blockedSubmit: false,
+      submit: true,
+      error: false
+    },
+  }),
+  submitFormError: () => ({
+    type: ActionType.FORM_SUBMISSION_ERROR,
+    payload: {
+      blockedInput: false,
+      blockedSubmit: false,
+      submit: false,
+      error: true
+    },
+  }),
+  submitFormDefault: () => ({
+    type: ActionType.FORM_SUBMISSION_DEFAULT,
+    payload: {
+      blockedInput: false,
+      blockedSubmit: true,
+      submit: false,
+      error: false
+    },
+  }),
 };
 
 export default ActionCreator;

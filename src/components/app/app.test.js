@@ -9,19 +9,29 @@ import {App} from './app';
 Enzyme.configure({adapter: new Adapter()});
 
 jest.mock(`../map/map`);
+jest.mock(`../../../node_modules/react-notifications-component/dist/theme.css`, () => jest.fn());
 
 const props = {
   appReducer: {
-    city: ``,
-    activeSortName: `Popular`,
-    changedOffers: [],
-    activeOfferCard: {},
-    cities: [],
-    // isAuthorizationRequired: true,
+    isOffersFetching: false,
+    isFavoritesFetching: false,
+    offers: [],
+    login: null,
+    reviews: [],
+    favorites: [],
   },
   userReducer: {
-    offers: [],
-    login: {},
+    city: ``,
+    activeSortName: `Popular`,
+    activeOfferCard: {},
+    cities: [],
+    isAuthorizationRequired: true,
+    formSubmit: {
+      blockedInput: false,
+      blockedSubmit: true,
+      submit: false,
+      error: false
+    },
   }
 };
 
@@ -30,7 +40,9 @@ const store = mockStore(props);
 
 it(`App correctly renders after relaunch`, () => {
   const tree = shallow(<App
-    loadOffers={() => {}}
+    onOffersLoad={() => {}}
+    onAuthorizationRequire={() => {}}
+    isAuthorizationRequired={false}
     store={store}
   />);
 

@@ -1,14 +1,44 @@
 export const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
-  GET_OFFERS: `GET_OFFERS`,
   CHANGE_SORT: `CHANGE_SORT`,
   ADD_ACTIVE_CARD: `ADD_ACTIVE_CARD`,
   REMOVE_ACTIVE_CARD: `REMOVE_ACTIVE_CARD`,
-  LOAD_OFFERS: `LOAD_OFFERS`,
+  FETCH_OFFERS_REQUEST: `FETCH_OFFERS_REQUEST`,
+  FETCH_OFFERS_SUCCESS: `FETCH_OFFERS_SUCCESS`,
+  FETCH_OFFERS_FAILURE: `FETCH_OFFERS_FAILURE`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   ADD_LOGIN: `ADD_LOGIN`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   UPDATE_FAVORITE_OFFER: `UPDATE_FAVORITE_OFFER`,
+  FETCH_FAVORITES_REQUEST: `FETCH_FAVORITES_REQUEST`,
+  FETCH_FAVORITES_SUCCESS: `FETCH_FAVORITES_SUCCESS`,
+  FETCH_FAVORITES_FAILURE: `FETCH_FAVORITES_FAILURE`,
+  FORM_SUBMISSION: `FORM_SUBMISSION`,
+  FORM_SUBMISSION_SUCCESS: `FORM_SUBMISSION_SUCCESS`,
+  FORM_SUBMISSION_ERROR: `FORM_SUBMISSION_ERROR`,
+  FORM_SUBMISSION_DEFAULT: `FORM_SUBMISSION_DEFAULT`,
+};
+export const PageName = {
+  SIGN: `sign`,
+  MAIN: `main`,
+  DETAIL: `detail`,
+  FAVORITES: `favorites`,
+  FAVORITES_EMPTY: `favorites_empty`
+};
+export const Comment = {
+  MIN: 50,
+  MAX: 300
+};
+export const OfferCardName = {
+  MAIN_OFFER: `main_offer`,
+  DETAIL_OFFER: `detail_offer`,
+  FAVORITE_OFFER: `favorite_offer`,
+};
+export const SortName = {
+  POPULAR: `Popular`,
+  PRICE_LH: `Price: low to high`,
+  PRICE_HL: `Price: high to low`,
+  TOP_RATED: `Top rated first`
 };
 export const RATINGS = [
   {title: `perfect`, stars: `5`},
@@ -17,32 +47,32 @@ export const RATINGS = [
   {title: `badly`, stars: `2`},
   {title: `terribly`, stars: `1`}
 ];
-export const PageNames = {
-  SIGN: `sign`,
-  MAIN: `main`,
-  DETAIL: `detail`
-};
 export const RATING_PERSENT = 100;
 export const MAX_RATING_COUNT = 5;
-export const ICON = {
-  url: `img/pin.svg`,
-  size: [30, 30]
+export const MAX_REVIEWS = 10;
+export const MAX_DETAIL_IMG = 6;
+export const UNAUTH_STATUS = 401;
+export const MapIcon = {
+  URL: `/img/pin.svg`,
+  ACTIVE_URL: `/img/pin-active.svg`,
+  SIZE: [30, 30]
 };
 export const LEAFLET_OPTION = {
   center: [52.38333, 4.9],
   zoom: 12
 };
-export const TILE_LAYER = {
-  img: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
-  attributions: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+export const TileLayerMap = {
+  IMG: `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
+  ATTRIBUTIONS: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+    contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+};
+export const OfferCardImg = {
+  WIDTH: `260`,
+  HEIGHT: `200`,
+  SMALL_WIDTH: `150`,
+  SMALL_HEIGHT: `110`
 };
 export const MAX_NEARBY_OFFER = 3;
-export const SortNames = {
-  POPULAR: `Popular`,
-  PRICE_LH: `Price: low to high`,
-  PRICE_HL: `Price: high to low`,
-  TOP_RATED: `Top rated first`
-};
 export const SORT_LIST = [
   {
     id: `id0`,
@@ -61,6 +91,139 @@ export const SORT_LIST = [
     name: `Top rated first`
   }
 ];
+export const CityListMock = {
+  CITY: `Amsterdam`,
+  CITIES: [`Amsterdam`, `Paris`]
+};
+export const CommentFormMock = {
+  RATING: `4`,
+  ID_HOTEL: `1`,
+  FORM_SUBMIT: {
+    blockedInput: false,
+    error: false,
+    blockedSubmit: true,
+    submit: false
+  },
+  COMMENT: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
+};
+export const DetailInfoMock = {
+  ID: `1`
+};
+export const HeaderMock = {
+  LOGIN: {
+    email: `info@mail.ru`
+  },
+  IS_AUTH: false
+};
+export const MainMock = {
+  CITY: `Amsterdam`,
+  ACTIVE_SORT_NAME: `Popular`,
+  IS_OFFERS_FETCHING: false
+};
+export const MapMock = {
+  COORDINATES: [{coordinate: [1, 2], zoom: 16}, {coordinate: [2, 3], zoom: 16}],
+  ACTIVE_COORDINATE: {coordinate: [5, 6], zoom: 16},
+  ACTIVE_CITY_COORDINATE: {coordinateCity: [1, 1], zoomCity: 13},
+  CITY: `Amsterdam`
+};
+export const OfferCardMock = {
+  OFFER: {
+    title: ``,
+    type: `room`,
+    price: 0,
+    img: `room.jpg`,
+    rating: 0,
+    isPremium: false,
+    isFavorite: false
+  },
+  OFFER_ID: 0,
+  CLASS_CARD: {
+    list: ``,
+    card: ``,
+    wrapper: ``,
+    info: ``
+  }
+};
+export const OfferListMock = {
+  OFFERS: [{
+    id: 0,
+    title: ``,
+    type: `room`,
+    price: 0,
+    img: `room.jpg`,
+    rating: 0,
+    isPremium: false,
+    isFavorite: false,
+  }],
+  CLASS_OFFER_CARD: `main_offer`,
+  CLASS_CARD: {
+    list: ``,
+    card: ``,
+    wrapper: ``,
+    info: ``
+  }
+};
+export const ReviewItemMock = {
+  REVIEW: {
+    comment: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
+    date: `November 2019`,
+    dateTime: `2019-11-10`,
+    id: `review1`,
+    rating: 3,
+    user: {
+      avatar: `https://htmlacademy-react-2.appspot.com/six-cities/static/avatar/9.jpg`,
+      id: `user18`,
+      name: `Sophie`,
+      status: true
+    }
+  }
+};
+export const ReviewListMock = {
+  REVIEWS: [{
+    comment: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
+    date: `November 2019`,
+    dateTime: `2019-11-10`,
+    id: `review1`,
+    rating: 3,
+    user: {
+      avatar: `https://htmlacademy-react-2.appspot.com/six-cities/static/avatar/9.jpg`,
+      id: `user18`,
+      name: `Sophie`,
+      status: true
+    }
+  }]
+};
+export const SortListMock = {
+  IS_SORT_OPENED: false,
+  ACTIVE_SORT_NAME: `Popular`
+};
+export const WithCommentFormMock = {
+  RATING_NAME: `rating`,
+  COMMENT_NAME: `comment`,
+  RATING: `5`,
+  COMMENT: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`
+};
+export const OperationMock = {
+  STATUS: 200,
+  CITY: `Amsterdam`,
+  COMMENT: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
+  EMAIL: `ilkolmakov@yandex.ru`,
+  PASSWORD: `123`,
+  ID_HOTEL: 1,
+  RATING: 3,
+  FAVORITE_STATUS: 1,
+};
+export const AxiosConfig = {
+  BASE_URL: `https://htmlacademy-react-2.appspot.com/six-cities`,
+  TIMEOUT: 5000,
+  WITH_CREDENTIALS: true
+};
+export const WithSignInMock = {
+  EMAIL_NAME: `email`,
+  PASSWORD_NAME: `password`,
+  EMAIL: `info@mail.ru`,
+  PASSWORD: `123`
+};
 export const DEFAULT_OFFERS = [{
   id: 0,
   city: {
@@ -482,6 +645,76 @@ export const DEFAULT_OFFER_UPDATED_FAVORITE = {
   }
 };
 
+export const DEFAULT_OFFER_UPDATED_FAVORITE_SERVER = {
+  id: 1,
+  city: {
+    name: `Amsterdam`,
+    location: {
+      latitude: 52.370216,
+      longitude: 4.895168,
+      zoom: 10
+    }
+  },
+  [`preview_image`]: `img/1.png`,
+  images: [],
+  title: `Beautiful & luxurious studio at great location`,
+  [`is_favorite`]: true,
+  [`is_premium`]: false,
+  rating: 4.8,
+  type: `apartment`,
+  bedrooms: 3,
+  [`max_adults`]: 4,
+  price: 120,
+  goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  host: {
+    id: 3,
+    [`is_pro`]: true,
+    name: `Angelina`,
+    [`avatar_url`]: `img/1.png`
+  },
+  description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  location: {
+    latitude: 52.35514938496378,
+    longitude: 4.673877537499948,
+    zoom: 8
+  }
+};
+
+export const MOCK_DATA_UPDATED_FAVORITE_SERVER = [{
+  id: 1,
+  city: {
+    name: `Amsterdam`,
+    location: {
+      latitude: 52.370216,
+      longitude: 4.895168,
+      zoom: 10
+    }
+  },
+  [`preview_image`]: `img/1.png`,
+  images: [],
+  title: `Beautiful & luxurious studio at great location`,
+  [`is_favorite`]: true,
+  [`is_premium`]: false,
+  rating: 4.8,
+  type: `apartment`,
+  bedrooms: 3,
+  [`max_adults`]: 4,
+  price: 120,
+  goods: [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  host: {
+    id: 3,
+    [`is_pro`]: true,
+    name: `Angelina`,
+    [`avatar_url`]: `img/1.png`
+  },
+  description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  location: {
+    latitude: 52.35514938496378,
+    longitude: 4.673877537499948,
+    zoom: 8
+  }
+}];
+
 export const MOCK_DATA_UPDATED_FAVORITE = [{
   id: 1,
   city: {
@@ -537,6 +770,8 @@ export const MOCK_DATA_COMMENTS_SERVER = [{
 export const MOCK_DATA_COMMENTS_ADAPTER = [{
   comment: `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`,
   date: `November 2019`,
+  dateTime: `2019-11-10`,
+  dateTimestamp: 1573392760624,
   id: `review1`,
   rating: 3,
   user: {
@@ -559,5 +794,3 @@ export const DEFAULT_REVIEW = [{
     status: true
   }
 }];
-
-export const DEFAULT_COMMENT = `Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.`;

@@ -6,6 +6,7 @@ import {shape} from 'prop-types';
 import {BrowserRouter} from 'react-router-dom';
 
 import OfferCard from './offer-card';
+import {OfferCardMock} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -24,21 +25,12 @@ const createContext = () => ({
 
 it(`OfferCard correctly renders after relaunch`, () => {
   const tree = shallow(<OfferCard
-    offer={{
-      title: ``,
-      type: `room`,
-      price: 0,
-      img: `room.jpg`,
-      rating: 0,
-      isPremium: false,
-      isFavorite: false
-    }}
-    offerId={0}
-    activeOfferMouseEnterHandler={() => {}}
-    deactiveOfferMouseLeaveHandler={() => {}}
-    cardTitleClickHandler={() => {}}
-    changeFavoriteOfferClickHandler={() => {}}
-    isNearPlace={true}
+    offer={OfferCardMock.OFFER}
+    offerId={OfferCardMock.OFFER_ID}
+    onActiveOfferMouseEnter={() => {}}
+    onDeactiveOfferMouseLeave={() => {}}
+    onFavoriteOfferClick={() => {}}
+    classCard={OfferCardMock.CLASS_CARD}
   />, createContext());
 
   expect(toJSON(tree)).toMatchSnapshot();

@@ -1,33 +1,26 @@
 import React from 'react';
 import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+
 import OfferCard from './offer-card';
+import {OfferCardMock} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`OfferCard correct callback function`, () => {
-  const offerMouseEnterHandler = jest.fn();
-  const offerMouseLeaveHandler = jest.fn();
-  const mockOfferCardData = {
-    title: ``,
-    type: `room`,
-    price: 0,
-    img: `room.jpg`,
-    rating: 0,
-    isPremium: false,
-    isFavorite: false
-  };
+  const onActiveOfferMouseEnter = jest.fn();
+  const onDeactiveOfferMouseLeave = jest.fn();
   const offerCard = shallow(<OfferCard
-    offer={mockOfferCardData}
-    offerId={0}
-    activeOfferMouseEnterHandler={offerMouseEnterHandler}
-    deactiveOfferMouseLeaveHandler={offerMouseLeaveHandler}
-    isNearPlace={true}
-    changeFavoriteOfferClickHandler={() => {}}
+    offer={OfferCardMock.OFFER}
+    offerId={OfferCardMock.OFFER_ID}
+    classCard={OfferCardMock.CLASS_CARD}
+    onFavoriteOfferClick={() => {}}
+    onActiveOfferMouseEnter={onActiveOfferMouseEnter}
+    onDeactiveOfferMouseLeave={onDeactiveOfferMouseLeave}
   />);
 
   const mouseenterButton = offerCard.find(`.place-card`);
   mouseenterButton.simulate(`mouseenter`);
 
-  expect(offerMouseEnterHandler).toHaveBeenCalledWith(mockOfferCardData);
+  expect(onActiveOfferMouseEnter).toHaveBeenCalledWith(OfferCardMock.OFFER);
 });

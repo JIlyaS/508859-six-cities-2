@@ -6,6 +6,7 @@ import {shape} from 'prop-types';
 import {BrowserRouter} from 'react-router-dom';
 
 import {Header} from './header';
+import {HeaderMock} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -24,10 +25,8 @@ const createContext = () => ({
 
 it(`Header correctly renders after relaunch`, () => {
   const tree = shallow(<Header
-    isAuthorizationRequired={false}
-    login={{
-      email: `info@mail.ru`
-    }}
+    isAuthorizationRequired={HeaderMock.IS_AUTH}
+    login={HeaderMock.LOGIN}
   />, createContext());
 
   expect(toJSON(tree)).toMatchSnapshot();

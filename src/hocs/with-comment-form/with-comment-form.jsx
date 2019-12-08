@@ -1,15 +1,36 @@
 import React, {PureComponent} from 'react';
+import {Comment} from '../../constants';
 
 const withCommentForm = (Component) => {
   class WithCommentForm extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {
-        rating: `0`,
+        rating: ``,
         comment: ``
       };
+      this.refSubmitBtn = React.createRef();
 
-      this._addValueFormChangeHandler = this._addValueFormChangeHandler.bind(this);
+      this.handleValueFormChange = this.handleValueFormChange.bind(this);
+      this.handleFormResetSubmit = this.handleFormResetSubmit.bind(this);
+    }
+
+    handleValueFormChange(evt, nameInput) {
+      this.setState({[nameInput]: evt.target.value}, () => {
+        const {rating, comment} = this.state;
+        if (rating !== `` && comment.length >= Comment.MIN && comment.length <= Comment.MAX) {
+          this.refSubmitBtn.current.disabled = false;
+        } else {
+          this.refSubmitBtn.current.disabled = true;
+        }
+      });
+    }
+
+    handleFormResetSubmit() {
+      this.setState({
+        rating: ``,
+        comment: ``
+      });
     }
 
     render() {
@@ -17,14 +38,12 @@ const withCommentForm = (Component) => {
 
       return <Component
         {...this.props}
+        refSubmitBtn={this.refSubmitBtn}
         rating={rating}
         comment={comment}
-        addValueFormChangeHandler={this._addValueFormChangeHandler}
+        onValueFormChange={this.handleValueFormChange}
+        onFormResetSubmit={this.handleFormResetSubmit}
       />;
-    }
-
-    _addValueFormChangeHandler(evt, nameInput) {
-      this.setState({[nameInput]: evt.target.value});
     }
   }
 

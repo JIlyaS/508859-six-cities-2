@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {shuffleElements} from './utils';
+import {MAX_DETAIL_IMG} from './constants';
 
 class Adapter {
   static getOffers(offers) {
@@ -26,7 +26,7 @@ class Adapter {
       title: offer.title,
       type: offer.type,
       rating: Math.round(offer.rating),
-      photos: (shuffleElements(offer.images)).slice(0, 6),
+      photos: (offer.images).slice(0, MAX_DETAIL_IMG),
       location: {
         coordinate: [offer.location.latitude, offer.location.longitude],
         zoom: offer.location.zoom,
@@ -57,6 +57,8 @@ class Adapter {
       id: `review${review.id}`,
       rating: Math.round(review.rating),
       date: moment(review.date).format(`MMMM YYYY`),
+      dateTimestamp: Number(moment(review.date).format(`x`)),
+      dateTime: moment(review.date).format(`YYYY-MM-DD`),
       comment: review.comment,
       user: {
         id: `user${review.user.id}`,

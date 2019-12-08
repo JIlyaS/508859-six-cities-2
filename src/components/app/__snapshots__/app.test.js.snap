@@ -1,37 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App correctly renders after relaunch 1`] = `
-<Switch>
-  <Route
-    component={
-      Object {
-        "$$typeof": Symbol(react.memo),
-        "WrappedComponent": [Function],
-        "compare": null,
-        "displayName": "Connect(Main)",
-        "type": [Function],
+<Fragment>
+  <ReactNotificationComponent
+    breakpoint={768}
+    isMobile={true}
+  />
+  <Switch>
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(Main)",
+          "type": [Function],
+        }
       }
-    }
-    exact={true}
-    path="/"
-  />
-  <Route
-    component={[Function]}
-    exact={true}
-    path="/login"
-  />
-  <Route
-    component={
-      Object {
-        "$$typeof": Symbol(react.memo),
-        "WrappedComponent": [Function],
-        "compare": null,
-        "displayName": "Connect(DetailInfo)",
-        "type": [Function],
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/login"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": [Function],
+          "compare": null,
+          "displayName": "Connect(DetailInfo)",
+          "type": [Function],
+        }
       }
-    }
-    exact={true}
-    path="/offer/:offerId"
-  />
-</Switch>
+      exact={true}
+      path="/offer/:offerId"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/favorites"
+    />
+  </Switch>
+</Fragment>
 `;

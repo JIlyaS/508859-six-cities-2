@@ -3,8 +3,12 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import {getLocalStorageLogin} from '../../utils';
+
 const Header = (props) => {
-  const {login, isAuthorizationRequired} = props;
+  const {isAuthorizationRequired, loginStore} = props;
+  const login = loginStore || getLocalStorageLogin();
+  const isAuth = !login || isAuthorizationRequired;
   return <header className="header">
     <div className="container">
       <div className="header__wrapper">
@@ -25,7 +29,7 @@ const Header = (props) => {
         <nav className="header__nav">
           <ul className="header__nav-list">
             <li className="header__nav-item user">
-              {isAuthorizationRequired ? (
+              {isAuth ? (
                 <Link
                   to="/login"
                   className="header__nav-link header__nav-link--profile"
@@ -35,7 +39,7 @@ const Header = (props) => {
                 </Link>
               ) : (
                 <Link
-                  to="/"
+                  to="/favorites"
                   className="header__nav-link header__nav-link--profile"
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
@@ -54,14 +58,18 @@ const Header = (props) => {
 
 Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  login: PropTypes.shape({
-    email: PropTypes.string,
+  loginStore: PropTypes.shape({
+    email: PropTypes.string
   }),
+};
+
+Header.defaultProps = {
+  loginStore: null
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isAuthorizationRequired: state.userReducer.isAuthorizationRequired,
-  login: state.appReducer.login,
+  loginStore: state.appReducer.login,
 });
 
 export {Header};

@@ -308,7 +308,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
                 1
               </span>
             </h2>
-            <ReviewsList
+            <ReviewList
               reviews={
                 Array [
                   Object {
@@ -325,9 +325,6 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
                   },
                 ]
               }
-            />
-            <WithCommentForm
-              idHotel="1"
             />
           </section>
         </div>
@@ -348,6 +345,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
               undefined,
               undefined,
               undefined,
+              undefined,
             ]
           }
         />
@@ -365,7 +363,7 @@ exports[`DetailInfo correctly renders after relaunch 1`] = `
           Other places in the neighbourhood
         </h2>
         <Connect(OfferList)
-          isNearPlace={true}
+          classOfferCard="detail_offer"
           offers={
             Array [
               Object {

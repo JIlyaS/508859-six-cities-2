@@ -2,14 +2,16 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import ReviewsList from '../reviews-list/reviews-list';
+import ReviewsList from '../review-list/review-list';
 import CommentForm from '../comment-form/comment-form';
 import Map from '../map/map';
+import Preloader from '../preloader/preloader';
 import OfferList from '../offer-list/offer-list';
 import PageLayout from '../page-layout/page-layout';
 import withCommentForm from '../../hocs/with-comment-form/with-comment-form';
-import {getMapCoordinates, convertRating, getOtherCityOffers} from '../../utils';
+import {getMapCoordinates, convertRating, getOtherCityOffers, getLocalStorageLogin} from '../../utils';
 import Operation from '../../operation/operation';
+import {OfferCardName} from '../../constants';
 
 const CommentFormWrapped = withCommentForm(CommentForm);
 
@@ -18,15 +20,33 @@ class DetailInfo extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._changeFavoriteOfferClickHandler = this._changeFavoriteOfferClickHandler.bind(this);
+    this._handleFavoriteOfferClick = this._handleFavoriteOfferClick.bind(this);
+  }
+
+  componentDidMount() {
+    const {match: {params: {offerId}}, onLoadReviews} = this.props;
+    onLoadReviews(offerId);
+  }
+
+  _handleFavoriteOfferClick(offerId, isFavorite) {
+    const {onChangeOfferFavorite, onGetLogin} = this.props;
+    onGetLogin();
+    const login = getLocalStorageLogin();
+    if (login) {
+      const status = isFavorite === true ? 0 : 1;
+      onChangeOfferFavorite(offerId, status);
+    }
   }
 
   render() {
+
     if (!this.props.offers.length) {
-      return null;
+      return <Preloader />;
     }
+
     const {
       currentOffer: {
+        id,
         isPremium,
         isFavorite,
         price,
@@ -37,11 +57,10 @@ class DetailInfo extends PureComponent {
         insideProperties,
         hostUser,
         city,
+        location,
       },
       otherOffers,
-      activeOfferCard,
       reviews,
-      login,
       match: {
         params: {
           offerId
@@ -49,7 +68,9 @@ class DetailInfo extends PureComponent {
       },
     } = this.props;
 
-    const coordinates = getMapCoordinates(otherOffers, activeOfferCard);
+    const coordinates = getMapCoordinates(otherOffers, {id, location});
+    const login = getLocalStorageLogin();
+
     return (
       <PageLayout pageName="detail">
         <main className="page__main page__main--property">
@@ -84,7 +105,7 @@ class DetailInfo extends PureComponent {
                       `property__bookmark-button--active`} button`}
                     type="button"
                     onClick={() =>
-                      this._changeFavoriteOfferClickHandler(offerId, isFavorite)
+                      this._handleFavoriteOfferClick(offerId, isFavorite)
                     }
                   >
                     <svg
@@ -173,7 +194,7 @@ class DetailInfo extends PureComponent {
               <Map
                 activeCityCoordinate={city.location}
                 coordinates={coordinates}
-                activeCoordinate={activeOfferCard.location}
+                activeCoordinate={location}
               />
             </section>
           </section>
@@ -182,26 +203,12 @@ class DetailInfo extends PureComponent {
               <h2 className="near-places__title">
                 Other places in the neighbourhood
               </h2>
-              <OfferList offers={otherOffers} isNearPlace />
+              <OfferList offers={otherOffers} classOfferCard={OfferCardName.DETAIL_OFFER} />
             </section>
           </div>
         </main>
       </PageLayout>
     );
-  }
-
-  componentDidMount() {
-    const {match: {params: {offerId}}, loadReviews} = this.props;
-    loadReviews(offerId);
-  }
-
-  _changeFavoriteOfferClickHandler(offerId, isFavorite) {
-    const {changeOfferFavorite, getLogin, login} = this.props;
-    getLogin();
-    if (login) {
-      const status = isFavorite === true ? 0 : 1;
-      changeOfferFavorite(offerId, status);
-    }
   }
 }
 
@@ -212,6 +219,11 @@ DetailInfo.propTypes = {
     }).isRequired
   }).isRequired,
   currentOffer: PropTypes.shape({
+    id: PropTypes.number,
+    location: PropTypes.shape({
+      coordinate: PropTypes.arrayOf(PropTypes.number),
+      zoom: PropTypes.number
+    }),
     city: PropTypes.object.isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
@@ -220,9 +232,9 @@ DetailInfo.propTypes = {
     title: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`]),
-    photos: PropTypes.array.isRequired,
-    features: PropTypes.array.isRequired,
-    insideProperties: PropTypes.array.isRequired,
+    photos: PropTypes.arrayOf(PropTypes.string).isRequired,
+    features: PropTypes.arrayOf(PropTypes.string).isRequired,
+    insideProperties: PropTypes.arrayOf(PropTypes.string).isRequired,
     hostUser: PropTypes.shape({
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
@@ -230,31 +242,24 @@ DetailInfo.propTypes = {
     }),
   }),
   otherOffers: PropTypes.array.isRequired,
-  activeOfferCard: PropTypes.shape({
-    id: PropTypes.number,
-    location: PropTypes.object
-  }),
   offers: PropTypes.array.isRequired,
-  loadReviews: PropTypes.func.isRequired,
+  onLoadReviews: PropTypes.func.isRequired,
   reviews: PropTypes.array.isRequired,
-  login: PropTypes.any,
-  changeOfferFavorite: PropTypes.func.isRequired,
-  getLogin: PropTypes.func.isRequired,
+  onChangeOfferFavorite: PropTypes.func.isRequired,
+  onGetLogin: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentOffer: state.appReducer.offers.find((offer) => offer.id === Number(ownProps.match.params.offerId)),
   otherOffers: getOtherCityOffers(ownProps.match.params.offerId, state.appReducer.offers),
-  activeOfferCard: state.userReducer.activeOfferCard,
   offers: state.appReducer.offers,
   reviews: state.appReducer.reviews,
-  login: state.appReducer.login,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadReviews: (idHotel) => dispatch(Operation.loadReviews(idHotel)),
-  changeOfferFavorite: (offerId, status) => dispatch(Operation.changeOfferFavorite(offerId, status)),
-  getLogin: () => dispatch(Operation.getLogin()),
+  onLoadReviews: (idHotel) => dispatch(Operation.loadReviews(idHotel)),
+  onChangeOfferFavorite: (offerId, status) => dispatch(Operation.changeOfferFavorite(offerId, status)),
+  onGetLogin: () => dispatch(Operation.getLogin()),
 });
 
 export {DetailInfo};

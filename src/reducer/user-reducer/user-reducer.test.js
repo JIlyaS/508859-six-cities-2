@@ -1,4 +1,4 @@
-import {DEFAULT_OFFERS, DEFAULT_OFFER} from '../../constants';
+import {DEFAULT_OFFER, ActionType} from '../../constants';
 import reducer from './user-reducer';
 
 describe(`Reducer work correctly`, () => {
@@ -6,160 +6,305 @@ describe(`Reducer work correctly`, () => {
     expect(reducer(undefined, {})).toEqual({
       city: ``,
       activeSortName: `Popular`,
-      changedOffers: [],
       activeOfferCard: {},
       cities: [],
       isAuthorizationRequired: true,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should change city by a given value`, () => {
     expect(reducer({
-      city: ``,
-      changedOffers: DEFAULT_OFFERS,
+      city: `Amsterdam`,
       activeSortName: `Popular`,
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
-      type: `CHANGE_CITY`,
+      type: ActionType.CHANGE_CITY,
       payload: `Paris`
     })).toEqual({
       city: `Paris`,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
-    });
-  });
-  it(`Reducer should get offers city by a given value`, () => {
-    expect(reducer({
-      city: ``,
-      changedOffers: DEFAULT_OFFERS,
-      activeSortName: `Popular`,
-      activeOfferCard: {},
-      cities: [`Amsterdam`, `Paris`, `Hamburg`],
-      isAuthorizationRequired: false,
-    }, {
-      type: `GET_OFFERS`,
-      payload: [{
-        id: `id1`,
-        city: {
-          name: `Paris`,
-        }
-      }]
-    })).toEqual({
-      city: ``,
-      changedOffers: [{
-        id: `id1`,
-        city: {
-          name: `Paris`,
-        }
-      }],
-      activeSortName: `Popular`,
-      activeOfferCard: {},
-      cities: [`Amsterdam`, `Paris`, `Hamburg`],
-      isAuthorizationRequired: false,
-    });
-  });
-  it(`Reducer should get offers city empty array by a given value`, () => {
-    expect(reducer({
-      city: ``,
-      changedOffers: DEFAULT_OFFERS,
-      activeSortName: `Popular`,
-      activeOfferCard: {},
-      cities: [`Amsterdam`, `Paris`, `Hamburg`],
-      isAuthorizationRequired: false,
-    }, {
-      type: `GET_OFFERS`,
-      payload: []
-    })).toEqual({
-      city: ``,
-      changedOffers: [],
-      activeSortName: `Popular`,
-      activeOfferCard: {},
-      cities: [`Amsterdam`, `Paris`, `Hamburg`],
-      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should change sort name by a given value`, () => {
     expect(reducer({
       city: ``,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
-      type: `CHANGE_SORT`,
+      type: ActionType.CHANGE_SORT,
       payload: `Top rated first`
     })).toEqual({
       city: ``,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Top rated first`,
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should add active card object data by a given value`, () => {
     expect(reducer({
       city: ``,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
-      type: `ADD_ACTIVE_CARD`,
+      type: ActionType.ADD_ACTIVE_CARD,
       payload: DEFAULT_OFFER
     })).toEqual({
       city: ``,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: DEFAULT_OFFER,
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should remove active card empty by a given value`, () => {
     expect(reducer({
       city: ``,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: DEFAULT_OFFER,
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
-      type: `REMOVE_ACTIVE_CARD`,
+      type: ActionType.REMOVE_ACTIVE_CARD,
       payload: {}
     })).toEqual({
       city: ``,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: {},
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     });
   });
   it(`Reducer should authorization by a given value`, () => {
     expect(reducer({
       city: ``,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: DEFAULT_OFFER,
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
     }, {
-      type: `REQUIRED_AUTHORIZATION`,
+      type: ActionType.REQUIRED_AUTHORIZATION,
       payload: true
     })).toEqual({
       city: ``,
-      changedOffers: DEFAULT_OFFERS,
       activeSortName: `Popular`,
       activeOfferCard: DEFAULT_OFFER,
       cities: [`Amsterdam`, `Paris`, `Hamburg`],
       isAuthorizationRequired: true,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
+    });
+  });
+  it(`Reducer should form submission by a given value`, () => {
+    expect(reducer({
+      city: ``,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
+    }, {
+      type: ActionType.FORM_SUBMISSION,
+      payload: {
+        blockedInput: true,
+        blockedSubmit: true,
+        submit: false,
+        error: false
+      }
+    })).toEqual({
+      city: ``,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: true,
+        blockedSubmit: true,
+        submit: false,
+        error: false
+      },
+    });
+  });
+  it(`Reducer should form submission success by a given value`, () => {
+    expect(reducer({
+      city: ``,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
+    }, {
+      type: ActionType.FORM_SUBMISSION_SUCCESS,
+      payload: {
+        blockedInput: false,
+        blockedSubmit: false,
+        submit: true,
+        error: false
+      }
+    })).toEqual({
+      city: ``,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: false,
+        submit: true,
+        error: false
+      },
+    });
+  });
+  it(`Reducer should form submission error by a given value`, () => {
+    expect(reducer({
+      city: ``,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
+    }, {
+      type: ActionType.FORM_SUBMISSION_ERROR,
+      payload: {
+        blockedInput: false,
+        blockedSubmit: false,
+        submit: false,
+        error: true
+      }
+    })).toEqual({
+      city: ``,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: false,
+        submit: false,
+        error: true
+      },
+    });
+  });
+  it(`Reducer should form submission default by a given value`, () => {
+    expect(reducer({
+      city: ``,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        error: false,
+        submit: false
+      },
+    }, {
+      type: ActionType.FORM_SUBMISSION_DEFAULT,
+      payload: {
+        blockedInput: false,
+        blockedSubmit: true,
+        submit: false,
+        error: false
+      }
+    })).toEqual({
+      city: ``,
+      activeSortName: `Popular`,
+      activeOfferCard: DEFAULT_OFFER,
+      cities: [`Amsterdam`, `Paris`, `Hamburg`],
+      isAuthorizationRequired: false,
+      formSubmit: {
+        blockedInput: false,
+        blockedSubmit: true,
+        submit: false,
+        error: false
+      },
     });
   });
 });

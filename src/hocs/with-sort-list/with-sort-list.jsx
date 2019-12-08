@@ -7,7 +7,11 @@ const withSortList = (Component) => {
       this.state = {
         isSortOpened: false
       };
-      this._openSortListClickHandler = this._openSortListClickHandler.bind(this);
+      this.handleSortListClick = this.handleSortListClick.bind(this);
+    }
+
+    handleSortListClick() {
+      this.setState((prevState) => ({isSortOpened: !prevState.isSortOpened}));
     }
 
     render() {
@@ -16,12 +20,8 @@ const withSortList = (Component) => {
       return <Component
         {...this.props}
         isSortOpened={isSortOpened}
-        openSortListClickHandler={this._openSortListClickHandler}
+        onSortListClick={this.handleSortListClick}
       />;
-    }
-
-    _openSortListClickHandler() {
-      this.setState((prevState) => ({isSortOpened: !prevState.isSortOpened}));
     }
   }
 

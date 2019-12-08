@@ -1,7 +1,9 @@
 import React from 'react';
 import Enzyme, {shallow} from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
+
 import withSignIn from './with-sign-in';
+import {WithSignInMock} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -14,9 +16,15 @@ describe(`withSignIn HOC work correct`, () => {
 
     expect(wrapper.state().email).toEqual(``);
     expect(wrapper.state().password).toEqual(``);
-    wrapper.props().addValueFormChangeHandler({target: {value: `info@mail.ru`}}, `email`);
-    wrapper.props().addValueFormChangeHandler({target: {value: `123`}}, `password`);
-    expect(wrapper.state().email).toEqual(`info@mail.ru`);
-    expect(wrapper.state().password).toEqual(`123`);
+    wrapper.props().onValueFormChange(
+        {target: {value: WithSignInMock.EMAIL}},
+        WithSignInMock.EMAIL_NAME
+    );
+    wrapper.props().onValueFormChange(
+        {target: {value: WithSignInMock.PASSWORD}},
+        WithSignInMock.PASSWORD_NAME
+    );
+    expect(wrapper.state().email).toEqual(WithSignInMock.EMAIL);
+    expect(wrapper.state().password).toEqual(WithSignInMock.PASSWORD);
   });
 });

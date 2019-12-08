@@ -1,18 +1,24 @@
 import axios from 'axios';
 
+import {getNotificationError} from './utils';
+import {UNAUTH_STATUS, AxiosConfig} from './constants';
+
 const configureAPI = (onLoginFail) => {
   const api = axios.create({
-    baseURL: `https://htmlacademy-react-2.appspot.com/six-cities`,
-    timeout: 5000,
-    withCredentials: true
+    baseURL: AxiosConfig.BASE_URL,
+    timeout: AxiosConfig.TIMEOUT,
+    withCredentials: AxiosConfig.WITH_CREDENTIALS
   });
 
   const onSuccess = (response) => response;
   const onFail = (err) => {
-    if (err.response.status === 401) {
+    if (err.response && err.response.status === UNAUTH_STATUS) {
+      localStorage.removeItem(`login`);
       onLoginFail();
       return;
     }
+
+    getNotificationError(err);
   };
 
   api.interceptors.response.use(onSuccess, onFail);

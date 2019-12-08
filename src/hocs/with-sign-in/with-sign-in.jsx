@@ -9,7 +9,11 @@ const withSignIn = (Component) => {
         password: ``
       };
 
-      this._addValueFormChangeHandler = this._addValueFormChangeHandler.bind(this);
+      this.handleValueFormChange = this.handleValueFormChange.bind(this);
+    }
+
+    handleValueFormChange(evt, nameInput) {
+      this.setState({[nameInput]: evt.target.value});
     }
 
     render() {
@@ -19,12 +23,8 @@ const withSignIn = (Component) => {
         {...this.props}
         email={email}
         password={password}
-        addValueFormChangeHandler={this._addValueFormChangeHandler}
+        onValueFormChange={this.handleValueFormChange}
       />;
-    }
-
-    _addValueFormChangeHandler(evt, nameInput) {
-      this.setState({[nameInput]: evt.target.value});
     }
   }
 
