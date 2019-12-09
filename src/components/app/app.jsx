@@ -22,6 +22,9 @@ class App extends PureComponent {
     if (localStorage.getItem(`login`)) {
       onAuthorizationRequire(false);
     }
+    if (!localStorage.getItem(`login`)) {
+      onAuthorizationRequire(true);
+    }
   }
 
   render() {
