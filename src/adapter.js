@@ -12,7 +12,7 @@ class Adapter {
       city: {
         name: offer.city.name,
         location: {
-          coordinateCity: [
+          cityCoordinates: [
             offer.city.location.latitude,
             offer.city.location.longitude
           ],
@@ -28,7 +28,7 @@ class Adapter {
       rating: Math.round(offer.rating),
       photos: (offer.images).slice(0, MAX_DETAIL_IMG),
       location: {
-        coordinate: [offer.location.latitude, offer.location.longitude],
+        offerCoordinates: [offer.location.latitude, offer.location.longitude],
         zoom: offer.location.zoom,
       },
       features: [

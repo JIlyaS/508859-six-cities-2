@@ -121,9 +121,9 @@ export const MainMock = {
   IS_OFFERS_FETCHING: false
 };
 export const MapMock = {
-  COORDINATES: [{coordinate: [1, 2], zoom: 16}, {coordinate: [2, 3], zoom: 16}],
-  ACTIVE_COORDINATE: {coordinate: [5, 6], zoom: 16},
-  ACTIVE_CITY_COORDINATE: {coordinateCity: [1, 1], zoomCity: 13},
+  COORDINATES: [{offerCoordinates: [1, 2], zoom: 16}, {offerCoordinates: [2, 3], zoom: 16}],
+  ACTIVE_COORDINATE: {offerCoordinates: [5, 6], zoom: 16},
+  ACTIVE_CITY_COORDINATE: {cityCoordinates: [1, 1], zoomCity: 13},
   CITY: `Amsterdam`
 };
 export const OfferCardMock = {
@@ -241,7 +241,10 @@ export const DEFAULT_OFFERS = [{
   title: `Beautiful & luxurious apartment at great location`,
   type: `apartment`,
   rating: 4.8,
-  coordinate: [52.3909553943508, 4.85309666406198],
+  location: {
+    offerCoordinates: [52.3909553943508, 4.85309666406198],
+    zoom: 8
+  },
   photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
   features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
   insideProperties: [...new Set([
@@ -279,7 +282,7 @@ export const DEFAULT_OFFERS = [{
   title: `Wood and stone place`,
   type: `room`,
   rating: 4.0,
-  coordinate: [52.369553943508, 4.85309666406198],
+  offerCoordinates: [52.369553943508, 4.85309666406198],
   photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
   features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
   insideProperties: [...new Set([
@@ -317,7 +320,7 @@ export const DEFAULT_OFFERS = [{
   title: `Canal View Prinsengracht`,
   type: `apartment`,
   rating: 4.0,
-  coordinate: [52.3909553943508, 4.929309666406198],
+  offerCoordinates: [52.3909553943508, 4.929309666406198],
   photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
   features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
   insideProperties: [...new Set([
@@ -355,7 +358,10 @@ export const DEFAULT_OFFERS = [{
   title: `Nice, cozy, warm big bed apartment`,
   type: `apartment`,
   rating: 5.0,
-  coordinate: [52.3809553943508, 4.939309666406198],
+  location: {
+    offerCoordinates: [52.3809553943508, 4.939309666406198],
+    zoom: 8
+  },
   photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
   features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
   insideProperties: [...new Set([
@@ -394,7 +400,10 @@ export const DEFAULT_OFFER = {
   title: `Beautiful & luxurious apartment at great location`,
   type: `apartment`,
   rating: 4.8,
-  coordinate: [52.3909553943508, 4.85309666406198],
+  location: {
+    offerCoordinates: [52.3909553943508, 4.85309666406198],
+    zoom: 8
+  },
   photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
   features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
   insideProperties: [...new Set([
@@ -440,7 +449,10 @@ export const CURRENT_OFFER = {
   title: `Beautiful & luxurious apartment at great location`,
   type: `apartment`,
   rating: 4.8,
-  coordinate: [52.3909553943508, 4.85309666406198],
+  location: {
+    offerCoordinates: [52.3909553943508, 4.85309666406198],
+    zoom: 8
+  },
   photos: [`room.jpg`, `apartment-01.jpg`, `apartment-02.jpg`, `apartment-03.jpg`, `studio-01.jpg`, `apartment-01.jpg`],
   features: [...new Set([`Entire place`, `3 Bedrooms`, `Max 4 adults`])],
   insideProperties: [...new Set([
@@ -557,7 +569,7 @@ export const DEFAULT_OFFER_ADAPTER = {
   city: {
     name: `Amsterdam`,
     location: {
-      coordinateCity: [52.370216, 4.895168],
+      cityCoordinates: [52.370216, 4.895168],
       zoomCity: 10
     }
   },
@@ -570,7 +582,7 @@ export const DEFAULT_OFFER_ADAPTER = {
   type: `apartment`,
   price: 120,
   location: {
-    coordinate: [52.35514938496378, 4.673877537499948],
+    offerCoordinates: [52.35514938496378, 4.673877537499948],
     zoom: 8
   },
   features: [`Entire place`, `3 Bedrooms`, `Max 4 adults`],
@@ -588,7 +600,7 @@ export const MOCK_DATA_ADAPTER = [{
   city: {
     name: `Amsterdam`,
     location: {
-      coordinateCity: [52.370216, 4.895168],
+      cityCoordinates: [52.370216, 4.895168],
       zoomCity: 10
     }
   },
@@ -601,7 +613,7 @@ export const MOCK_DATA_ADAPTER = [{
   type: `apartment`,
   price: 120,
   location: {
-    coordinate: [52.35514938496378, 4.673877537499948],
+    offerCoordinates: [52.35514938496378, 4.673877537499948],
     zoom: 8
   },
   features: [`Entire place`, `3 Bedrooms`, `Max 4 adults`],
@@ -619,7 +631,7 @@ export const DEFAULT_OFFER_UPDATED_FAVORITE = {
   city: {
     name: `Amsterdam`,
     location: {
-      coordinateCity: [52.370216, 4.895168],
+      cityCoordinates: [52.370216, 4.895168],
       zoomCity: 10
     }
   },
@@ -632,7 +644,7 @@ export const DEFAULT_OFFER_UPDATED_FAVORITE = {
   type: `apartment`,
   price: 120,
   location: {
-    coordinate: [52.35514938496378, 4.673877537499948],
+    offerCoordinates: [52.35514938496378, 4.673877537499948],
     zoom: 8
   },
   features: [`Entire place`, `3 Bedrooms`, `Max 4 adults`],
@@ -720,7 +732,7 @@ export const MOCK_DATA_UPDATED_FAVORITE = [{
   city: {
     name: `Amsterdam`,
     location: {
-      coordinateCity: [52.370216, 4.895168],
+      cityCoordinates: [52.370216, 4.895168],
       zoomCity: 10
     }
   },
@@ -733,7 +745,7 @@ export const MOCK_DATA_UPDATED_FAVORITE = [{
   type: `apartment`,
   price: 120,
   location: {
-    coordinate: [52.35514938496378, 4.673877537499948],
+    offerCoordinates: [52.35514938496378, 4.673877537499948],
     zoom: 8
   },
   features: [`Entire place`, `3 Bedrooms`, `Max 4 adults`],

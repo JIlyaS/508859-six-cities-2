@@ -58,7 +58,7 @@ exports[`FavoritesList correctly renders after relaunch 1`] = `
                   Object {
                     "city": Object {
                       "location": Object {
-                        "coordinateCity": Array [
+                        "cityCoordinates": Array [
                           52.370216,
                           4.895168,
                         ],
@@ -90,7 +90,7 @@ exports[`FavoritesList correctly renders after relaunch 1`] = `
                     "isFavorite": true,
                     "isPremium": false,
                     "location": Object {
-                      "coordinate": Array [
+                      "offerCoordinates": Array [
                         52.35514938496378,
                         4.673877537499948,
                       ],
