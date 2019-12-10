@@ -58,7 +58,7 @@ const Main = (props) => {
                 <div className="cities__right-section">
                   <section className="cities__map map">
                     <Map
-                      activeCityCoordinate={activeCityCoordinate.coordinateCity}
+                      activeCityCoordinate={activeCityCoordinate.cityCoordinates}
                       coordinates={coordinates}
                       activeCoordinate={activeOfferCard.location}
                       city={city}

@@ -31,7 +31,7 @@ describe(`Action creators work correctly`, () => {
       city: {
         name: `Amsterdam`,
       },
-      coordinate: [52.3909553943508, 4.85309666406198],
+      offerCoordinates: [52.3909553943508, 4.85309666406198],
     })).toEqual({
       type: ActionType.ADD_ACTIVE_CARD,
       payload: {
@@ -39,7 +39,7 @@ describe(`Action creators work correctly`, () => {
         city: {
           name: `Amsterdam`,
         },
-        coordinate: [52.3909553943508, 4.85309666406198],
+        offerCoordinates: [52.3909553943508, 4.85309666406198],
       }
     });
   });

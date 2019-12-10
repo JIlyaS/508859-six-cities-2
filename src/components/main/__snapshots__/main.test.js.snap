@@ -56,10 +56,6 @@ exports[`Main correctly renders after relaunch 1`] = `
                     },
                     "name": "Amsterdam",
                   },
-                  "coordinate": Array [
-                    52.3909553943508,
-                    4.85309666406198,
-                  ],
                   "features": Array [
                     "Entire place",
                     "3 Bedrooms",
@@ -87,6 +83,13 @@ exports[`Main correctly renders after relaunch 1`] = `
                   ],
                   "isFavorite": false,
                   "isPremium": true,
+                  "location": Object {
+                    "offerCoordinates": Array [
+                      52.3909553943508,
+                      4.85309666406198,
+                    ],
+                    "zoom": 8,
+                  },
                   "photos": Array [
                     "room.jpg",
                     "apartment-01.jpg",
@@ -109,10 +112,6 @@ exports[`Main correctly renders after relaunch 1`] = `
                     },
                     "name": "Amsterdam",
                   },
-                  "coordinate": Array [
-                    52.369553943508,
-                    4.85309666406198,
-                  ],
                   "features": Array [
                     "Entire place",
                     "3 Bedrooms",
@@ -139,6 +138,10 @@ exports[`Main correctly renders after relaunch 1`] = `
                     "Fridge",
                   ],
                   "isPremium": false,
+                  "offerCoordinates": Array [
+                    52.369553943508,
+                    4.85309666406198,
+                  ],
                   "photos": Array [
                     "room.jpg",
                     "apartment-01.jpg",
@@ -161,10 +164,6 @@ exports[`Main correctly renders after relaunch 1`] = `
                     },
                     "name": "Amsterdam",
                   },
-                  "coordinate": Array [
-                    52.3909553943508,
-                    4.929309666406198,
-                  ],
                   "features": Array [
                     "Entire place",
                     "3 Bedrooms",
@@ -191,6 +190,10 @@ exports[`Main correctly renders after relaunch 1`] = `
                     "Fridge",
                   ],
                   "isPremium": false,
+                  "offerCoordinates": Array [
+                    52.3909553943508,
+                    4.929309666406198,
+                  ],
                   "photos": Array [
                     "room.jpg",
                     "apartment-01.jpg",
@@ -213,10 +216,6 @@ exports[`Main correctly renders after relaunch 1`] = `
                     },
                     "name": "Amsterdam",
                   },
-                  "coordinate": Array [
-                    52.3809553943508,
-                    4.939309666406198,
-                  ],
                   "features": Array [
                     "Entire place",
                     "3 Bedrooms",
@@ -243,6 +242,13 @@ exports[`Main correctly renders after relaunch 1`] = `
                     "Fridge",
                   ],
                   "isPremium": true,
+                  "location": Object {
+                    "offerCoordinates": Array [
+                      52.3809553943508,
+                      4.939309666406198,
+                    ],
+                    "zoom": 8,
+                  },
                   "photos": Array [
                     "room.jpg",
                     "apartment-01.jpg",
@@ -274,12 +280,27 @@ exports[`Main correctly renders after relaunch 1`] = `
                   "zoom": 12,
                 }
               }
+              activeCoordinate={
+                Object {
+                  "offerCoordinates": Array [
+                    52.3909553943508,
+                    4.85309666406198,
+                  ],
+                  "zoom": 8,
+                }
+              }
               city="Amsterdam"
               coordinates={
                 Array [
                   undefined,
                   undefined,
-                  undefined,
+                  Object {
+                    "offerCoordinates": Array [
+                      52.3809553943508,
+                      4.939309666406198,
+                    ],
+                    "zoom": 8,
+                  },
                 ]
               }
             />

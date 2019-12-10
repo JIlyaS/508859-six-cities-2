@@ -221,7 +221,7 @@ DetailInfo.propTypes = {
   currentOffer: PropTypes.shape({
     id: PropTypes.number,
     location: PropTypes.shape({
-      coordinate: PropTypes.arrayOf(PropTypes.number),
+      offerCoordinates: PropTypes.arrayOf(PropTypes.number),
       zoom: PropTypes.number
     }),
     city: PropTypes.object.isRequired,

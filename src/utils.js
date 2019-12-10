@@ -41,7 +41,7 @@ export const getActiveCityCoordinate = (offers) => {
     return ``;
   }
   return {
-    coordinateCity: offers[0].city.location,
+    cityCoordinates: offers[0].city.location,
   };
 };
 
