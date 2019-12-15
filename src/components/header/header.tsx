@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 import {getLocalStorageLogin} from '../../utils';
+import {HeaderProps} from '../../types/types';
 
-const Header = (props) => {
+const Header: React.FunctionComponent<HeaderProps> = (props) => {
   const {isAuthorizationRequired, loginStore} = props;
   const login = loginStore || getLocalStorageLogin();
   const isAuth = !login || isAuthorizationRequired;
@@ -54,13 +54,6 @@ const Header = (props) => {
       </div>
     </div>
   </header>;
-};
-
-Header.propTypes = {
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  loginStore: PropTypes.shape({
-    email: PropTypes.string
-  }),
 };
 
 Header.defaultProps = {

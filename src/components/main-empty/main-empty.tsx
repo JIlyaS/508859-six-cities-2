@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const MainEmpty = () => {
   return <div className="cities__places-container cities__places-container--empty container">

@@ -1,13 +1,13 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 
 import ActionCreator from '../../action-creator/action-creator';
 import OfferCard from '../offer-card/offer-card';
 import Operation from '../../operation/operation';
 import {getClassOfferCardName, getLocalStorageLogin} from '../../utils';
+import {OfferListProps} from '../../types/types';
 
-class OfferList extends PureComponent {
+class OfferList extends React.PureComponent<OfferListProps, null> {
   constructor(props) {
     super(props);
 
@@ -40,15 +40,6 @@ class OfferList extends PureComponent {
     </div>;
   }
 }
-
-OfferList.propTypes = {
-  offers: PropTypes.array.isRequired,
-  onActiveOfferMouseEnter: PropTypes.func.isRequired,
-  onDeactiveOfferMouseLeave: PropTypes.func.isRequired,
-  onChangeOfferFavorite: PropTypes.func.isRequired,
-  onGetLogin: PropTypes.func.isRequired,
-  classOfferCard: PropTypes.string.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeOfferCard: state.userReducer.activeOfferCard,

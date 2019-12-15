@@ -1,11 +1,11 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 
 import ActionCreator from '../../action-creator/action-creator';
 import {SORT_LIST} from '../../constants';
+import {SortListProps} from '../../types/types';
 
-class SortList extends PureComponent {
+class SortList extends React.PureComponent<SortListProps, null> {
 
   constructor(props) {
     super(props);
@@ -22,7 +22,7 @@ class SortList extends PureComponent {
     return <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
       &nbsp;
-      <span className="places__sorting-type" tabIndex="0" onClick={onSortListClick}>
+      <span className="places__sorting-type" tabIndex={0} onClick={onSortListClick}>
         {activeSortName}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select" />
@@ -34,7 +34,7 @@ class SortList extends PureComponent {
             key={`sort-${it.id}`}
             onClick={() => this._handleSortElemClick(it.name, onSortListClick, onSortElemClick)}
             className={`places__option ${it.name === activeSortName && `places__option--active`}`}
-            tabIndex="0">
+            tabIndex={0}>
             {it.name}
           </li>
         ))}
@@ -42,13 +42,6 @@ class SortList extends PureComponent {
     </form>;
   }
 }
-
-SortList.propTypes = {
-  isSortOpened: PropTypes.bool.isRequired,
-  activeSortName: PropTypes.string.isRequired,
-  onSortElemClick: PropTypes.func.isRequired,
-  onSortListClick: PropTypes.func.isRequired
-};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   activeSortName: state.userReducer.activeSortName

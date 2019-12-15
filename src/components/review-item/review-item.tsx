@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {convertRating} from '../../utils';
+import * as React from 'react';
 
-const ReviewItem = (props) => {
+import {convertRating} from '../../utils';
+import {ReviewItemProps} from '../../types/types';
+
+const ReviewItem: React.FunctionComponent<ReviewItemProps> = (props) => {
   const {review: {rating, date, comment, user: {avatar, name}, dateTime}} = props;
   return <li className="reviews__item">
     <div className="reviews__user user">
@@ -26,19 +27,6 @@ const ReviewItem = (props) => {
       <time className="reviews__time" dateTime={dateTime}>{date}</time>
     </div>
   </li>;
-};
-
-ReviewItem.propTypes = {
-  review: PropTypes.shape({
-    rating: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
-    dateTime: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-      avatar: PropTypes.string,
-      name: PropTypes.string,
-    }),
-  })
 };
 
 export default ReviewItem;

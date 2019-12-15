@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {Link} from 'react-router-dom';
 
 import {firstUpperCase, convertRating} from '../../utils';
 import {OfferCardImg} from '../../constants';
+import {OfferCardProps} from '../../types/types';
 
-const OfferCard = (props) => {
+const OfferCard: React.FunctionComponent<OfferCardProps> = (props) => {
   const {
     offer: {img, isPremium, isFavorite, price, title, type, rating},
     offerId,
@@ -64,28 +64,6 @@ const OfferCard = (props) => {
       <p className="place-card__type">{firstUpperCase(type)}</p>
     </div>
   </article>;
-};
-
-OfferCard.propTypes = {
-  offer: PropTypes.shape({
-    isFavorite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    img: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`])
-  }),
-  offerId: PropTypes.number.isRequired,
-  onActiveOfferMouseEnter: PropTypes.func,
-  onDeactiveOfferMouseLeave: PropTypes.func,
-  onFavoriteOfferClick: PropTypes.func.isRequired,
-  classCard: PropTypes.shape({
-    card: PropTypes.string.isRequired,
-    wrapper: PropTypes.string.isRequired,
-    info: PropTypes.string.isRequired,
-  }).isRequired,
-  isFavoriteOffer: PropTypes.bool,
 };
 
 OfferCard.defaultProps = {

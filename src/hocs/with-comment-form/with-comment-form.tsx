@@ -1,8 +1,13 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
+import {Subtract} from "utility-types";
+
 import {Comment} from '../../constants';
+import {WithCommentFormState, WithInjectedCommentFormProps} from '../../types/types';
 
 const withCommentForm = (Component) => {
-  class WithCommentForm extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  class WithCommentForm extends React.PureComponent<Subtract<P, WithInjectedCommentFormProps>, WithCommentFormState> {
+    protected refSubmitBtn: React.RefObject<HTMLButtonElement>;
     constructor(props) {
       super(props);
       this.state = {
@@ -46,8 +51,6 @@ const withCommentForm = (Component) => {
       />;
     }
   }
-
-  WithCommentForm.propTypes = {};
 
   return WithCommentForm;
 };

@@ -1,7 +1,11 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
+import {Subtract} from "utility-types";
+
+import {WithInjectedSortListProps, WithSortListState} from '../../types/types';
 
 const withSortList = (Component) => {
-  class WithSortList extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  class WithSortList extends React.PureComponent<Subtract<P, WithInjectedSortListProps>, WithSortListState> {
     constructor(props) {
       super(props);
       this.state = {
@@ -24,8 +28,6 @@ const withSortList = (Component) => {
       />;
     }
   }
-
-  WithSortList.propTypes = {};
 
   return WithSortList;
 };

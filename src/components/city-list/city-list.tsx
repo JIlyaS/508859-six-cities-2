@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 
 import ActionCreator from '../../action-creator/action-creator';
+import {CityListProps} from '../../types/types';
 
-const CityList = (props) => {
+const CityList: React.FunctionComponent<CityListProps> = (props) => {
   const {city, cities, onChangedCityClick} = props;
   return <ul className="locations__list tabs__list">
     {[...new Set(cities)].map((offerCity) => <li className="locations__item" key={`location-${offerCity}`}>
@@ -17,12 +17,6 @@ const CityList = (props) => {
       </a>
     </li>)}
   </ul>;
-};
-
-CityList.propTypes = {
-  city: PropTypes.string.isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChangedCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>

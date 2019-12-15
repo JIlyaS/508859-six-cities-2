@@ -1,10 +1,18 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
-import leaflet from 'leaflet';
+import * as React from 'react';
+import * as leaflet from 'leaflet';
 
 import {MapIcon, TileLayerMap} from '../../constants';
+import {MapProps} from '../../types/types';
 
-class Map extends PureComponent {
+class Map extends React.PureComponent<MapProps, null> {
+  _icon: any;
+  _activeIcon: any;
+  _map: any;
+  _marker: any;
+  _activeMarker: any;
+  _mapMarkers: any[];
+  _city: any;
+  _zoom: any;
   constructor(props) {
     super(props);
     this._icon = leaflet.icon({
@@ -18,6 +26,8 @@ class Map extends PureComponent {
     this._map = null;
     this._marker = null;
     this._activeMarker = null;
+    this._city = null;
+    this._zoom = null;
     this._mapMarkers = [];
   }
 
@@ -75,15 +85,5 @@ class Map extends PureComponent {
     return <div id="map" style={{height: 100 + `%`}}></div>;
   }
 }
-
-Map.propTypes = {
-  coordinates: PropTypes.array.isRequired,
-  activeCoordinate: PropTypes.object,
-  city: PropTypes.string,
-  activeCityCoordinate: PropTypes.shape({
-    cityCoordinates: PropTypes.array.isRequired,
-    zoomCity: PropTypes.number.isRequired
-  }).isRequired
-};
 
 export default Map;

@@ -1,6 +1,5 @@
-import React, {Fragment} from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 
 import OfferList from '../offer-list/offer-list';
 import Map from '../map/map';
@@ -38,7 +37,7 @@ const Main = (props) => {
         className={`page__main page__main--index ${currentOffers.length ===
           0 && `page__main--index-empty`}`}
       >
-        <Fragment><h1 className="visually-hidden">Cities</h1>
+        <React.Fragment><h1 className="visually-hidden">Cities</h1>
           <div className="tabs">
             <section className="locations container">
               <CityList />
@@ -70,21 +69,10 @@ const Main = (props) => {
               <MainEmpty />
             )}
           </div>
-        </Fragment>
+        </React.Fragment>
       </main>
     </PageLayout>
   );
-};
-
-Main.propTypes = {
-  city: PropTypes.string.isRequired,
-  offers: PropTypes.array.isRequired,
-  activeOfferCard: PropTypes.shape({
-    id: PropTypes.number,
-    location: PropTypes.object,
-  }).isRequired,
-  isOffersFetching: PropTypes.bool.isRequired,
-  activeSortName: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

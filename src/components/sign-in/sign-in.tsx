@@ -1,11 +1,11 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 
 import PageLayout from '../page-layout/page-layout';
 import Operation from '../../operation/operation';
+import {SignInProps} from '../../types/types';
 
-class SignIn extends PureComponent {
+class SignIn extends React.PureComponent<SignInProps, null> {
 
   constructor(props) {
     super(props);
@@ -39,7 +39,7 @@ class SignIn extends PureComponent {
                   placeholder="Email"
                   value={email}
                   onChange={(evt) => onValueFormChange(evt, `email`)}
-                  required=""
+                  required
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -51,7 +51,7 @@ class SignIn extends PureComponent {
                   placeholder="Password"
                   value={password}
                   onChange={(evt) => onValueFormChange(evt, `password`)}
-                  required=""
+                  required
                 />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
@@ -75,16 +75,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Operation.checkLogin(email, password));
   }
 });
-
-SignIn.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func
-  }).isRequired,
-  onCheckLogin: PropTypes.func.isRequired,
-  onValueFormChange: PropTypes.func.isRequired,
-};
 
 export {SignIn};
 

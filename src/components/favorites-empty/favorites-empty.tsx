@@ -1,7 +1,7 @@
-import React, {Fragment} from 'react';
+import * as React from 'react';
 
 const FavoritesEmpty = () => {
-  return <Fragment>
+  return <React.Fragment>
     <main className="page__main page__main--favorites page__main--favorites-empty">
       <div className="page__favorites-container container">
         <section className="favorites favorites--empty">
@@ -13,7 +13,7 @@ const FavoritesEmpty = () => {
         </section>
       </div>
     </main>
-  </Fragment>;
+  </React.Fragment>;
 };
 
 export {FavoritesEmpty};

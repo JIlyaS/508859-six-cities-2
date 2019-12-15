@@ -1,5 +1,4 @@
-import React, {Fragment, PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
@@ -10,8 +9,9 @@ import Preloader from '../preloader/preloader';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import {getClassOfferCardName} from '../../utils';
 import {OfferCardName} from '../../constants';
+import {FavoritesListProps} from '../../types/types';
 
-class FavoritesList extends PureComponent {
+class FavoritesList extends React.PureComponent<FavoritesListProps, null> {
 
   constructor(props) {
     super(props);
@@ -42,7 +42,7 @@ class FavoritesList extends PureComponent {
     }
 
     return <PageLayout pageName="favorites">
-      <Fragment>
+      <React.Fragment>
         {
           !favoriteOffers.length ? <FavoritesEmpty /> : <main className="page__main page__main--favorites">
             <div className="page__favorites-container container">
@@ -80,17 +80,10 @@ class FavoritesList extends PureComponent {
             <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
           </Link>
         </footer>
-      </Fragment>
+      </React.Fragment>
     </PageLayout>;
   }
 }
-
-FavoritesList.propTypes = {
-  favoriteOffers: PropTypes.array.isRequired,
-  onLoadFavorites: PropTypes.func.isRequired,
-  isFavoritesFetching: PropTypes.bool.isRequired,
-  onChangeOfferFavorite: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   favoriteOffers: state.appReducer.favorites,

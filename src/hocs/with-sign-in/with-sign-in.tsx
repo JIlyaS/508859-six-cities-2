@@ -1,7 +1,9 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
+
+import {WithSignInProps, WithSignInState} from '../../types/types';
 
 const withSignIn = (Component) => {
-  class WithSignIn extends PureComponent {
+  class WithSignIn extends React.PureComponent<WithSignInProps, WithSignInState> {
     constructor(props) {
       super(props);
       this.state = {
@@ -27,8 +29,6 @@ const withSignIn = (Component) => {
       />;
     }
   }
-
-  WithSignIn.propTypes = {};
 
   return WithSignIn;
 };

@@ -1,16 +1,17 @@
-import React, {PureComponent, Fragment} from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 
 import Operation from '../../operation/operation';
 import {RATINGS} from '../../constants';
 import ActionCreator from '../../action-creator/action-creator';
+import {CommentFormProps} from '../../types/types';
 
-class CommentForm extends PureComponent {
+class CommentForm extends React.PureComponent<CommentFormProps, null> {
+
+  private formRef = React.createRef<HTMLFormElement>();
 
   constructor(props) {
     super(props);
-    this.formRef = React.createRef();
     this._handleСommentFormSubmit = this._handleСommentFormSubmit.bind(this);
   }
 
@@ -53,7 +54,7 @@ class CommentForm extends PureComponent {
       <div className="reviews__rating-form form__rating">
         {
           RATINGS.map(({stars, title}) => (
-            <Fragment key={`${stars}-stars`}>
+            <React.Fragment key={`${stars}-stars`}>
               <input
                 className="form__rating-input visually-hidden"
                 name="rating"
@@ -76,7 +77,7 @@ class CommentForm extends PureComponent {
                   <use xlinkHref="#icon-star"></use>
                 </svg>
               </label>
-            </Fragment>
+            </React.Fragment>
           ))
         }
       </div>
@@ -110,26 +111,6 @@ class CommentForm extends PureComponent {
     </form>;
   }
 }
-
-CommentForm.propTypes = {
-  rating: PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired,
-  onAddReview: PropTypes.func,
-  onValueFormChange: PropTypes.func.isRequired,
-  idHotel: PropTypes.string.isRequired,
-  refSubmitBtn: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({current: PropTypes.instanceOf(Element)})
-  ]),
-  onFormResetSubmit: PropTypes.func.isRequired,
-  onGetDefaultForm: PropTypes.func.isRequired,
-  formSubmit: PropTypes.shape({
-    blockedInput: PropTypes.bool.isRequired,
-    blockedSubmit: PropTypes.bool.isRequired,
-    submit: PropTypes.bool.isRequired,
-    error: PropTypes.bool.isRequired,
-  }).isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   formSubmit: state.userReducer.formSubmit,

@@ -1,6 +1,5 @@
-import React, {PureComponent, Fragment} from 'react';
+import * as React from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 import {Switch, Route} from 'react-router-dom';
 import ReactNotification from 'react-notifications-component';
 
@@ -12,9 +11,10 @@ import withSignIn from '../../hocs/with-sign-in/with-sign-in';
 import Operation from '../../operation/operation';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 import ActionCreator from '../../action-creator/action-creator';
+import {AppProps} from '../../types/types';
 import '../../../node_modules/react-notifications-component/dist/theme.css';
 
-class App extends PureComponent {
+class App extends React.PureComponent<AppProps, null> {
 
   componentDidMount() {
     const {onOffersLoad, onAuthorizationRequire} = this.props;
@@ -33,7 +33,7 @@ class App extends PureComponent {
     const FavoritesListWrapper = withPrivateRoute(FavoritesList, !isAuthorizationRequired, `/login`);
 
     return (
-      <Fragment>
+      <React.Fragment>
         <ReactNotification />
         <Switch>
           <Route path="/" component={Main} exact />
@@ -41,16 +41,10 @@ class App extends PureComponent {
           <Route path="/offer/:offerId" component={DetailInfo} exact />
           <Route path="/favorites" component={FavoritesListWrapper} exact />
         </Switch>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-
-App.propTypes = {
-  onOffersLoad: PropTypes.func.isRequired,
-  onAuthorizationRequire: PropTypes.func.isRequired,
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   isAuthorizationRequired: state.userReducer.isAuthorizationRequired,

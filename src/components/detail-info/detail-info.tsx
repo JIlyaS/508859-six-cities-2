@@ -1,5 +1,4 @@
-import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {connect} from 'react-redux';
 
 import ReviewsList from '../review-list/review-list';
@@ -12,10 +11,11 @@ import withCommentForm from '../../hocs/with-comment-form/with-comment-form';
 import {getMapCoordinates, convertRating, getOtherCityOffers, getLocalStorageLogin} from '../../utils';
 import Operation from '../../operation/operation';
 import {OfferCardName} from '../../constants';
+import {DetailInfoProps} from '../../types/types';
 
 const CommentFormWrapped = withCommentForm(CommentForm);
 
-class DetailInfo extends PureComponent {
+class DetailInfo extends React.PureComponent<DetailInfoProps, null> {
 
   constructor(props) {
     super(props);
@@ -211,43 +211,6 @@ class DetailInfo extends PureComponent {
     );
   }
 }
-
-DetailInfo.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      offerId: PropTypes.string
-    }).isRequired
-  }).isRequired,
-  currentOffer: PropTypes.shape({
-    id: PropTypes.number,
-    location: PropTypes.shape({
-      offerCoordinates: PropTypes.arrayOf(PropTypes.number),
-      zoom: PropTypes.number
-    }),
-    city: PropTypes.object.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    img: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.oneOf([`apartment`, `room`, `house`, `hotel`]),
-    photos: PropTypes.arrayOf(PropTypes.string).isRequired,
-    features: PropTypes.arrayOf(PropTypes.string).isRequired,
-    insideProperties: PropTypes.arrayOf(PropTypes.string).isRequired,
-    hostUser: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      status: PropTypes.bool.isRequired
-    }),
-  }),
-  otherOffers: PropTypes.array.isRequired,
-  offers: PropTypes.array.isRequired,
-  onLoadReviews: PropTypes.func.isRequired,
-  reviews: PropTypes.array.isRequired,
-  onChangeOfferFavorite: PropTypes.func.isRequired,
-  onGetLogin: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
   currentOffer: state.appReducer.offers.find((offer) => offer.id === Number(ownProps.match.params.offerId)),
