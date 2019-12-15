@@ -1,7 +1,7 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
 import toJSON from 'enzyme-to-json';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 import {shape} from 'prop-types';
 import {BrowserRouter} from 'react-router-dom';
 
@@ -24,7 +24,7 @@ const createContext = () => ({
 });
 
 it(`OfferCard correctly renders after relaunch`, () => {
-  const tree = shallow(<OfferCard
+  const tree = Enzyme.shallow(<OfferCard
     offer={OfferCardMock.OFFER}
     offerId={OfferCardMock.OFFER_ID}
     onActiveOfferMouseEnter={() => {}}

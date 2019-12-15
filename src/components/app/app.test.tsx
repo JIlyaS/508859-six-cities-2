@@ -1,8 +1,8 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import configureMockStore from 'redux-mock-store';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 
 import {App} from './app';
 
@@ -39,7 +39,7 @@ const mockStore = configureMockStore();
 const store = mockStore(props);
 
 it(`App correctly renders after relaunch`, () => {
-  const tree = shallow(<App
+  const tree = Enzyme.shallow(<App
     onOffersLoad={() => {}}
     onAuthorizationRequire={() => {}}
     isAuthorizationRequired={false}

@@ -37,7 +37,7 @@ exports[`SignIn correctly renders after relaunch 1`] = `
               name="email"
               onChange={[Function]}
               placeholder="Email"
-              required=""
+              required={true}
               type="email"
               value=""
             />
@@ -55,7 +55,7 @@ exports[`SignIn correctly renders after relaunch 1`] = `
               name="password"
               onChange={[Function]}
               placeholder="Password"
-              required=""
+              required={true}
               type="password"
               value=""
             />

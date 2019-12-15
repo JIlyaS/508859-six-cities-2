@@ -1,7 +1,7 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
 import toJSON from 'enzyme-to-json';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 import {shape} from 'prop-types';
 import {BrowserRouter} from 'react-router-dom';
 import {MOCK_DATA_UPDATED_FAVORITE} from '../../constants';
@@ -24,7 +24,7 @@ const createContext = () => ({
 });
 
 it(`FavoritesList correctly renders after relaunch`, () => {
-  const tree = shallow(<FavoritesList
+  const tree = Enzyme.shallow(<FavoritesList
     favoriteOffers={MOCK_DATA_UPDATED_FAVORITE}
     isFavoritesFetching={false}
     onLoadFavorites={() => {}}

@@ -1,7 +1,7 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
 import toJSON from 'enzyme-to-json';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 import {shape} from 'prop-types';
 import {BrowserRouter} from 'react-router-dom';
 
@@ -24,9 +24,9 @@ const createContext = () => ({
 });
 
 it(`Header correctly renders after relaunch`, () => {
-  const tree = shallow(<Header
+  const tree = Enzyme.shallow(<Header
     isAuthorizationRequired={HeaderMock.IS_AUTH}
-    login={HeaderMock.LOGIN}
+    loginStore={HeaderMock.LOGIN}
   />, createContext());
 
   expect(toJSON(tree)).toMatchSnapshot();

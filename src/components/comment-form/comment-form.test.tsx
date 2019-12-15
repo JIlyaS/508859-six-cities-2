@@ -1,15 +1,15 @@
 
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
 import toJSON from 'enzyme-to-json';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 import {CommentForm} from './comment-form';
 import {CommentFormMock} from '../../constants';
 
 Enzyme.configure({adapter: new Adapter()});
 
 it(`CommentForm correctly renders after relaunch`, () => {
-  const tree = shallow(<CommentForm
+  const tree = Enzyme.shallow(<CommentForm
     rating={CommentFormMock.RATING}
     comment={CommentFormMock.COMMENT}
     onAddReview={() => {}}

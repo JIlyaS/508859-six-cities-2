@@ -1,9 +1,8 @@
-import { string } from "prop-types"
-
 export interface AppProps {
   onOffersLoad: () => void;
   onAuthorizationRequire: (auth: boolean) => void;
   isAuthorizationRequired: boolean;
+  store?: any
 };
 
 export interface CityListProps {
@@ -245,9 +244,9 @@ export interface WithSignInState {
 };
 
 export interface WithSignInProps {
-  email: string;
-  password: string;
-  onValueFormChange: (evt: React.ChangeEvent, param: string) => void;
+  email?: string;
+  password?: string;
+  onValueFormChange?: (evt: React.ChangeEvent, param: string) => void;
 };
 
 export interface WithSortListState {

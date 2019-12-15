@@ -1,6 +1,6 @@
-import React from 'react';
-import Enzyme, {shallow} from "enzyme";
-import Adapter from 'enzyme-adapter-react-16';
+import * as React from 'react';
+import * as Enzyme from "enzyme";
+import * as Adapter from 'enzyme-adapter-react-16';
 import withCommentForm from './with-comment-form';
 import {WithCommentFormMock} from '../../constants';
 
@@ -13,7 +13,7 @@ const MockComponentWrapped = withCommentForm(MockComponent);
 
 describe(`withCommentForm  HOC work correct`, () => {
   it(`CommentForm component is correct`, () => {
-    const wrapper = shallow(<MockComponentWrapped />);
+    const wrapper = Enzyme.shallow(<MockComponentWrapped />);
     wrapper.instance().refSubmitBtn.current = refMock;
     expect(wrapper.state().rating).toEqual(``);
     expect(wrapper.state().comment).toEqual(``);

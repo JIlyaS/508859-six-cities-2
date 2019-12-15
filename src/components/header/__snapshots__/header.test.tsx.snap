@@ -37,15 +37,15 @@ exports[`Header correctly renders after relaunch 1`] = `
           >
             <Link
               className="header__nav-link header__nav-link--profile"
-              to="/login"
+              to="/favorites"
             >
               <div
                 className="header__avatar-wrapper user__avatar-wrapper"
               />
               <span
-                className="header__login"
+                className="header__user-name user__name"
               >
-                Sign in
+                info@mail.ru
               </span>
             </Link>
           </li>

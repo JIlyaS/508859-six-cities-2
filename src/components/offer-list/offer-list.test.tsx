@@ -1,7 +1,7 @@
-import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import * as React from 'react';
+import * as Enzyme from 'enzyme';
 import toJSON from 'enzyme-to-json';
-import Adapter from 'enzyme-adapter-react-16';
+import * as Adapter from 'enzyme-adapter-react-16';
 import {shape} from 'prop-types';
 import {BrowserRouter} from 'react-router-dom';
 
@@ -24,15 +24,13 @@ const createContext = () => ({
 });
 
 it(`OfferList correctly renders after relaunch`, () => {
-  const tree = shallow(<OfferList
+  const tree = Enzyme.shallow(<OfferList
     offers={OfferListMock.OFFERS}
     onActiveOfferMouseEnter={() => {}}
     onDeactiveOfferMouseLeave={() => {}}
-    onFavoriteOfferClick={() => {}}
     onGetLogin={() => {}}
     onChangeOfferFavorite={() => {}}
     classOfferCard={OfferListMock.CLASS_OFFER_CARD}
-    classCard={OfferListMock.CLASS_CARD}
   />, createContext());
 
   expect(toJSON(tree)).toMatchSnapshot();
